@@ -3,6 +3,7 @@ import { t_combo } from '../../types/combo';
 import './styles.css';
 import { t_cart } from '../../types/cart';
 import { addRsSymbol } from '../../utils/addRsSymbol';
+import ComboAction from '../comboAction/ComboAction';
 
 // this file will have all the components required after selecting the combos and proceeding for cart
 
@@ -22,6 +23,9 @@ const CartComboBox: React.FC<{ combo: t_combo }> = ({ combo }) => {
       <div className="cart-combo-box-end">
         <div className="--price">
           <span>{addRsSymbol(combo.price.toString())}</span>
+        </div>
+        <div className='combo-actions'>
+          <ComboAction  numberOfItems={4} onAdd={() => {}} onDelete={() => {}} />
         </div>
       </div>
     </div>

@@ -1,0 +1,17 @@
+.combo-action-container {
+  display: flex;
+  gap: 0;
+  background: #2f2f2f4d;
+  color: var(--teho-orange-color);
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 14px;
+}
+
+.combo-action-container  span {
+    padding: 6px 14px;
+}
+
+.combo-action-container .--items {
+    background-color: #494949;
+}
