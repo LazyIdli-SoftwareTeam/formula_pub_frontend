@@ -12,10 +12,12 @@ const CartComboBox: React.FC<{ combo: t_combo }> = ({ combo }) => {
     <div className="cart-combo-box-container">
       <div className="cart-combo-box-start">
         <div className="--img">
-          <img src="/Users/lazyidlidev01/Desktop/formula_pub_frontend/public/assets/cart/Frame 1200 copy.svg" />
+          <img src="/assets/cart/Frame 1200 copy.svg" />
         </div>
-        <span className="--text">{combo.comboName}</span>
-        <span className="--price">{addRsSymbol(combo.price.toString())}</span>
+        <div className="--description">
+          <span className="--text">{combo.comboName}</span>
+          <span className="--price">{addRsSymbol(combo.price.toString())}</span>
+        </div>
       </div>
       <div className="cart-combo-box-end">
         <div className="--price">

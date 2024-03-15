@@ -8,9 +8,51 @@
 .cart-combo-container {
   display: flex;
   padding: 16px;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.cart-combo-container .cart-combo-container-combos {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .cart-combo-container .cart-combo-container-top-heading {
   font-weight: 700;
   font-size: 14px;
+}
+
+.cart-combo-container .cart-combo-box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.cart-combo-container .card-combo-box-container {
+  display: flex;
+}
+
+.cart-combo-container .cart-combo-box-start {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-combo-container .cart-combo-box-start .--description {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+}
+
+.cart-combo-container .cart-combo-box-start .--description .--text {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.cart-combo-container .cart-combo-box-start .--description .--price {
+  font-size: 12px;
+  font-weight: 700;
 }
