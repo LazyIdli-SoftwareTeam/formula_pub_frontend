@@ -49,6 +49,9 @@
 
 .cart-combo-container .cart-combo-box-start .--description .--text {
   font-size: 10px;
+  max-width: 120px;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
   font-weight: 500;
 }
 
