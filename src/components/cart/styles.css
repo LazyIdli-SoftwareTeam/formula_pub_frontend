@@ -1,0 +1,16 @@
+.cart-container {
+  display: flex;
+  color: var(--teho-white-color);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cart-combo-container {
+  display: flex;
+  padding: 16px;
+}
+
+.cart-combo-container .cart-combo-container-top-heading {
+  font-weight: 700;
+  font-size: 14px;
+}

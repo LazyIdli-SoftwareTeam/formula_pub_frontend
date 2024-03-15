@@ -1,9 +1,15 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import VerifyHost from './views/Customer/VerifyHost';
 
 function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<VerifyHost />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
