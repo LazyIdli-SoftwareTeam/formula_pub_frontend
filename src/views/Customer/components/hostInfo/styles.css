@@ -30,7 +30,19 @@
 }
 
 .host-info-container .host-info-container-bottom {
-  width: 35%;
+  width: 38%;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.host-info-container .host-info-tos-container {
+  display: flex;
+  align-items: start;
+  gap: 7px;
+  font-size: 12px;
+  justify-content: center;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
 }

@@ -2,7 +2,7 @@
   display: flex;
   color: var(--teho-white-color);
   width: 100%;
-  background-color: #2F2F2F;
+  background-color: #2f2f2f;
   border-radius: 8px;
 }
 
@@ -10,14 +10,13 @@
   display: flex;
   padding: 16px;
   width: 100%;
-  gap: 15px;
+  gap: 10px;
   flex-direction: column;
 }
 
 .cart-combo-container .cart-combo-container-combos {
   display: flex;
   flex-direction: column;
-  gap: 14px;
 }
 
 .cart-combo-container .cart-combo-container-top-heading {
@@ -31,7 +30,6 @@
   align-items: center;
   gap: 10px;
 }
-
 
 .cart-combo-container .card-combo-box-container {
   display: flex;
@@ -69,4 +67,41 @@
   gap: 5px;
   width: 50%;
   align-items: center;
+}
+
+.cart-combo-container .cart-combo-box-end .--price {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.cart-combo-box-container {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.cart-combo-box-container:last-child::after {
+  background-color: inherit;
+}
+
+.cart-combo-box-container:last-child {
+  padding-bottom: 0px;
+}
+
+.cart-combo-box-container::after {
+  position: absolute;
+  width: 100%;
+  background-color: #484747;
+  height: 1px;
+  content: '';
+  bottom: 0px;
+}
+
+.cart-combo-container .cart-combo-container-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 9px;
+  border-top: 1px solid #C1C1C1;
+  font-size: 16px;
+  font-weight: 700;
 }

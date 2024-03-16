@@ -1,6 +1,6 @@
-import Button from '../hexaButton/Button';
+import Button from '../../../../components/hexaButton/Button';
 import './styles.css';
-import { CssTextField } from '../../theme/Textfield';
+import { CssTextField } from '../../../../theme/Textfield';
 
 const HostInfo = () => {
   return (
@@ -17,6 +17,13 @@ const HostInfo = () => {
           sx={{ backgroundColor: '#2F2F2F' }}
           size='small'
         />
+      </div>
+      <div className='host-info-tos-container'>
+        <input type='checkbox' />
+        <span className='--tos'>
+          I accept whatever happens during the game im totally responsible for
+          the causes. lorem ipsum
+        </span>
       </div>
       <div className='host-info-container-bottom'>
         <Button content='Confirm' disabled={true} onClick={() => {}} />
