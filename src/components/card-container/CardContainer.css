@@ -1,0 +1,41 @@
+.main-container-box {
+  position: relative;
+  background-color: rgba(47, 47, 47, 1);
+}
+
+.main-container-overlay {
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  top: -25px;
+  background-color: rgba(47, 47, 47, 1);
+  border-radius: 20px 20px 0px 0px;
+  z-index: index 1000;
+
+}
+
+.card--container {
+  width: 100%;
+  border-radius: 20px 20px 0px 0px;
+  border: 1px;
+  gap: 8px;
+  background-color: rgba(47, 47, 47, 1);
+  padding: 0px 20px 20px 20px;
+}
+
+.container--details h1 {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 8px 0;
+}
+
+.container--details p {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: inter;
+}
+
+.container-cards {
+  display: grid;
+  gap: 10px;
+}
