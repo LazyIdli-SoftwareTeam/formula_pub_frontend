@@ -1,9 +1,9 @@
 .cart-container {
   display: flex;
   color: var(--teho-white-color);
-  padding-left: 20px;
-  padding-right: 20px;
   width: 100%;
+  background-color: #2F2F2F;
+  border-radius: 8px;
 }
 
 .cart-combo-container {
