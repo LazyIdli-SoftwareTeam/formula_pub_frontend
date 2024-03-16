@@ -5,6 +5,9 @@ import { CssTextField } from '../../../../theme/Textfield';
 const HostInfo = () => {
   return (
     <div className='host-info-container'>
+      <div className='host-info-container-top-heading'>
+        <span>Verify Host</span>
+      </div>
       <div className='host-info-container-inputs'>
         <CssTextField
           label='Enter Host’s Name : '

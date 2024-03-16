@@ -1,0 +1,16 @@
+.global-otp-box-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.global-otp-box-container .global-otp-box-inputs {
+  display: flex;
+  gap: 5px;
+}
+
+.global-otp-box-container .global-otp-box-inputs input {
+  border: 1px solid #c1c1c1;
+}
