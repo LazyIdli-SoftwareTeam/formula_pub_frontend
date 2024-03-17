@@ -5,6 +5,9 @@ export const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
     color: '#A0AAB4',
   },
+  input: {
+    color: '#f4f4f4',
+  },
   '& .MuiOutlinedInput-root': {
     '&:hover fieldset': {
       border: 'none !important',

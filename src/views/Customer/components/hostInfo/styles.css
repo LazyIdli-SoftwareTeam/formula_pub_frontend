@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+
 }
 
 .host-info-container .host-info-container-top-heading {
@@ -29,7 +30,7 @@
   outline: none !important;
 }
 
-.host-info-container label {
+label {
   color: var(--teho-white-color);
   font-size: 12px;
   font-weight: 600;
@@ -41,7 +42,6 @@
   margin-right: auto;
 }
 
-
 .host-info-container .host-info-tos-container {
   display: flex;
   align-items: start;
@@ -52,3 +52,4 @@
   letter-spacing: 0.4px;
   line-height: 1.1;
 }
+
