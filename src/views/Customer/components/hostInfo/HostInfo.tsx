@@ -16,7 +16,6 @@ const HostInfo = () => {
         />
         <CssTextField
           label='Enter Host’s Mobile Number : '
-          color='secondary'
           sx={{ backgroundColor: '#2F2F2F' }}
           size='small'
         />
