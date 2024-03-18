@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Accordion,
   AccordionDetails,
@@ -44,10 +45,26 @@ export const RideDetail = () => {
   );
 };
 
-export const PlayerRideInformation: React.FC<{ index: number }> = ({
+export const PlayerAccordionCloseInfo: React.FC<{ index: number }> = ({
   index,
 }) => {
-  const [accordianOpened, setAccordianOpened] = useState(false);
+  return (
+    <div className="customer-ride-player-information-container-head">
+      <div className="--name">
+        <span className="--index">{index}</span>
+      </div>
+      <div className="--text">
+        <span className="--name">Name</span>
+        <span className="--num">Mobile no.</span>
+      </div>
+    </div>
+  );
+};
+
+export const PlayerRideInformation: React.FC<{
+  index: number;
+}> = ({ index }) => {
+  const [accordionOpened, setAccordionOpened] = useState(false);
   const TextFieldStyle = {
     width: '100%',
     background: '#494949',
@@ -84,8 +101,8 @@ export const PlayerRideInformation: React.FC<{ index: number }> = ({
   return (
     <div className="customer-ride-player-information-container">
       <Accordion
-        expanded={accordianOpened}
-        onChange={() => setAccordianOpened(!accordianOpened)}
+        expanded={accordionOpened}
+        onChange={() => setAccordionOpened(!accordionOpened)}
         disableGutters
       >
         <AccordionSummary
@@ -93,18 +110,10 @@ export const PlayerRideInformation: React.FC<{ index: number }> = ({
             <IoMdArrowDropdown color="white" strokeWidth="2" fontSize="20px" />
           }
         >
-          {accordianOpened ? (
+          {accordionOpened ? (
             <PlayerTag />
           ) : (
-            <div className="customer-ride-player-information-container-head">
-              <div className="--name">
-                <span className="--index">{index}</span>
-              </div>
-              <div className="--text">
-                <span className="--name">Name</span>
-                <span className="--num">Mobile no.</span>
-              </div>
-            </div>
+            <PlayerAccordionCloseInfo index={index} />
           )}
         </AccordionSummary>
         <AccordionDetails>

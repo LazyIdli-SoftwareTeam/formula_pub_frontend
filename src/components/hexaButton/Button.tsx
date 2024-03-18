@@ -21,7 +21,7 @@ const Button: React.FC<t_hexButton> = ({
       const height = divRef.current.clientHeight;
       const oneSide = Math.round(height / 2);
       divRef.current.style.setProperty('--oneSide', oneSide + 'px');
-      divRef.current.style.width = (divRef.current.clientWidth - 20) + 'px';
+      // divRef.current.style.width = (divRef.current.clientWidth - 20) + 'px';
       if (disabled) {
         divRef.current.style.setProperty('--color', '#c1c1c1');
       } else {
