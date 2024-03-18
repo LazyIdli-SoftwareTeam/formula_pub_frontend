@@ -6,8 +6,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --teho-black-color: #181818;
+  --teho-white-color: #f4f4f4;
+  --teho-orange-color: #f8990b;
+  --teho-blue-color: #1cb1d9;
+}
+
 body {
-  background-color: black;
-  color: white;
-  font-family: inter;
+  background-color: var(--teho-black-color);
+  font-family: "Inter";
+  color: var(--teho-white-color);
 }

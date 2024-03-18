@@ -1,10 +1,24 @@
-import "./ApplyCoupons.css"
-
+import { HexaButton } from "../../utils/hexa-button/Hexa-button";
+import "./ApplyCoupons.css";
 
 const ApplyCoupons = () => {
   return (
-    <div>
-      <h1>Apply Coupons Component</h1>
+    <div className="coupons--container">
+      <div className="coupons">
+        <h1>Apply Coupons</h1>
+        <div className="coupons--content">
+          <input type="text" />
+          <button className="apply--btn">Apply</button>
+        </div>
+        <p className="view-all-coupons">View All Coupons</p>
+      </div>
+      <div className="total--coupons"></div>
+      <HexaButton
+        onClick={() => console.log("Button clicked")}
+        className="pay--btn"
+      >
+        Pay
+      </HexaButton>
     </div>
   );
 };

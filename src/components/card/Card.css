@@ -18,7 +18,7 @@
   height: 150px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 8px;
 }
 
@@ -66,7 +66,7 @@
   background-color: rgba(73, 73, 73, 1);
 }
 
-.card--quantity--button {
+/* .card--quantity--button {
   background-color: rgba(73, 73, 73, 1);
   color: rgba(248, 153, 11, 1);
   font-size: 14px;
@@ -80,6 +80,31 @@
   background: rgba(10, 10, 10, 0.18);
   color: rgba(248, 153, 11, 1);
   margin: px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+} */
+
+.card--quantity--button {
+  background-color: rgba(73, 73, 73, 1);
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  height: 36px;
+  border-radius: 18px 18px 18px 18px; /* Rounded top corners */
+}
+
+.card--quantity--number {
+  background: rgba(10, 10, 10, 0.18);
+  color: rgba(248, 153, 11, 1);
+  /* margin: 2px; */
   font-size: 14px;
   font-weight: 600;
   border: none;

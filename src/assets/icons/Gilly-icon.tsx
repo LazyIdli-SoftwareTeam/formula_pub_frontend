@@ -1,6 +1,9 @@
+import { SVGProps } from "react";
+import { JSX } from "react/jsx-runtime";
 
-
-const GillyIcon = (props) => (
+const GillyIcon = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) => (
   <svg
     width={68}
     height={30}

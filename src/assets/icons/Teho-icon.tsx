@@ -1,5 +1,7 @@
-import * as React from "react";
-const TehoIcon = (props) => (
+import { SVGProps } from "react";
+import { JSX } from "react/jsx-runtime";
+
+const TehoIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
   <svg
     width={68}
     height={21}

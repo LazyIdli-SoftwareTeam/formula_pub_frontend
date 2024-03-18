@@ -20,6 +20,14 @@
   gap: 8px;
   background-color: rgba(47, 47, 47, 1);
   padding: 0px 20px 20px 20px;
+  border: 1px solid;
+
+  border-image-source: radial-gradient(
+      67.78% 79.79% at 56.25% 15.41%,
+      rgba(148, 148, 148, 0.9) 0%,
+      rgba(61, 60, 60, 0.4) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 .container--details h1 {
