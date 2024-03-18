@@ -1,6 +1,6 @@
 import Button from '../../../../components/hexaButton/Button';
 import './styles.css';
-import { CssTextField } from '../../../../theme/Textfield';
+import TextField from '../../../../components/textField/TextField';
 
 const HostInfo = () => {
   return (
@@ -9,15 +9,19 @@ const HostInfo = () => {
         <span>Verify Host</span>
       </div>
       <div className='host-info-container-inputs'>
-        <CssTextField
-          label='Enter Host’s Name : '
+        <TextField
+          label='Enter Host’s Name  '
           size='small'
-          sx={{ backgroundColor: '#2F2F2F', color: 'white' }}
+          onChange={() => {}}
+          onClick={() => {}}
+          value=''
         />
-        <CssTextField
-          label='Enter Host’s Mobile Number : '
-          sx={{ backgroundColor: '#2F2F2F' }}
+        <TextField
+          label='Enter Host’s Mobile Number  '
           size='small'
+          onChange={() => {}}
+          onClick={() => {}}
+          value=''
         />
       </div>
       <div className='host-info-tos-container'>

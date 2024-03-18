@@ -10,7 +10,8 @@ export const CssTextField = styled(TextField)({
   },
   '& .MuiOutlinedInput-root': {
     '&:hover fieldset': {
-      border: 'none !important',
+      border: '1px solid #2f2f2f !important',
+      fontSize: '10px'
     },
   },
 });

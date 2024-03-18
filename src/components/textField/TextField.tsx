@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { CssTextField } from '../../theme/Textfield';
+import './styles.css';
 
 type t_textField = {
   label: string;
@@ -9,6 +10,7 @@ type t_textField = {
   value: string;
   disabled?: boolean;
   size?: any;
+  type?: any;
 };
 
 const TextField: React.FC<t_textField> = ({
@@ -18,6 +20,7 @@ const TextField: React.FC<t_textField> = ({
   size,
   value,
   disabled,
+  type,
 }) => {
   return (
     <CssTextField
@@ -26,8 +29,9 @@ const TextField: React.FC<t_textField> = ({
       onChange={onChange}
       onClick={onClick}
       value={value}
+      type={type}
       disabled={disabled}
-      sx={{ backgroundColor: '#2F2F2F', color: 'white' }}
+      sx={{  color: 'white' }}
     />
   );
 };

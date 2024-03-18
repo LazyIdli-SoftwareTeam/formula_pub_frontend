@@ -1,4 +1,4 @@
-import { CssTextField } from '../../theme/Textfield';
+import TextField from '../../components/textField/TextField';
 import './styles/view-bill.css';
 
 const ViewBill = () => {
@@ -9,18 +9,20 @@ const ViewBill = () => {
           <span>Payment</span>
         </div>
         <div className='customer-view-inputs'>
-          <CssTextField
+          <TextField
             disabled
             value='Bhakti'
+            onChange={() => {}} 
+            onClick={() => {}}
             size='small'
             label="Host's Name: "
-            sx={{ backgroundColor: '#2F2F2F', color: 'white' }}
           />
-          <CssTextField
+          <TextField
             disabled
+            onChange={() => {}} 
+            onClick={() => {}}
             size='small'
             value='Bhakti'
-            sx={{ backgroundColor: '#2F2F2F', color: 'white' }}
             label="Host's Mobile Number: "
           />
         </div>
