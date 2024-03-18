@@ -4,20 +4,21 @@
   background-color: #2f2f2f;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  background-color: red;
+  gap: 20px;
 }
 
 .card--image {
-  height: 140px;
+  width: 50%;
+  height: 150px;
   border-radius: 10px;
 }
 
 .card--content {
-  width: 156px;
+  width: 50%;
+  height: 150px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 8px;
 }
 
@@ -25,6 +26,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #f4f4f4;
+  width: 100%;
 }
 
 .card--price {
@@ -38,6 +40,7 @@
   font-weight: 300;
   font-family: inter;
   color: rgba(193, 193, 193, 1);
+  width: 100%;
 }
 
 .card--add--button {
@@ -46,20 +49,59 @@
   color: rgba(248, 153, 11, 1);
   font-size: 14px;
   font-weight: 600;
-  width: 156px;
   border: none;
   height: 36px;
 }
 
-@media screen and (max-width: 400px) {
+.card--quantity {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(73, 73, 73, 1);
+}
+
+.card--quantity--button {
+  background-color: rgba(73, 73, 73, 1);
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  height: 36px;
+}
+
+.card--quantity--number {
+  background: rgba(10, 10, 10, 0.18);
+  color: rgba(248, 153, 11, 1);
+  margin: px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 350px) {
   .card {
     gap: 5%;
+    height: 120px;
   }
   .card--image {
     width: 50%;
+    height: 100%;
   }
   .card--content {
     width: 100%;
+    height: 100%;
   }
   .card--heading {
     font-size: 14px;

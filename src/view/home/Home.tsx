@@ -1,7 +1,7 @@
 import Header from "../../components/header/Header";
 import banner_image from "../../assets/images/banner-image.png";
-import "./Home.css";
 import CardContainer from "../../components/card-container/CardContainer";
+import "./Home.css";
 
 export const BannerImage = () => {
   return (

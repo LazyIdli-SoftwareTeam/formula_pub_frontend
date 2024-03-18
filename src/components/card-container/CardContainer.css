@@ -11,7 +11,6 @@
   background-color: rgba(47, 47, 47, 1);
   border-radius: 20px 20px 0px 0px;
   z-index: index 1000;
-
 }
 
 .card--container {
@@ -33,6 +32,7 @@
   font-size: 12px;
   font-weight: 400;
   font-family: inter;
+  margin-bottom: 0.8rem;
 }
 
 .container-cards {
