@@ -1,6 +1,4 @@
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 * {
   margin: 0;
@@ -14,7 +12,6 @@
   --teho-orange-color: #f8990b;
 
   --teho-blue-color: #1cb1d9;
-
 }
 
 body {
@@ -23,4 +20,24 @@ body {
   font-family: 'Inter';
 
   color: var(--teho-white-color);
+}
+
+.global-outlay-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.global-outlay-container .global-top-nav-bar {
+  position: fixed;
+  top: 0;
+  background: #181818;
+  z-index: 200;
+  height: 100px;
+  width: 100%;
+}
+
+.global-outlay-container .global-bottom-content {
+  padding-top: 100px;
+  flex-grow: 1;
 }

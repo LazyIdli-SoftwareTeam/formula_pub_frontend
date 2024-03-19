@@ -1,4 +1,4 @@
-import Header from '../../components/header/Header';
+import { useNavigate } from 'react-router-dom';
 import banner_image from '../../assets/images/banner-image.png';
 import CardContainer from '../../components/card-container/CardContainer';
 import './styles/Home.css';
@@ -26,16 +26,16 @@ export const BannerImage = () => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="home-container">
-      <Header />
       <BannerImage />
       <CardContainer />
       <div className="home-container-bottom-btn">
         <Button
           content="Proceed (4)items"
           disabled={false}
-          onClick={() => {}}
+          onClick={() => navigate('/host')}
         />
       </div>
     </div>

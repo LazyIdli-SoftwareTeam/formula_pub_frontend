@@ -8,6 +8,7 @@ import {
 import { IoMdArrowDropdown } from 'react-icons/io';
 import './styles/rides.css';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/hexaButton/Button';
 
 export const RideDetail = () => {
@@ -126,7 +127,7 @@ export const PlayerRideInformation: React.FC<{
 
 const Rides = () => {
   const [numberOfRides, setNumberOfRides] = useState(false);
-
+  const navigate = useNavigate(); 
   const GetAccordianText = () => {
     if (numberOfRides) {
       return <span>No. of rides</span>;
@@ -180,7 +181,7 @@ const Rides = () => {
         ))}
       </div>
       <div className="customer-rides-bottom-btn">
-        <Button content="Generate Race Passes" disabled onClick={() => {}} />
+        <Button content="Generate Race Passes" disabled onClick={() => navigate('/pass')} />
       </div>
     </div>
   );

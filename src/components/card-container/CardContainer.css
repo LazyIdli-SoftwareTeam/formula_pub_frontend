@@ -4,10 +4,10 @@
 }
 
 .main-container-overlay {
-  height: 35px;
+  height: 10px;
   width: 100%;
   position: absolute;
-  top: -25px;
+  top: -10px;
   background-color: rgba(47, 47, 47, 1);
   border-radius: 20px 20px 0px 0px;
   z-index: index 1000;

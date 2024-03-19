@@ -1,7 +1,8 @@
 .home-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  padding-bottom: 100px;
+  height: 100%;
 }
 
 .banner-image-container {
@@ -74,14 +75,10 @@
   padding: 10px 17px;
 } */
 
-
-
-.home-container-bottom-btn {
+.home-container .home-container-bottom-btn {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 15px;
-  position: sticky;
-  bottom: 0;
   padding-bottom: 10px;
 }
