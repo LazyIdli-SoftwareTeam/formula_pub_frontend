@@ -3,6 +3,9 @@ import banner_image from '../../assets/images/banner-image.png';
 import CardContainer from '../../components/card-container/CardContainer';
 import './styles/Home.css';
 import Button from '../../components/hexaButton/Button';
+import { useEffect } from 'react';
+// import { AxiosResponse } from 'axios';
+// import { getCombos } from '../../api/combos';
 
 export const BannerImage = () => {
   return (
@@ -27,6 +30,11 @@ export const BannerImage = () => {
 
 const Home = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    // const getCombosAccepted = (response: AxiosResponse) => {};
+    // const getCombosRejected = (error: any) => {};
+    // getCombos(getCombosAccepted, getCombosRejected, {});
+  }, []);
   return (
     <div className="home-container">
       <BannerImage />
