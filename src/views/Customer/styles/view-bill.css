@@ -1,6 +1,4 @@
 .customer-view-bill-container {
-  padding-left: 20px;
-  padding-right: 20px;
   padding-top: 15px;
 }
 
@@ -10,6 +8,8 @@
   gap: 15px;
   text-align: center;
   width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .customer-view-bill-container
@@ -33,4 +33,29 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.customer-view-bill-container .customer-view-bill-bottom .--btm-btn {
+  padding-top: 10px;
+  border-top: 1px solid;
+  border-image-slice: 20 20 20 20;
+  border-image-source: radial-gradient(
+      72.33% 147.29% at 52.92% 25.96%,
+      #909090 0%,
+      #414040 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.customer-view-bill-container
+  .customer-view-bill-bottom
+  .global-view-bill-container {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.customer-view-bill-container .global-apply-coupons-container {
+  margin-left: 20px;
+  margin-right: 20px;
 }

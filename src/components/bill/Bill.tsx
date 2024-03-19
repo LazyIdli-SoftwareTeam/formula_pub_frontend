@@ -10,7 +10,6 @@ const Bill: React.FC<{ cart: t_cart }> = ({ cart }) => {
         {cart.combos.map((combo, i) => {
           return (
             <div key={i} className="global-bill-table">
-              <span>{combo.combo.comboName}</span>
               <span className="--name">{combo.combo.comboName}</span>
               <span className="--iteration">x{combo.iteration}</span>
               <span className="--price">
@@ -22,6 +21,11 @@ const Bill: React.FC<{ cart: t_cart }> = ({ cart }) => {
         <div className="global-bill-table">
           <span className="--total">Subtotal</span>
           <span className="--price">{addRsSymbol('2323')}</span>
+        </div>
+
+        <div className="global-bill-table --tax">
+          <span className="--total">Tax</span>
+          <span className="--price">{addRsSymbol('150')}</span>
         </div>
       </div>
       <div className="global-bill-bottom">

@@ -64,19 +64,40 @@ const Coupons: t_coupon[] = [
   },
 ];
 
+export const CreateCircle: React.FC<{
+  index: number;
+  styles?: { [key: string]: string };
+  direction: 'row' | 'column';
+}> = ({ direction, index, styles }) => {
+  return (
+    <div
+      style={{ ...styles, flexDirection: direction }}
+      className="global-semi-circle"
+    >
+      {new Array(index).fill(0).map((_, i) => (
+        <span key={i} className="--circle"></span>
+      ))}
+    </div>
+  );
+};
+
 export const ViewCoupon: React.FC<{ coupon: t_coupon }> = ({ coupon }) => {
   return (
-    <div className="global-view-coupon-container">
-      <div className="global-view-coupon-start">
-        <span className="--name">{coupon.name}</span>
-        <span className="--text">
-          {coupon.discountPercentage} discount on your first ride
-        </span>
+    <div className="global-coupon-overlay">
+      <CreateCircle direction="column" index={5} styles={{ left: '-5px' }} />
+      <div className="global-view-coupon-container">
+        <div className="global-view-coupon-start">
+          <span className="--name">{coupon.name}</span>
+          <span className="--text">
+            {coupon.discountPercentage}% discount on your first ride
+          </span>
+        </div>
+        <div className="global-view-coupon-end">
+          <span className="--discount">{coupon.discountPercentage}%</span>
+          <span className="--text">DISCOUNT</span>
+        </div>
       </div>
-      <div className="global-view-coupon-end">
-        <span className="--discount">{coupon.discountPercentage}%</span>
-        <span className="--text">DISCOUNT</span>
-      </div>
+      <CreateCircle direction="column" index={5} styles={{ right: '-5px' }} />
     </div>
   );
 };
@@ -107,7 +128,9 @@ const ApplyCoupons = () => {
   const [viewCoupon, setViewCoupon] = useState(false);
   return (
     <div className="global-apply-coupons-container">
-      {viewCoupon ? <ViewAllCoupons closePopup={() => setViewCoupon(false)} /> : null}
+      {viewCoupon ? (
+        <ViewAllCoupons closePopup={() => setViewCoupon(false)} />
+      ) : null}
       <div className="global-apply-coupon-top">
         <span>Apply Coupons</span>
       </div>

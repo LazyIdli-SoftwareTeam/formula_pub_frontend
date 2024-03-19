@@ -4,6 +4,7 @@ import './styles.css';
 type t_hexButton = {
   content: string;
   onClick: () => void;
+  sx?: {[key: string]: string}, 
   bgColor?: string;
   disabled: boolean;
 };
@@ -12,6 +13,7 @@ const Button: React.FC<t_hexButton> = ({
   content,
   onClick,
   bgColor,
+  sx,
   disabled,
 }) => {
   const divRef = useRef<HTMLDivElement | null>(null);
@@ -34,7 +36,7 @@ const Button: React.FC<t_hexButton> = ({
     <div
       ref={divRef}
       onClick={onClick}
-      style={bgColor ? { backgroundColor: bgColor } : {}}
+      style={bgColor ? { backgroundColor: bgColor, ...sx } : sx}
       className={`hex-button global-hex-button-container ${
         disabled ? 'global-hex-btn-disabled' : ''
       }`}
