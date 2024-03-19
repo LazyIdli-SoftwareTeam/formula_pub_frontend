@@ -13,6 +13,7 @@ const ViewBill = () => {
       {
         combo: {
           comboDescription: 'some huge combo',
+          id: "1",
           comboName: 'Huge maharaja combo',
           numberOfRides: 2,
           price: 200,
@@ -24,6 +25,7 @@ const ViewBill = () => {
           comboDescription: 'some huge combo',
           comboName: 'Huge maharaja combo',
           numberOfRides: 2,
+          id: "2",
           price: 200,
         },
         iteration: 4,
