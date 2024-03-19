@@ -1,3 +1,4 @@
+import ApplyCoupons from '../../components/applyCoupons/ApplyCoupons';
 import TextField from '../../components/textField/TextField';
 import './styles/view-bill.css';
 
@@ -26,6 +27,9 @@ const ViewBill = () => {
             label="Host's Mobile Number: "
           />
         </div>
+      </div>
+      <div className='customer-view-bill-bottom'>
+        <ApplyCoupons />
       </div>
     </div>
   );
