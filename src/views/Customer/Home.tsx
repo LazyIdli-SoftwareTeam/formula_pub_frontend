@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import banner_image from '../../assets/images/banner-image.png';
 import CardContainer from '../../components/card-container/CardContainer';
 import './styles/Home.css';
 import Button from '../../components/hexaButton/Button';
 import { useEffect } from 'react';
-// import { AxiosResponse } from 'axios';
-// import { getCombos } from '../../api/combos';
+import { AxiosResponse } from 'axios';
+import { getCombos } from '../../api/combos';
 
 export const BannerImage = () => {
   return (
@@ -30,10 +30,16 @@ export const BannerImage = () => {
 
 const Home = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const eventId = searchParams.get('eventId'); 
+  const branchId = searchParams.get('branchId')
   useEffect(() => {
-    // const getCombosAccepted = (response: AxiosResponse) => {};
-    // const getCombosRejected = (error: any) => {};
-    // getCombos(getCombosAccepted, getCombosRejected, {});
+    const getCombosAccepted = (response: AxiosResponse) => {};
+    const getCombosRejected = (error: any) => {};
+    getCombos(getCombosAccepted, getCombosRejected, {
+      branchId: branchId!, 
+      eventId: eventId!
+    });
   }, []);
   return (
     <div className="home-container">
