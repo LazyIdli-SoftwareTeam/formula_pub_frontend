@@ -3,6 +3,7 @@ import { PlayerAccordionCloseInfo } from './Rides';
 import { Accordion, AccordionSummary } from '@mui/material';
 import './styles/generate-race-pass.css';
 import { IoInformationCircle } from 'react-icons/io5';
+import UserQueue from './components/userQueue/UserQueue';
 
 const GenerateRacePass = () => {
   const TailElement = () => {
@@ -40,6 +41,9 @@ const GenerateRacePass = () => {
       <div className="customer-generate-race-information">
         <IoInformationCircle size="16" />
         <span>Race Pass mandatory for ride. Do not share.</span>
+      </div>
+      <div className="customer-bottom-race-queue">
+        <UserQueue rides={4} minIndex={2} turn={false} />
       </div>
     </div>
   );
