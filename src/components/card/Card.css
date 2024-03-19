@@ -1,0 +1,146 @@
+.card {
+  width: 100%;
+  height: 156px;
+  background-color: #2f2f2f;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card--image {
+  width: 50%;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.card--content {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 8px;
+}
+
+.card--heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f4f4f4;
+  width: 100%;
+}
+
+.card--price {
+  font-size: 14px;
+  color: #1cb1d9;
+  font-weight: 600;
+}
+
+.card-description {
+  font-size: 12px;
+  font-weight: 300;
+  font-family: inter;
+  color: rgba(193, 193, 193, 1);
+  width: 100%;
+}
+
+.card--add--button {
+  background-color: rgba(73, 73, 73, 1);
+  border-radius: 18px;
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  height: 36px;
+}
+
+.card--quantity {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(73, 73, 73, 1);
+}
+
+/* .card--quantity--button {
+  background-color: rgba(73, 73, 73, 1);
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  height: 36px;
+}
+
+.card--quantity--number {
+  background: rgba(10, 10, 10, 0.18);
+  color: rgba(248, 153, 11, 1);
+  margin: px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+} */
+
+.card--quantity--button {
+  background-color: rgba(73, 73, 73, 1);
+  color: rgba(248, 153, 11, 1);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  height: 36px;
+  border-radius: 18px 18px 18px 18px; /* Rounded top corners */
+}
+
+.card--quantity--number {
+  background: rgba(10, 10, 10, 0.18);
+  color: rgba(248, 153, 11, 1);
+  /* margin: 2px; */
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 350px) {
+  .card {
+    gap: 5%;
+    height: 120px;
+  }
+  .card--image {
+    width: 50%;
+    height: 100%;
+  }
+  .card--content {
+    width: 100%;
+    height: 100%;
+  }
+  .card--heading {
+    font-size: 14px;
+    width: 100%;
+  }
+  .card--price {
+    font-size: 12px;
+  }
+  .card-description {
+    font-size: 10px;
+    width: 100%;
+  }
+  .card--add--button {
+    font-size: 12px;
+    width: 100%;
+  }
+}

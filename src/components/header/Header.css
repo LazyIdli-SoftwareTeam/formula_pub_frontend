@@ -1,0 +1,69 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.retrieve-button {
+  background-color: #1cb1d9;
+  padding: 5px 10px;
+  border: 1px solid #1cb1d9;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.headertab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.buy-button {
+  background: radial-gradient(
+      56.74% 76.71% at 48.59% 19.18%,
+      rgba(161, 161, 161, 0.45) 0%,
+      rgba(61, 61, 61, 0.3) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  /* border: 1px solid #535252; */
+  /* width: 100%; */
+  padding: 0.7rem 3.3rem;
+  text-align: center;
+  font-size: 13px;
+  border: 2px solid #535252;
+  font-weight: 800;
+  height: 35px;
+}
+
+.active-button {
+  background-color: #f8990b !important;
+  border: 2px solid #ffd25e !important;
+}
+
+.arrow-button {
+  border: 2px solid #535252;
+  /* width: 100%; */
+  padding: 0.7rem 3.3rem;
+  height: 35px;
+  font-size: 13px;
+  background: radial-gradient(
+      56.74% 76.71% at 48.59% 19.18%,
+      rgba(161, 161, 161, 0.45) 0%,
+      rgba(61, 61, 61, 0.3) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+  font-weight: 800;
+}

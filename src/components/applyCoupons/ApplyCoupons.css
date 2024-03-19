@@ -1,0 +1,88 @@
+.coupons--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.coupons {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 320px;
+  height: 117px;
+  gap: 8px;
+  background: rgba(47, 47, 47, 1);
+  border-radius: 8px;
+}
+
+.coupons h1 {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: left;
+}
+
+.coupons--content {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.coupons--content input {
+  width: 196px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(73, 73, 73, 1);
+  border: none;
+}
+
+.coupons--content button {
+  width: 80px;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(244, 244, 244, 1);
+  background: rgba(28, 177, 217, 1);
+  border: none;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 19px;
+  cursor: pointer;
+}
+
+.view-all-coupons {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(244, 244, 244, 1);
+}
+
+.total--coupons {
+  width: 320px;
+  height: 146px;
+  padding: 12 16 12 16;
+  gap: 12px;
+  background: rgba(47, 47, 47, 1);
+  border-radius: 8px;
+  border: 1px;
+}
+
+.pay--btn {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(244, 244, 244, 1);
+  background: rgba(248, 153, 11, 1);
+  border: none;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 19px;
+  cursor: pointer;
+}

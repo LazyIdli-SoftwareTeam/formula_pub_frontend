@@ -1,0 +1,8 @@
+.arrow-button{
+    color: white; 
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    clip-path: polygon(25% 50%, 15% 0%, 90% 0%, 100% 50%, 90% 100%, 15% 100%);
+    margin:0 -.9rem;
+}
