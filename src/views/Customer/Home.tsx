@@ -33,7 +33,7 @@ const Home = () => {
       <CardContainer />
       <div className="home-container-bottom-btn">
         <Button
-          content="Proceed (4)items"
+          content="Proceed (4 Items)"
           disabled={false}
           onClick={() => navigate('/host')}
         />

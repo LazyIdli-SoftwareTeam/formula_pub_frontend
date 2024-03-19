@@ -21,7 +21,8 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-  padding: 2.5rem 1rem;
+  background: linear-gradient(180deg, #181818 0.1%, rgba(24, 24, 24, 0) 25%);
+  padding: 1.5rem 1rem;
 
   h1 {
     font-size: 1.5rem;

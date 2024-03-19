@@ -211,3 +211,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.customer-rides-container .MuiAccordionDetails-root {
+  padding-top: 0px;
+}

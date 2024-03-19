@@ -37,7 +37,7 @@ const HostInfo = () => {
         <Button
           content="Confirm"
           disabled={true}
-          onClick={() => navigate('/rides')}
+          onClick={() => navigate('/payment')}
         />
       </div>
     </div>

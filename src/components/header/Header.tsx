@@ -4,7 +4,7 @@ import ArrowButton from '../../utils/arrow-button/Arrow-button';
 import { HexaButton } from '../../utils/hexa-button/Hexa-button';
 import GillyIcon from '../../assets/icons/Gilly-icon';
 import TehoIcon from '../../assets/icons/Teho-icon';
-import { IoChevronBackSharp } from "react-icons/io5";
+import { IoChevronBackSharp } from 'react-icons/io5';
 
 const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
   backBtnHandler,
@@ -29,7 +29,10 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
           Retrieve
         </HexaButton>
       )}
-      <GillyIcon />
+      <span onClick={() => (window.location.href = '/')}>
+        <GillyIcon />
+      </span>
+
       <TehoIcon />
     </div>
   );

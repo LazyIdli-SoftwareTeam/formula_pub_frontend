@@ -9,13 +9,16 @@
   font-size: 14px;
   font-weight: 700;
   position: relative;
+  border: 1.5px solid var(--border-color);
+  border-right: none;
+  border-left: none;
 }
 
 .hex-button {
   position: relative;
 }
 
-.global-hex-button-container::before {
+.--tria {
   position: absolute;
   content: '';
   width: 0;
@@ -24,20 +27,46 @@
   align-items: center;
   height: 0;
   border-top: var(--oneSide) solid transparent;
-  border-right: 10px solid var(--color);
-  left: -9px;
+  border-right: 8px solid var(--border-color);
+  left: -8px;
   border-bottom: var(--oneSide) solid transparent;
 }
 
-.global-hex-button-container::after {
+.--triaafter {
   position: absolute;
   content: '';
   width: 0;
-  height: 0;
+  display: flex;
   bottom: 0.2px;
-  right: -9px;
+  align-items: center;
+  height: 0;
+  border-top: var(--oneSide) solid transparent;
+  border-left: 8px solid var(--border-color);
+  right: -8px;
+  border-bottom: var(--oneSide) solid transparent;
+}
+.--triaafter::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  display: flex;
+  align-items: center;
+  height: 0;
+  right: 0;
   border-top: var(--oneSide) solid transparent;
   border-left: 10px solid var(--color);
+  border-bottom: var(--oneSide) solid transparent;
+}
+
+.--tria::before {
+  position: absolute;
+  content: '';
+  width: 0;
+  display: flex;
+  align-items: center;
+  height: 0;
+  border-top: var(--oneSide) solid transparent;
+  border-right: 10px solid var(--color);
   border-bottom: var(--oneSide) solid transparent;
 }
 

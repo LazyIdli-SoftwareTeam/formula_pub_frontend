@@ -4,7 +4,7 @@ import './styles.css';
 type t_hexButton = {
   content: string;
   onClick: () => void;
-  sx?: {[key: string]: string}, 
+  sx?: { [key: string]: string };
   bgColor?: string;
   disabled: boolean;
 };
@@ -26,8 +26,11 @@ const Button: React.FC<t_hexButton> = ({
       // divRef.current.style.width = (divRef.current.clientWidth - 20) + 'px';
       if (disabled) {
         divRef.current.style.setProperty('--color', '#c1c1c1');
+        divRef.current.style.setProperty('--border-color', '#c1c1c1');
       } else {
         divRef.current.style.setProperty('--color', '#f8990b');
+        divRef.current.style.setProperty('--border-color', '#ffd25e');
+
       }
     }
   }, [disabled]);
@@ -41,7 +44,9 @@ const Button: React.FC<t_hexButton> = ({
         disabled ? 'global-hex-btn-disabled' : ''
       }`}
     >
+      <div className="--tria"></div>
       {content}
+      <div className="--triaafter"></div>
     </div>
   );
 };

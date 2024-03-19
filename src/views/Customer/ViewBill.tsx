@@ -4,8 +4,10 @@ import Button from '../../components/hexaButton/Button';
 import TextField from '../../components/textField/TextField';
 import { t_cart } from '../../types/cart';
 import './styles/view-bill.css';
+import { useNavigate } from 'react-router-dom';
 
 const ViewBill = () => {
+  const navigate = useNavigate(); 
   const cart: t_cart = {
     combos: [
       {
@@ -62,7 +64,7 @@ const ViewBill = () => {
             content="Pay"
             sx={{ width: '85%', margin: 'auto' }}
             disabled={false}
-            onClick={() => {}}
+            onClick={() => navigate('/rides')}
           />
         </div>
       </div>
