@@ -1,0 +1,55 @@
+.host-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+}
+
+.host-info-container .host-info-container-top-heading {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.host-info-container .host-info-container-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.host-info-container .MuiFormControl-root {
+  border-radius: 8px;
+  border: none !important;
+  font-family: inter;
+}
+
+.host-info-container .Mui-focused {
+  color: var(--teho-white-color) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+label {
+  color: var(--teho-white-color);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.host-info-container .host-info-container-bottom {
+  width: 38%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.host-info-container .host-info-tos-container {
+  display: flex;
+  align-items: start;
+  gap: 7px;
+  font-size: 12px;
+  justify-content: center;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+}
+

@@ -1,4 +1,6 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
 
 * {
   margin: 0;
@@ -10,11 +12,15 @@
   --teho-black-color: #181818;
   --teho-white-color: #f4f4f4;
   --teho-orange-color: #f8990b;
+
   --teho-blue-color: #1cb1d9;
+
 }
 
 body {
   background-color: var(--teho-black-color);
-  font-family: "Inter";
+
+  font-family: 'Inter';
+
   color: var(--teho-white-color);
 }

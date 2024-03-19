@@ -1,0 +1,46 @@
+.global-hex-button-container {
+  width: 100%;
+  background-color: var(--teho-orange-color);
+  color: var(--teho-white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+}
+
+.hex-button {
+  position: relative;
+}
+
+.global-hex-button-container::before {
+  position: absolute;
+  content: '';
+  width: 0;
+  display: flex;
+  bottom: 0.2px;
+  align-items: center;
+  height: 0;
+  border-top: var(--oneSide) solid transparent;
+  border-right: 10px solid var(--color);
+  left: -9px;
+  border-bottom: var(--oneSide) solid transparent;
+}
+
+.global-hex-button-container::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  bottom: 0.2px;
+  right: -9px;
+  border-top: var(--oneSide) solid transparent;
+  border-left: 10px solid var(--color);
+  border-bottom: var(--oneSide) solid transparent;
+}
+
+.global-hex-btn-disabled {
+  background-color: #c1c1c1;
+}

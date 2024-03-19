@@ -1,0 +1,10 @@
+.MuiFormControl-root label {
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+
+.MuiInputBase-root {
+  border: 1px solid #2f2f2f;
+}

@@ -1,0 +1,39 @@
+.global-otp-box-container {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--teho-white-color) !important;
+}
+
+.global-otp-box-container .global-otp-box-inputs {
+  display: flex;
+  gap: 25px;
+}
+
+.global-otp-box-container .global-otp-box-inputs input {
+  border: none;
+  border-bottom: 1px solid #c1c1c1;
+  outline: none;
+  background-color: transparent;
+  flex-shrink: 0;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: var(--teho-white-color);
+}
+
+.global-otp-box-container .resend-enabled {
+  color: var(--teho-white-color);
+}
+
+.global-otp-box-container .resend-disabled {
+  color: #c1c1c1;
+}
+
+
+.global-otp-box-container .--blue-color {
+  color: var(--teho-blue-color);
+}
