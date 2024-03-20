@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import './styles/rides.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/hexaButton/Button';
 import { t_order } from '../../types/order';
@@ -17,6 +17,7 @@ import { RootState } from '../../store';
 import { t_cart } from '../../types/cart';
 import { calculateTotalRides } from '../../utils/cartTotal';
 import { editPhoneNumber, editUserName } from '../../state/order';
+import { t_userInfo } from '../../types/userInfo';
 
 export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (
@@ -79,16 +80,17 @@ export const PlayerAccordionCloseInfo: React.FC<{ index: number }> = ({
 
 export const PlayerRideInformation: React.FC<{
   index: number;
-}> = ({ index }) => {
+  editPhoneNumber: (index: number, value: string) => void;
+  editUserName: (index: number, value: string) => void;
+  user: t_userInfo;
+}> = ({ index, editPhoneNumber, editUserName, user }) => {
   const [accordionOpened, setAccordionOpened] = useState(false);
-  const dispatch = useDispatch();
-  const order: t_order = useSelector((state: RootState) => state.order);
 
   const onChangeName = (e: any) => {
-    dispatch(editUserName({ index: index, name: e.target.value }));
+    editUserName(index, e.target.value);
   };
   const onChangePhoneNumber = (e: any) => {
-    dispatch(editPhoneNumber({ index: index, phoneNumber: e.target.value }));
+    editPhoneNumber(index, e.target.value);
   };
 
   const TextFieldStyle = {
@@ -103,14 +105,14 @@ export const PlayerRideInformation: React.FC<{
   };
   const PlayerInformationInput = () => {
     return (
-      <div className="customer-ride-player-information-inputs">
+      <div key={index} className="customer-ride-player-information-inputs">
         <TextField
           size="small"
           placeholder="Name"
           sx={TextFieldStyle}
           onChange={onChangeName}
           onClick={() => {}}
-          value={order.users[index] ? order.users[index].name : ''}
+          value={user ? user.name : ''}
         />
         <TextField
           size="small"
@@ -118,7 +120,7 @@ export const PlayerRideInformation: React.FC<{
           sx={TextFieldStyle}
           onChange={onChangePhoneNumber}
           onClick={() => {}}
-          value={order.users[index] ? order.users[index].phoneNumber : ''}
+          value={user ? user.phoneNumber : ''}
         />
       </div>
     );
@@ -154,8 +156,27 @@ const Rides = () => {
   const [numberOfRides, setNumberOfRides] = useState(false);
   const order: t_order = useSelector((state: RootState) => state.order);
   const navigate = useNavigate();
-  // const [users, setUsers] = 
+  const [users, setUsers] = useState<any>({});
   const totalRides = calculateTotalRides(order.cart);
+
+  useEffect(() => {
+    const tempUsers = [];
+    const obj = {
+      name: '',
+      phoneNumber: '',
+      type: 'user',
+    };
+    for (let i = 0; i < totalRides; i++) {
+      tempUsers.push(obj);
+    }
+    console.log(tempUsers);
+    setUsers(tempUsers);
+  }, []);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
+
   const GetAccordianText = () => {
     if (numberOfRides) {
       return <span>No. of rides</span>;
@@ -173,6 +194,31 @@ const Rides = () => {
         </span>
       );
     }
+  };
+
+  const editUserName = (index: number, value: string) => {
+    const obj = {
+      name: value,
+      phoneNumber:
+        users[index as keyof typeof users].phoneNumber &&
+        users[index as keyof typeof users].phoneNumber.length
+          ? users[index as keyof typeof users].phoneNumber
+          : '',
+      type: 'user',
+    };
+    setUsers({ ...users, [index]: obj });
+  };
+  const editPhoneNumber = (index: number, value: string) => {
+    const obj = {
+      phoneNumber: value,
+      name:
+        users[index as keyof typeof users].name &&
+        users[index as keyof typeof users].name.length
+          ? users[index as keyof typeof users].name
+          : '',
+      type: 'user',
+    };
+    setUsers({ ...users, [index]: obj });
   };
 
   return (
@@ -205,7 +251,13 @@ const Rides = () => {
       </div>
       <div className="customer-rides-player-information">
         {new Array(totalRides).fill(0).map((_, i) => (
-          <PlayerRideInformation index={i + 1} />
+          <PlayerRideInformation
+            index={i}
+            key={i}
+            editUserName={editUserName}
+            editPhoneNumber={editPhoneNumber}
+            user={users[i as keyof typeof users]}
+          />
         ))}
       </div>
       <div className="customer-rides-bottom-btn">
