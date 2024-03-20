@@ -23,5 +23,10 @@ export const cartTotal = (cart: t_cart, coupon?: t_coupon) => {
   };
 };
 
-
-
+export const calculateTotalRides = (cart: t_cart) => {
+  let rides = 0;
+  for (const el of cart.combos) {
+    rides += el.combo.numberOfRides * el.iteration;
+  }
+  return rides;
+};

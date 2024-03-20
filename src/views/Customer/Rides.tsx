@@ -10,8 +10,13 @@ import './styles/rides.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/hexaButton/Button';
+import { t_order } from '../../types/order';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { t_cart } from '../../types/cart';
+import { calculateTotalRides } from '../../utils/cartTotal';
 
-export const RideDetail = () => {
+export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (
     <div className="customer-ride-details-container">
       <div className="customer-ride-details-top-head">
@@ -19,28 +24,36 @@ export const RideDetail = () => {
         <div className="--quantity">Quantity</div>
         <div className="--rides">Rides</div>
       </div>
-      <div className="customer-ride-details-tail">
-        <div className="customer-ride-details-start --combo">
-          <div className="--img">
-            <img src="/assets/cart/Frame 1200 copy.svg" />
+      {cart.combos.map((combo, i) => {
+        return (
+          <div key={i} className="customer-ride-details-tail">
+            <div className="customer-ride-details-start --combo">
+              <div className="--img">
+                <img src="/assets/cart/Frame 1200 copy.svg" />
+              </div>
+              <div className="--text">
+                <span>{combo.combo.comboName}</span>
+                <span className="--slot">{combo.combo.numberOfRides} Ride</span>
+              </div>
+            </div>
+            <div className="customer-ride-details-quantity --quantity">
+              <span className="--quantity">
+                <span className="--clr-gold">x</span>
+                {combo.iteration}
+              </span>
+            </div>
+            <div className="customer-ride-details-rides --rides">
+              <span className="--rides">
+                {combo.iteration * combo.combo.numberOfRides}
+              </span>
+            </div>
           </div>
-          <div className="--text">
-            <span>Premium Long McLong Long Combo qahedjk hdw hdqk jhqwkhd</span>
-            <span className="--slot">1 Ride</span>
-          </div>
-        </div>
-        <div className="customer-ride-details-quantity --quantity">
-          <span className="--quantity">
-            <span className="--clr-gold">x</span>1
-          </span>
-        </div>
-        <div className="customer-ride-details-rides --rides">
-          <span className="--rides">7</span>
-        </div>
-      </div>
+        );
+      })}
+
       <div className="customer-ride-details-total">
         <span className="--total">Total</span>
-        <span className="--clr-gold --rides">7</span>
+        <span className="--clr-gold --rides">{calculateTotalRides(cart)}</span>
       </div>
     </div>
   );
@@ -127,7 +140,9 @@ export const PlayerRideInformation: React.FC<{
 
 const Rides = () => {
   const [numberOfRides, setNumberOfRides] = useState(false);
-  const navigate = useNavigate(); 
+  const order: t_order = useSelector((state: RootState) => state.order);
+  const navigate = useNavigate();
+  const totalRides = calculateTotalRides(order.cart);
   const GetAccordianText = () => {
     if (numberOfRides) {
       return <span>No. of rides</span>;
@@ -139,7 +154,7 @@ const Rides = () => {
             className="--clr-gold"
             style={{ fontSize: '18px', fontWeight: '900' }}
           >
-            7
+            {totalRides}
           </span>
           rides
         </span>
@@ -168,7 +183,7 @@ const Rides = () => {
             <GetAccordianText />
           </AccordionSummary>
           <AccordionDetails>
-            <RideDetail />
+            <RideDetail cart={order.cart} />
           </AccordionDetails>
         </Accordion>
       </div>
@@ -181,7 +196,11 @@ const Rides = () => {
         ))}
       </div>
       <div className="customer-rides-bottom-btn">
-        <Button content="Generate Race Passes" disabled onClick={() => navigate('/pass')} />
+        <Button
+          content="Generate Race Passes"
+          disabled
+          onClick={() => navigate('/pass')}
+        />
       </div>
     </div>
   );
