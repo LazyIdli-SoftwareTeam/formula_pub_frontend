@@ -4,6 +4,7 @@
   flex-direction: column;
   font-size: 12px;
   font-weight: 500;
+  line-break: anywhere;
   color: #c1c1c1;
   background: radial-gradient(
       56.74% 76.71% at 48.59% 19.18%,
@@ -75,4 +76,24 @@
 
 .global-view-bill-container .global-bill-top .--tax {
   padding-top: 15px;
+}
+
+.global-view-bill-container .global-bill-coupon {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  color: var(--teho-orange-color);
+}
+
+.global-view-bill-container .--btm-subprice,
+.global-view-bill-container .--btm-subtotal {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--teho-white-color);
+  flex-grow: 0.5;
+}
+
+
+.global-view-bill-container .--btm-subprice {
+  text-align: right;
 }

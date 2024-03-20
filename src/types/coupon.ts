@@ -3,4 +3,5 @@ export type t_coupon = {
   maxDiscountNumber: number;
   discountPercentage: number;
   minDiscountAmount: number;
+  id: number
 };

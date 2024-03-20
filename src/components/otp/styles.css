@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-top: 5px;
   color: var(--teho-white-color) !important;
 }
 
@@ -26,7 +27,9 @@
 }
 
 .global-otp-box-container .resend-enabled {
-  color: var(--teho-white-color);
+  text-decoration: underline;
+  color: var(--teho-blue-color);
+  text-underline-offset: 2px;
 }
 
 .global-otp-box-container .resend-disabled {

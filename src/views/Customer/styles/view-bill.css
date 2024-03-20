@@ -43,13 +43,14 @@
   flex-grow: 0.6;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   gap: 15px;
 }
 
 .customer-view-bill-container .customer-view-bill-bottom .--btm-btn {
   padding-top: 10px;
   border-top: 1px solid;
+  padding-bottom: 10px;
   border-image-slice: 20 20 20 20;
   border-image-source: radial-gradient(
       72.33% 147.29% at 52.92% 25.96%,

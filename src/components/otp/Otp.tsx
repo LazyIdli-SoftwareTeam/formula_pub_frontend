@@ -15,6 +15,7 @@ const Otp: React.FC<{
 
   const resentOtpHandler = () => {
     if (timer != 0) return;
+    setTimer(30)
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

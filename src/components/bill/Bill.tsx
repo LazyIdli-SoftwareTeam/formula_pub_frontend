@@ -1,13 +1,15 @@
 import React from 'react';
 import './styles.css';
-import { t_cart } from '../../types/cart';
 import { addRsSymbol } from '../../utils/addRsSymbol';
+import { cartTotal } from '../../utils/cartTotal';
+import { t_order } from '../../types/order';
 
-const Bill: React.FC<{ cart: t_cart }> = ({ cart }) => {
+const Bill: React.FC<{ order: t_order }> = ({ order }) => {
+  const cartTotalValue = cartTotal(order.cart, order.couponApplied);
   return (
     <div className="global-view-bill-container">
       <div className="global-bill-top">
-        {cart.combos.map((combo, i) => {
+        {order.cart.combos.map((combo, i) => {
           return (
             <div key={i} className="global-bill-table">
               <span className="--name">{combo.combo.comboName}</span>
@@ -20,18 +22,59 @@ const Bill: React.FC<{ cart: t_cart }> = ({ cart }) => {
         })}
         <div className="global-bill-table">
           <span className="--total">Subtotal</span>
-          <span className="--price">{addRsSymbol('2323')}</span>
+          <span className="--price">
+            {addRsSymbol(cartTotalValue.subTotal.toString())}
+          </span>
         </div>
 
         <div className="global-bill-table --tax">
           <span className="--total">Tax</span>
-          <span className="--price">{addRsSymbol('150')}</span>
+          <span className="--price">
+            {addRsSymbol(cartTotalValue.taxPrice.toString())}
+          </span>
         </div>
       </div>
       <div className="global-bill-bottom">
-        <span className="--total --btm-total">Total</span>
-        <span className="--price --btm-price">{addRsSymbol('2323')}</span>
+        <span
+          style={
+            order.couponApplied
+              ? { color: '#C1C1C1', fontSize: '12px', fontWeight: '500' }
+              : {}
+          }
+          className="--total --btm-total"
+        >
+          Total
+        </span>
+        <span
+          style={
+            order.couponApplied
+              ? { color: '#C1C1C1', fontSize: '12px', fontWeight: '500' }
+              : {}
+          }
+          className="--price --btm-price"
+        >
+          {addRsSymbol('2323')}
+        </span>
       </div>
+      {order.couponApplied ? (
+        <div className="global-bill-coupon">
+          <span className="--total --coupon-total --coupon">
+            Coupon ({order.couponApplied.name})
+          </span>
+          <span className="--price --coupon-price">
+            -{addRsSymbol(cartTotalValue.couponPrice.toString())}
+          </span>
+        </div>
+      ) : null}
+
+      {order.couponApplied ? (
+        <div className="global-bill-bottom" style={{ borderTop: 'none' }}>
+          <span className="--btm-subtotal">To Pay</span>
+          <span className="--btm-subprice">
+            {addRsSymbol(cartTotalValue.totalAfterTax.toString())}
+          </span>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -1,37 +1,16 @@
+import { useSelector } from 'react-redux';
 import ApplyCoupons from '../../components/applyCoupons/ApplyCoupons';
 import Bill from '../../components/bill/Bill';
 import Button from '../../components/hexaButton/Button';
 import TextField from '../../components/textField/TextField';
-import { t_cart } from '../../types/cart';
+import { t_order } from '../../types/order';
 import './styles/view-bill.css';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store';
 
 const ViewBill = () => {
   const navigate = useNavigate(); 
-  const cart: t_cart = {
-    combos: [
-      {
-        combo: {
-          comboDescription: 'some huge combo',
-          id: "1",
-          comboName: 'Huge maharaja combo',
-          numberOfRides: 2,
-          price: 200,
-        },
-        iteration: 5,
-      },
-      {
-        combo: {
-          comboDescription: 'some huge combo',
-          comboName: 'Huge maharaja combo',
-          numberOfRides: 2,
-          id: "2",
-          price: 200,
-        },
-        iteration: 4,
-      },
-    ],
-  };
+  const order: t_order = useSelector((state: RootState) => state.order);
 
   return (
     <div className="customer-view-bill-container">
@@ -42,7 +21,7 @@ const ViewBill = () => {
         <div className="customer-view-inputs">
           <TextField
             disabled
-            value="Bhakti"
+            value={order.host.name}
             onChange={() => {}}
             onClick={() => {}}
             size="small"
@@ -53,14 +32,14 @@ const ViewBill = () => {
             onChange={() => {}}
             onClick={() => {}}
             size="small"
-            value="Bhakti"
+            value={order.host.phoneNumber}
             label="Host's Mobile Number: "
           />
         </div>
       </div>
       <div className="customer-view-bill-bottom">
         <ApplyCoupons />
-        <Bill cart={cart} />
+        <Bill order={order} />
         <div className="--btm-btn">
           <Button
             content="Pay"

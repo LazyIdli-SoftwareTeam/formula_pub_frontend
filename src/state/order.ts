@@ -7,6 +7,11 @@ const initialState: t_order = {
   rides: 0,
   totalAmount: 0,
   users: [],
+  host: {
+    name: '',
+    phoneNumber: '',
+    type: 'host',
+  },
 };
 const orderSlice = createSlice({
   initialState,
@@ -37,7 +42,7 @@ const orderSlice = createSlice({
       state.users = payload;
     },
     addCombo: (state, { payload }) => {
-      state.cart.combos.push(payload);
+      state.cart.combos.push({ combo: payload, iteration: 1 });
     },
     incrementCombo: (state, { payload }) => {
       state.cart.combos[payload.index].iteration++;
@@ -48,20 +53,35 @@ const orderSlice = createSlice({
     removeCombo: (state, { payload }) => {
       state.cart.combos.splice(payload.index, 1);
     },
+    setHostName: (state, { payload }) => {
+      state.host.name = payload;
+    },
+    setHostPhoneNumber: (state, { payload }) => {
+      state.host.phoneNumber = payload;
+    },
+    applyCoupon: (state, { payload }) => {
+      state.couponApplied = payload;
+    },
+    removeCoupon: (state) => {
+      state.couponApplied = undefined;
+    },
   },
 });
 
 export const {
   addCombo,
   addUser,
+  applyCoupon, 
+  removeCoupon, 
   decrementCombo,
   incrementCombo,
+  setHostName,
+  setHostPhoneNumber,
   removeCombo,
   removeUser,
   setOrderDescription,
   setRides,
   setTotalAmount,
 } = orderSlice.actions;
-
 
 export default orderSlice.reducer;

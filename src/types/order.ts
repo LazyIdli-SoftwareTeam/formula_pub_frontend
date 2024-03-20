@@ -9,4 +9,5 @@ export type t_order = {
   orderDescription: string;
   couponApplied?: t_coupon;
   users: t_userInfo[];
+  host: t_userInfo;
 };

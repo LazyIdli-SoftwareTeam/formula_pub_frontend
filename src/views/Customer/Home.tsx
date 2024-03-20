@@ -4,6 +4,9 @@ import CardContainer from '../../components/card-container/CardContainer';
 import './styles/Home.css';
 import Button from '../../components/hexaButton/Button';
 import { useEffect } from 'react';
+import { t_order } from '../../types/order';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 // import { AxiosResponse } from 'axios';
 // import { getCombos } from '../../api/combos';
 
@@ -29,28 +32,39 @@ export const BannerImage = () => {
 };
 
 const Home = () => {
+  const order: t_order = useSelector((state: RootState) => state.order);
   const navigate = useNavigate();
   // const [searchParams] = useSearchParams();
-  // const eventId = searchParams.get('eventId'); 
+  // const eventId = searchParams.get('eventId');
   // const branchId = searchParams.get('branchId')
   useEffect(() => {
     // const getCombosAccepted = (response: AxiosResponse) => {};
     // const getCombosRejected = (error: any) => {};
     // getCombos(getCombosAccepted, getCombosRejected, {
-    //   branchId: branchId!, 
+    //   branchId: branchId!,
     //   eventId: eventId!
     // });
   }, []);
+
+  const buttonVisible = () => {
+    let total = 0;
+    for (const el of order.cart.combos) {
+      total += el.iteration;
+    }
+    return total;
+  };
   return (
     <div className="home-container">
       <BannerImage />
       <CardContainer />
       <div className="home-container-bottom-btn">
-        <Button
-          content="Proceed (4 Items)"
-          disabled={false}
-          onClick={() => navigate('/host')}
-        />
+        {buttonVisible() != 0 ? (
+          <Button
+            content={`Proceed (${buttonVisible()} Items)`}
+            disabled={false}
+            onClick={() => navigate('/host')}
+          />
+        ) : null}
       </div>
     </div>
   );

@@ -1,13 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RxCross1 } from 'react-icons/rx';
 import './ApplyCoupons.css';
 import React, { useState } from 'react';
 import { t_coupon } from '../../types/coupon';
+import { t_order } from '../../types/order';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { applyCoupon, removeCoupon } from '../../state/order';
 
 export const CouponApplied: React.FC<{ couponName: string }> = ({
   couponName,
 }) => {
+  const dispatch = useDispatch();
   return (
-    <div className="global-coupon-applied-container">
+    <div
+      onClick={() => dispatch(removeCoupon())}
+      className="global-coupon-applied-container"
+    >
       <span className="--cross">
         <RxCross1 strokeWidth="1.5" />
       </span>
@@ -24,6 +33,7 @@ const Coupons: t_coupon[] = [
     discountPercentage: 10,
     maxDiscountNumber: 200,
     minDiscountAmount: 200,
+    id: 1,
     name: 'WARMTIRES',
   },
   {
@@ -31,36 +41,21 @@ const Coupons: t_coupon[] = [
     maxDiscountNumber: 200,
     minDiscountAmount: 200,
     name: 'WARMTIRES',
+    id: 2,
   },
   {
     discountPercentage: 10,
     maxDiscountNumber: 200,
     minDiscountAmount: 200,
     name: 'WARMTIRES',
+    id: 3,
   },
   {
     discountPercentage: 10,
     maxDiscountNumber: 200,
     minDiscountAmount: 200,
     name: 'WARMTIRES',
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
+    id: 4,
   },
 ];
 
@@ -81,9 +76,19 @@ export const CreateCircle: React.FC<{
   );
 };
 
-export const ViewCoupon: React.FC<{ coupon: t_coupon }> = ({ coupon }) => {
+export const ViewCoupon: React.FC<{
+  coupon: t_coupon;
+  closePopup: () => void;
+}> = ({ coupon, closePopup }) => {
+  const dispatch = useDispatch();
   return (
-    <div className="global-coupon-overlay">
+    <div
+      onClick={() => {
+        dispatch(applyCoupon(coupon));
+        closePopup();
+      }}
+      className="global-coupon-overlay"
+    >
       <CreateCircle direction="column" index={5} styles={{ left: '-5px' }} />
       <div className="global-view-coupon-container">
         <div className="global-view-coupon-start">
@@ -116,7 +121,7 @@ export const ViewAllCoupons: React.FC<{ closePopup: () => void }> = ({
         </div>
         <div className="global-view-all-coupons">
           {Coupons.map((coupon, i) => (
-            <ViewCoupon coupon={coupon} key={i} />
+            <ViewCoupon coupon={coupon} key={i} closePopup={closePopup} />
           ))}
         </div>
       </div>
@@ -126,6 +131,24 @@ export const ViewAllCoupons: React.FC<{ closePopup: () => void }> = ({
 
 const ApplyCoupons = () => {
   const [viewCoupon, setViewCoupon] = useState(false);
+  const order: t_order = useSelector((state: RootState) => state.order);
+  const dispatch = useDispatch();
+  const [couponValue, setCouponValue] = useState({ error: false, value: '' });
+  const applyHandler = () => {
+    const index = Coupons.findIndex(
+      (coupon) => coupon.name.toLowerCase() === couponValue.value
+    );
+    if (index < 0) {
+      setCouponValue({ ...couponValue, error: true });
+      alert('No coupon found');
+    } else {
+      dispatch(applyCoupon(Coupons[index]));
+    }
+  };
+  const changeHandler = (e: any) => {
+    setCouponValue({ value: e.target.value, error: false });
+  };
+
   return (
     <div className="global-apply-coupons-container">
       {viewCoupon ? (
@@ -134,19 +157,27 @@ const ApplyCoupons = () => {
       <div className="global-apply-coupon-top">
         <span>Apply Coupons</span>
       </div>
-      {/* <div className="global-apply-coupons-input">
-        <input
-          style={{
-            backgroundColor: '#494949',
-            border: 'none',
-            outline: 'none',
-            paddingLeft: '10px',
-            width: '85%',
-          }}
-        />
-        <span className="--btn">Apply</span>
-      </div> */}
-      <CouponApplied couponName="something" />
+      {!order.couponApplied ? (
+        <div className={`global-apply-coupons-input`}>
+          <input
+            value={couponValue.value}
+            onChange={changeHandler}
+            style={{
+              backgroundColor: '#494949',
+              border: couponValue.error ? '1px solid red' : 'none',
+              outline: 'none',
+              borderRadius: '4px',
+              paddingLeft: '10px',
+              width: '70%',
+            }}
+          />
+          <span className="--btn" onClick={applyHandler}>
+            Apply
+          </span>
+        </div>
+      ) : (
+        <CouponApplied couponName={order.couponApplied!.name!} />
+      )}
       <div
         onClick={() => setViewCoupon(true)}
         className="global-apply-coupon-bottom"
