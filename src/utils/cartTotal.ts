@@ -8,6 +8,7 @@ export const cartTotal = (cart: t_cart, coupon?: t_coupon) => {
   for (const el of cart.combos) {
     subTotal += el.combo.price * el.iteration;
   }
+  const beforeCouponAppliedPrice = subTotal;
   if (coupon) {
     couponPrice = (subTotal * coupon.discountPercentage) / 100;
     subTotal = subTotal - couponPrice;
@@ -20,6 +21,7 @@ export const cartTotal = (cart: t_cart, coupon?: t_coupon) => {
     couponPrice: couponPrice,
     totalAfterTax: totalAfterTax,
     taxPrice: taxPrice,
+    beforeCouponAppliedPrice: beforeCouponAppliedPrice
   };
 };
 

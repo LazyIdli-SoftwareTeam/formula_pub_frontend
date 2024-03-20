@@ -53,7 +53,7 @@ const Bill: React.FC<{ order: t_order }> = ({ order }) => {
           }
           className="--price --btm-price"
         >
-          {addRsSymbol('2323')}
+          {addRsSymbol(cartTotalValue.beforeCouponAppliedPrice.toString())}
         </span>
       </div>
       {order.couponApplied ? (

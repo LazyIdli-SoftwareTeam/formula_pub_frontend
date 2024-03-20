@@ -50,11 +50,12 @@
 }
 
 .global-view-bill-container .--total {
-  width: 80%;
+  flex-grow: 0.5;
 }
 
 .global-view-bill-container .--price {
-  width: 20%;
+  flex-grow: 0.5;
+  text-align: right;
 }
 
 .global-view-bill-container .global-bill-bottom {
@@ -92,7 +93,6 @@
   color: var(--teho-white-color);
   flex-grow: 0.5;
 }
-
 
 .global-view-bill-container .--btm-subprice {
   text-align: right;

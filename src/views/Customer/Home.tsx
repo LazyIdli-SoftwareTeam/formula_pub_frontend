@@ -57,15 +57,15 @@ const Home = () => {
     <div className="home-container">
       <BannerImage />
       <CardContainer />
-      <div className="home-container-bottom-btn">
-        {buttonVisible() != 0 ? (
+      {buttonVisible() != 0 ? (
+        <div className="home-container-bottom-btn">
           <Button
             content={`Proceed (${buttonVisible()} Items)`}
             disabled={false}
             onClick={() => navigate('/host')}
           />
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 };
