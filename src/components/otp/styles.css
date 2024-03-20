@@ -21,6 +21,7 @@
   flex-shrink: 0;
   width: 40px;
   display: flex;
+  border-radius: 0px;
   justify-content: center;
   text-align: center;
   color: var(--teho-white-color);
@@ -35,7 +36,6 @@
 .global-otp-box-container .resend-disabled {
   color: #c1c1c1;
 }
-
 
 .global-otp-box-container .--blue-color {
   color: var(--teho-blue-color);
