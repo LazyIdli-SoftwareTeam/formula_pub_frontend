@@ -65,14 +65,34 @@ const orderSlice = createSlice({
     removeCoupon: (state) => {
       state.couponApplied = undefined;
     },
+    editUserName: (state, { payload }) => {
+      if (state.users[payload.index]) {
+        state.users[payload.index].name = payload.name;
+      } else {
+        state.users[payload.index] = ({ name: payload.name, phoneNumber: '', type: 'user' });
+      }
+    },
+    editPhoneNumber: (state, { payload }) => {
+      if (state.users[payload.index]) {
+        state.users[payload.index].phoneNumber = payload.phoneNumber;
+      } else {
+        state.users[payload.index] = ({
+          name: '',
+          phoneNumber: payload.phoneNumber,
+          type: 'user',
+        });
+      }
+    },
   },
 });
 
 export const {
   addCombo,
   addUser,
-  applyCoupon, 
-  removeCoupon, 
+  applyCoupon,
+  editPhoneNumber,  
+  editUserName, 
+  removeCoupon,
   decrementCombo,
   incrementCombo,
   setHostName,

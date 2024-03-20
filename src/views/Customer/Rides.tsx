@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Accordion,
@@ -11,10 +12,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/hexaButton/Button';
 import { t_order } from '../../types/order';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { t_cart } from '../../types/cart';
 import { calculateTotalRides } from '../../utils/cartTotal';
+import { editPhoneNumber, editUserName } from '../../state/order';
 
 export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (
@@ -79,6 +81,16 @@ export const PlayerRideInformation: React.FC<{
   index: number;
 }> = ({ index }) => {
   const [accordionOpened, setAccordionOpened] = useState(false);
+  const dispatch = useDispatch();
+  const order: t_order = useSelector((state: RootState) => state.order);
+
+  const onChangeName = (e: any) => {
+    dispatch(editUserName({ index: index, name: e.target.value }));
+  };
+  const onChangePhoneNumber = (e: any) => {
+    dispatch(editPhoneNumber({ index: index, phoneNumber: e.target.value }));
+  };
+
   const TextFieldStyle = {
     width: '100%',
     background: '#494949',
@@ -96,17 +108,17 @@ export const PlayerRideInformation: React.FC<{
           size="small"
           placeholder="Name"
           sx={TextFieldStyle}
-          onChange={() => {}}
+          onChange={onChangeName}
           onClick={() => {}}
-          value=""
+          value={order.users[index] ? order.users[index].name : ''}
         />
         <TextField
           size="small"
           placeholder="Mobile Number"
           sx={TextFieldStyle}
-          onChange={() => {}}
+          onChange={onChangePhoneNumber}
           onClick={() => {}}
-          value=""
+          value={order.users[index] ? order.users[index].phoneNumber : ''}
         />
       </div>
     );
@@ -142,6 +154,7 @@ const Rides = () => {
   const [numberOfRides, setNumberOfRides] = useState(false);
   const order: t_order = useSelector((state: RootState) => state.order);
   const navigate = useNavigate();
+  // const [users, setUsers] = 
   const totalRides = calculateTotalRides(order.cart);
   const GetAccordianText = () => {
     if (numberOfRides) {
@@ -191,7 +204,7 @@ const Rides = () => {
         <span>Fill Player Information</span>
       </div>
       <div className="customer-rides-player-information">
-        {new Array(9).fill(0).map((_, i) => (
+        {new Array(totalRides).fill(0).map((_, i) => (
           <PlayerRideInformation index={i + 1} />
         ))}
       </div>
@@ -199,6 +212,7 @@ const Rides = () => {
         <Button
           content="Generate Race Passes"
           disabled
+          sx={{ width: '80%', margin: 'auto' }}
           onClick={() => navigate('/pass')}
         />
       </div>
