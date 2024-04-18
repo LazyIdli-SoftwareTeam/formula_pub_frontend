@@ -57,8 +57,10 @@ const BookingInformation: React.FC<{
   const [queue, setQueue] = useState<number[]>([]);
   const tempQueue: number[] = [];
   useEffect(() => {
-    for (let i = minIndex; i < rides; i++) {
-      tempQueue.push(i + 1);
+    let i  = minIndex; 
+    while (i <= rides + 1) {
+      tempQueue.push(i);
+      i++;
     }
     setQueue(tempQueue);
   }, []);

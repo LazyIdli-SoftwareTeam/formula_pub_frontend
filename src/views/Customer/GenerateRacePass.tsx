@@ -31,7 +31,7 @@ const GenerateRacePass = () => {
               width: '100%',
             }}
           >
-            <PlayerAccordionCloseInfo index={index} />
+            <PlayerAccordionCloseInfo index={index + 1} />
             <TailElement />
           </AccordionSummary>
         </Accordion>
