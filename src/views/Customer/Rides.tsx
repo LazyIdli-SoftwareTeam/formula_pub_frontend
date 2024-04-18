@@ -141,7 +141,7 @@ export const PlayerRideInformation: React.FC<{
           {accordionOpened ? (
             <PlayerTag />
           ) : (
-            <PlayerAccordionCloseInfo index={index} />
+            <PlayerAccordionCloseInfo index={index + 1} />
           )}
         </AccordionSummary>
         <AccordionDetails>
