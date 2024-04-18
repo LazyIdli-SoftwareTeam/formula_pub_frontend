@@ -4,8 +4,13 @@ import { Accordion, AccordionSummary } from '@mui/material';
 import './styles/generate-race-pass.css';
 import { IoInformationCircle } from 'react-icons/io5';
 import UserQueue from './components/userQueue/UserQueue';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { t_order } from '../../types/order';
+import { calculateTotalRides } from '../../utils/cartTotal';
 
 const GenerateRacePass = () => {
+  const order: t_order = useSelector((state: RootState) => state.order);
   const TailElement = () => {
     const generateRandomPass = () => Math.floor(Math.random() * 90000 + 10000);
     const pass = generateRandomPass().toString().split('').join(' ');
@@ -13,6 +18,7 @@ const GenerateRacePass = () => {
       <div className="customer-unique-race-pass">{pass}</div>
     );
   };
+  const rides = calculateTotalRides(order.cart);
 
   const GeneratePlayerCard: React.FC<{ index: number }> = ({ index }) => {
     return (
@@ -40,7 +46,7 @@ const GenerateRacePass = () => {
         <span className='--btn'>History</span>
       </div>
       <div className="customer-generate-race-pass-inputs">
-        {new Array(9).fill(0).map((_, i) => {
+        {new Array(rides).fill(0).map((_, i) => {
           return <GeneratePlayerCard key={i} index={i} />;
         })}
       </div>
@@ -49,7 +55,7 @@ const GenerateRacePass = () => {
         <span>Race Pass mandatory for ride. Do not share.</span>
       </div>
       <div className="customer-bottom-race-queue">
-        <UserQueue rides={4} minIndex={2} turn={true} />
+        <UserQueue rides={rides} minIndex={2} turn={true} />
       </div>
     </div>
   );
