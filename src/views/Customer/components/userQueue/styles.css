@@ -144,18 +144,19 @@
 }
 
 .active-race-queue-container .arrows {
-  width: 30%;
+  width: 35%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 .active-race-queue-container .active-heading {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .active-race-queue-container .active-heading .--go {
-  font-size: 36px;
+  font-size: 38px;
+  line-height: 0.9;
   font-weight: 800;
 }
 

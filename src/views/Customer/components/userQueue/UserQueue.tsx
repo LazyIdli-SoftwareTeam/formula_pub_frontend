@@ -14,7 +14,7 @@ const ArrowLeft: React.FC<{ active: boolean; style: any }> = ({
       fill="none"
       style={
         active
-          ? { ...style, filter: 'drop-shadow(0px 0px 5px #4FBEDBE5)' }
+          ? { ...style, filter: 'drop-shadow(0px 0px 3px #4FBEDBE5)' }
           : style
       }
       xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ const ArrowRight: React.FC<{ active: boolean; style: any }> = ({
       fill="none"
       style={
         active
-          ? { ...style, filter: 'drop-shadow(0px 0px 5px #4FBEDBE5)' }
+          ? { ...style, filter: 'drop-shadow(0px 0px 3px #4FBEDBE5)' }
           : style
       }
       xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ const WaitingQueue = () => {
 
 const ArrowsPointingRight = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const transforms = ['1.1', '1.7', '2.4', '3.1'];
+  const transforms = [20, 40, 60, 80];
   useEffect(() => {
     const id = setInterval(() => {
       if (activeIndex === 3) {
@@ -134,16 +134,19 @@ const ArrowsPointingRight = () => {
       } else {
         setActiveIndex(activeIndex + 1);
       }
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
+    }, 300);
+    return () => clearTimeout(id);
+  }, [activeIndex]);
   return (
     <div className="global-arrows-pointing-right arrows">
       {new Array(4).fill(0).map((_, i) => {
         return (
           <ArrowRight
             active={i == activeIndex}
-            style={{ transform: `scale(${transforms[i]})` }}
+            style={{
+              height: 12 + transforms[i] + 'px',
+              width: 14 + transforms[i] + 'px',
+            }}
           />
         );
       })}
@@ -153,24 +156,27 @@ const ArrowsPointingRight = () => {
 
 const ArrowsPointingLeft = () => {
   const [activeIndex, setActiveIndex] = useState(3);
-  const transforms = ['3.1', '2.4', '1.7', '1.1'];
+  const transforms = [80, 60, 40, 20];
   useEffect(() => {
-    const id = setInterval(() => {
+    const id = setTimeout(() => {
       if (activeIndex === 0) {
         setActiveIndex(3);
       } else {
         setActiveIndex(activeIndex - 1);
       }
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
+      return () => clearTimeout(id);
+    }, 300);
+  }, [activeIndex]);
   return (
     <div className="global-arrows-pointing-right arrows">
       {new Array(4).fill(0).map((_, i) => {
         return (
           <ArrowLeft
             active={i == activeIndex}
-            style={{ transform: `scale(${transforms[i]})` }}
+            style={{
+              height: 12 + transforms[i] + 'px',
+              width: 14 + transforms[i] + 'px',
+            }}
           />
         );
       })}
