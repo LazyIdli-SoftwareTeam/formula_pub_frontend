@@ -8,8 +8,9 @@ import UserQueue from './components/userQueue/UserQueue';
 const GenerateRacePass = () => {
   const TailElement = () => {
     const generateRandomPass = () => Math.floor(Math.random() * 90000 + 10000);
+    const pass = generateRandomPass().toString().split('').join(' ');
     return (
-      <div className="customer-unique-race-pass">{generateRandomPass()}</div>
+      <div className="customer-unique-race-pass">{pass}</div>
     );
   };
 
@@ -33,6 +34,11 @@ const GenerateRacePass = () => {
   };
   return (
     <div className="customer-generate-race-pass">
+      <div className='customer-generate-race-pass-heading'>
+      <span className='--btn --hidden'>History</span>
+        <span className='--txt'>Race Passes</span>
+        <span className='--btn'>History</span>
+      </div>
       <div className="customer-generate-race-pass-inputs">
         {new Array(9).fill(0).map((_, i) => {
           return <GeneratePlayerCard key={i} index={i} />;
@@ -43,7 +49,7 @@ const GenerateRacePass = () => {
         <span>Race Pass mandatory for ride. Do not share.</span>
       </div>
       <div className="customer-bottom-race-queue">
-        <UserQueue rides={4} minIndex={2} turn={false} />
+        <UserQueue rides={4} minIndex={2} turn={true} />
       </div>
     </div>
   );

@@ -92,3 +92,75 @@
   display: flex;
   gap: 15px;
 }
+
+.waiting-queue-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.waiting-queue-lines {
+  display: flex;
+  width: 35%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.waiting-queue-lines div {
+  background-color: #c1c1c1;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.waiting-heading {
+  color: #c1c1c1;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.waiting-queue-bottom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.waiting-queue-bottom-container .waiting-queue-bottom-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.waiting-queue-bottom-container .waiting-queue-bottom-btn .--text {
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.active-race-queue-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active-race-queue-container .arrows {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.active-race-queue-container .active-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.active-race-queue-container .active-heading .--go {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.active-race-queue-container .active-heading .--race {
+  font-size: 20px;
+  font-weight: 800;
+}
+

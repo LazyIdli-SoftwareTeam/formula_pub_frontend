@@ -26,9 +26,11 @@
 
 .customer-generate-race-pass .customer-unique-race-pass {
   background-color: var(--teho-orange-color);
-  padding: 5px 15px;
+  padding: 5px 0px;
   border-radius: 4px;
   font-size: 14px;
+  width: 90px;
+  text-align: center;
   font-weight: 600;
 }
 
@@ -41,5 +43,29 @@
   font-size: 12px;
   color: var(--teho-orange-color);
   padding-bottom: 14px;
-  border-bottom: 1px solid #484747
+  border-bottom: 1px solid #484747;
+}
+
+.customer-generate-race-pass-heading {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+}
+
+.customer-generate-race-pass-heading .--txt {
+  flex-grow: 1;
+}
+
+.customer-generate-race-pass-heading .--btn {
+  background-color: var(--teho-blue-color);
+  color: white;
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.customer-generate-race-pass-heading .--hidden {
+  visibility: hidden !important;
 }
