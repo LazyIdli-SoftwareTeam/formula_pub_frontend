@@ -1,9 +1,10 @@
 import './Header.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { HexaButton } from '../../utils/hexa-button/Hexa-button';
 import GillyIcon from '../../assets/icons/Gilly-icon';
 import TehoIcon from '../../assets/icons/Teho-icon';
 import { IoChevronBackSharp } from 'react-icons/io5';
+import { Tab } from '../../Outlay';
 
 const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
   backBtnHandler,
@@ -37,9 +38,10 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
   );
 };
 
-const HeaderTabs = () => {
-  const [activeTab, setActiveTab] = useState('buy' as string);
-
+const HeaderTab: React.FC<{
+  currentTab: Tab;
+  changeTab: (value: Tab) => void;
+}> = ({ changeTab, currentTab }) => {
   const LeftArrowSvg: React.FC<{ text: string }> = ({ text }) => {
     return (
       <svg
@@ -292,30 +294,30 @@ const HeaderTabs = () => {
   };
 
   const GetComponents = () => {
-    if (activeTab === 'buy') {
+    if (currentTab === Tab.BUY) {
       return [
-        <span onClick={() => setActiveTab('buy')}>
+        <span onClick={() => changeTab(Tab.BUY)}>
           <MidFullActiveSvg text="BUY" />
         </span>,
-        <span onClick={() => setActiveTab('race')}>
+        <span onClick={() => changeTab(Tab.QUEUE)}>
           <RightArrowSvg text="RACE" />
         </span>,
-        <span onClick={() => setActiveTab('win')}>
+        <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <RightArrowSvg text="WIN" />
         </span>,
       ];
-    } else if (activeTab === 'race') {
+    } else if (currentTab === Tab.QUEUE) {
       return [
         <span
           className="transform-mid-active"
-          onClick={() => setActiveTab('buy')}
+          onClick={() => changeTab(Tab.BUY)}
         >
           <LeftArrowSvg text="BUY" />
         </span>,
-        <span onClick={() => setActiveTab('race')}>
+        <span onClick={() => changeTab(Tab.QUEUE)}>
           <MidFullActiveSvg text="RACE" />
         </span>,
-        <span onClick={() => setActiveTab('win')}>
+        <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <RightArrowSvg text="WIN" />
         </span>,
       ];
@@ -323,14 +325,14 @@ const HeaderTabs = () => {
       return [
         <span
           className="transform-mid-active"
-          onClick={() => setActiveTab('buy')}
+          onClick={() => changeTab(Tab.BUY)}
         >
           <MidFullSvg text="BUY" />
         </span>,
-        <span onClick={() => setActiveTab('race')}>
+        <span onClick={() => changeTab(Tab.QUEUE)}>
           <MidCutSvg text="RACE" />
         </span>,
-        <span onClick={() => setActiveTab('win')}>
+        <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <MidFullActiveSvg text="WIN" />
         </span>,
       ];
@@ -344,16 +346,18 @@ const HeaderTabs = () => {
   );
 };
 
-const Header: React.FC<{ backBtnHandler?: () => void }> = ({
-  backBtnHandler,
-}) => {
+const Header: React.FC<{
+  backBtnHandler?: () => void;
+  changeTabValue: (value: Tab) => void;
+  currentTab: Tab;
+}> = ({ backBtnHandler, changeTabValue, currentTab }) => {
   return (
     <div className="header">
       <div>
         <Navbar backBtnHandler={backBtnHandler} />
       </div>
       <div>
-        <HeaderTabs />
+        <HeaderTab currentTab={currentTab} changeTab={changeTabValue} />
       </div>
     </div>
   );
