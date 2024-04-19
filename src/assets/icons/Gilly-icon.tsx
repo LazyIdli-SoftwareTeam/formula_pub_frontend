@@ -5,8 +5,8 @@ const GillyIcon = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) => (
   <svg
-    width={68}
-    height={30}
+    width={87}
+    height={26}
     viewBox="0 0 68 30"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

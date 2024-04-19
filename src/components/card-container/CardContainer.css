@@ -20,7 +20,7 @@
   gap: 8px;
   background-color: rgba(47, 47, 47, 1);
   padding: 0px 20px 20px 20px;
-  border: 1px solid;
+  border: 1px;
 
   border-image-source: radial-gradient(
       67.78% 79.79% at 56.25% 15.41%,

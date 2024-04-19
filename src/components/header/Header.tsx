@@ -1,6 +1,5 @@
 import './Header.css';
 import React from 'react';
-import { HexaButton } from '../../utils/hexa-button/Hexa-button';
 import GillyIcon from '../../assets/icons/Gilly-icon';
 import TehoIcon from '../../assets/icons/Teho-icon';
 import { IoChevronBackSharp } from 'react-icons/io5';
@@ -19,20 +18,13 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
 
   return (
     <div className="navbar">
-      {backBtnHandler ? (
-        <BackBtn />
-      ) : (
-        <HexaButton
-          className="retrieve-button"
-          onClick={() => console.log('Button clicked')}
-        >
-          Retrieve
-        </HexaButton>
-      )}
-      <span onClick={() => (window.location.href = '/')}>
+      {backBtnHandler ? <BackBtn /> : <span></span>}
+      <span
+        style={{ flexGrow: 1, display: 'flex', justifyContent: 'start' }}
+        onClick={() => (window.location.href = '/')}
+      >
         <GillyIcon />
       </span>
-
       <TehoIcon />
     </div>
   );
