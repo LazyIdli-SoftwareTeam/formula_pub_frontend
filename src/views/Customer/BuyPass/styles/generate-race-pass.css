@@ -12,6 +12,7 @@
   padding-bottom: 100px;
 }
 
+
 .customer-generate-race-pass .customer-generate-race-pass-inputs {
   display: flex;
   gap: 10px;
@@ -68,4 +69,29 @@
 
 .customer-generate-race-pass-heading .--hidden {
   visibility: hidden !important;
+}
+
+.customer-generate-combined-data{
+  background-color:#494949;
+  padding:12px;
+}
+
+.customer-futher-information-section{
+  font-size: 10px;
+  font-weight: 500;
+  color:#F4F4F4;
+}
+
+.customer-generate-race-button{
+  
+  width: 360px;
+  height: 32px;
+  gap: 0px;
+  border: 1.5px 0px 0px 0px;
+  opacity: 0px;
+  
+}
+
+/*.cutsomer-futher-information-heading{
+  margin: 8px;
 }

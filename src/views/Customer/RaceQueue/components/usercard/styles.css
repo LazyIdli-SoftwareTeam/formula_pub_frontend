@@ -53,3 +53,7 @@
   padding: 3px 8px;
   border-radius: 5px;
 }
+.create-user-line{
+  border: 1px solid var(--Dark-Grey, #2F2F2F);
+  padding:2px;
+}

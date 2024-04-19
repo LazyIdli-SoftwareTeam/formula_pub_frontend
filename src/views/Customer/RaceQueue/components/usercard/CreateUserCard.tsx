@@ -37,6 +37,7 @@ const CreateUserCard: React.FC<{
     }
   };
   return (
+    <div>
     <div className="create-user-card-container">
       <div className="create-user-card-start">
         <span className="--index"> {index + 1}  </span>
@@ -46,6 +47,8 @@ const CreateUserCard: React.FC<{
       <div className="create-state">
         <GetState />
       </div>
+    </div>
+   <hr className='create-user-line'/>
     </div>
   );
 };

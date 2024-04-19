@@ -12,10 +12,13 @@ const Otp: React.FC<{
   const boxRef = useRef<null | HTMLInputElement>(null);
   useEffect(() => {}, [enteredValue]);
 
-
+  const resetOptValues = () =>{
+    setEnteredValue(["","","",""]);
+  }
   const resentOtpHandler = () => {
     if (timer != 0) return;
     setTimer(30)
+    resetOptValues()
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

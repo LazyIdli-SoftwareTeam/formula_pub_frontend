@@ -18,6 +18,7 @@ import { t_cart } from '../../../types/cart';
 import { calculateTotalRides } from '../../../utils/cartTotal';
 import { editPhoneNumber, editUserName } from '../../../state/order';
 import { t_userInfo } from '../../../types/userInfo';
+import { BiBorderRadius } from 'react-icons/bi';
 
 export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (
@@ -97,7 +98,7 @@ export const PlayerRideInformation: React.FC<{
     width: '100%',
     background: '#494949',
     border: 'none',
-    borderRadius: 'none',
+    borderRadius:'none'
   };
 
   const PlayerTag = () => {
@@ -106,7 +107,8 @@ export const PlayerRideInformation: React.FC<{
   const PlayerInformationInput = () => {
     return (
       <div key={index} className="customer-ride-player-information-inputs">
-        <TextField
+        <TextField 
+        style={{color:"#F4F4F4"}}
           size="small"
           placeholder="Name"
           sx={TextFieldStyle}

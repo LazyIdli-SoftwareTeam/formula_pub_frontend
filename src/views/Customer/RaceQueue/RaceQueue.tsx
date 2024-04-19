@@ -29,8 +29,11 @@ const RaceQueue = () => {
               type: 'host',
               raceCode: '23131',
             }}
+          
           />
+          
         ))}
+        
       </div>
     </div>
   );

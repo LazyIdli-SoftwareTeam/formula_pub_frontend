@@ -4,6 +4,7 @@
   flex-direction: column;
   font-size: 12px;
   font-weight: 500;
+  border-radius: 8px;
   line-break: anywhere;
   color: #c1c1c1;
   background: radial-gradient(
@@ -31,6 +32,7 @@
 
 .global-view-bill-container .global-bill-top .global-bill-table {
   display: flex;
+ 
 }
 
 .global-view-bill-container .global-bill-top .--name {

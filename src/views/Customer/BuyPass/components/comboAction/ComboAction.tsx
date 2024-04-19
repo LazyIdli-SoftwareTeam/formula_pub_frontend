@@ -12,9 +12,9 @@ const ComboAction: React.FC<t_comboAction> = ({
 }) => {
   return (
     <div className="combo-action-container">
-      <span onClick={onAdd}>+</span>
-      <span className='--items'>{numberOfItems}</span>
       <span onClick={onDelete}>-</span>
+      <span className='--items'>{numberOfItems}</span>
+      <span onClick={onAdd}>+</span>
     </div>
   );
 };

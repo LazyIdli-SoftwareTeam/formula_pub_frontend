@@ -93,18 +93,20 @@
 .card--quantity--button {
   background-color: rgba(73, 73, 73, 1);
   color: rgba(248, 153, 11, 1);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   border: none;
-  width: 30%;
+  width: 40%;
+  height:90%;
   text-align: center;
+  
 }
 
 .card--quantity--number {
   background: rgba(10, 10, 10, 0.18);
   color: rgba(248, 153, 11, 1);
   /* margin: 2px; */
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   border: none;
   width: 40%;
@@ -140,7 +142,7 @@
     width: 100%;
   }
   .card--add--button {
-    font-size: 12px;
+    font-size: 14px;
     width: 100%;
   }
 }

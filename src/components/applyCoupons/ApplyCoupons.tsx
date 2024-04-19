@@ -163,8 +163,8 @@ const ApplyCoupons = () => {
             value={couponValue.value}
             onChange={changeHandler}
             style={{
-              backgroundColor: '#494949',
-              border: couponValue.error ? '1px solid red' : 'none',
+              backgroundColor: '#181818',
+              border: couponValue.error ? '1px solid red' : '1.5px solid #494949',
               outline: 'none',
               borderRadius: '4px',
               paddingLeft: '10px',
