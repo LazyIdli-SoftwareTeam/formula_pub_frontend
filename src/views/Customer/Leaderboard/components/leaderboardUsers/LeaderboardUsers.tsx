@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import { FaTrophy } from 'react-icons/fa6';
-import { SiWakatime } from 'react-icons/si';
 import { t_userInfo } from '../../../../../types/userInfo';
 const rankStyles = (index: number) => {
     if (index === 0) {
