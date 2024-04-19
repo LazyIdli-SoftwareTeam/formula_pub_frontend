@@ -1,18 +1,18 @@
 import React from 'react';
-import { t_combo } from '../../../../types/combo';
+import { t_combo } from '../../../../../types/combo';
 import './styles.css';
-import { t_cart } from '../../../../types/cart';
-import { addRsSymbol } from '../../../../utils/addRsSymbol';
+import { t_cart } from '../../../../../types/cart';
+import { addRsSymbol } from '../../../../../utils/addRsSymbol';
 import ComboAction from '../comboAction/ComboAction';
-import { t_order } from '../../../../types/order';
+import { t_order } from '../../../../../types/order';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store';
+import { RootState } from '../../../../../store';
 import {
   addCombo,
   decrementCombo,
   incrementCombo,
   removeCombo,
-} from '../../../../state/order';
+} from '../../../../../state/order';
 
 // this file will have all the components required after selecting the combos and proceeding for cart
 

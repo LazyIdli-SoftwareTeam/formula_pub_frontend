@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Button from '../../../../components/hexaButton/Button';
+import Button from '../../../../../components/hexaButton/Button';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
-import TextField from '../../../../components/textField/TextField';
+import TextField from '../../../../../components/textField/TextField';
 import { useState } from 'react';
-import Otp from '../../../../components/otp/Otp';
+import Otp from '../../../../../components/otp/Otp';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../store';
-import { t_order } from '../../../../types/order';
+import { RootState } from '../../../../../store';
+import { t_order } from '../../../../../types/order';
 import validator from 'validator';
-import { setHostName, setHostPhoneNumber } from '../../../../state/order';
+import { setHostName, setHostPhoneNumber } from '../../../../../state/order';
 
 enum OTP_STATE {
   VERIFIED,

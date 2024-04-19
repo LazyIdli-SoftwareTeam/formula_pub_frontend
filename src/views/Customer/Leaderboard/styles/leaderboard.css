@@ -1,0 +1,16 @@
+.customer-leader-board-container {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.customer-leader-board-container .customer-leader-board-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}

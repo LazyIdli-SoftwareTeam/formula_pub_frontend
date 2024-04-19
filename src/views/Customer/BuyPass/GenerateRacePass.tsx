@@ -5,9 +5,9 @@ import './styles/generate-race-pass.css';
 import { IoInformationCircle } from 'react-icons/io5';
 import UserQueue from './components/userQueue/UserQueue';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { t_order } from '../../types/order';
-import { calculateTotalRides } from '../../utils/cartTotal';
+import { RootState } from '../../../store';
+import { t_order } from '../../../types/order';
+import { calculateTotalRides } from '../../../utils/cartTotal';
 
 const GenerateRacePass = () => {
   const order: t_order = useSelector((state: RootState) => state.order);

@@ -10,14 +10,14 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import './styles/rides.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/hexaButton/Button';
-import { t_order } from '../../types/order';
+import Button from '../../../components/hexaButton/Button';
+import { t_order } from '../../../types/order';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { t_cart } from '../../types/cart';
-import { calculateTotalRides } from '../../utils/cartTotal';
-import { editPhoneNumber, editUserName } from '../../state/order';
-import { t_userInfo } from '../../types/userInfo';
+import { RootState } from '../../../store';
+import { t_cart } from '../../../types/cart';
+import { calculateTotalRides } from '../../../utils/cartTotal';
+import { editPhoneNumber, editUserName } from '../../../state/order';
+import { t_userInfo } from '../../../types/userInfo';
 
 export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (

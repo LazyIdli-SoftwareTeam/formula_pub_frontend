@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import banner_image from '../../assets/images/banner-image.png';
-import CardContainer from '../../components/card-container/CardContainer';
+import banner_image from '../../../assets/images/banner-image.png';
+import CardContainer from '../../../components/card-container/CardContainer';
 import './styles/Home.css';
-import Button from '../../components/hexaButton/Button';
+import Button from '../../../components/hexaButton/Button';
 import { useEffect } from 'react';
-import { t_order } from '../../types/order';
+import { t_order } from '../../../types/order';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState } from '../../../store';
 // import { AxiosResponse } from 'axios';
 // import { getCombos } from '../../api/combos';
 

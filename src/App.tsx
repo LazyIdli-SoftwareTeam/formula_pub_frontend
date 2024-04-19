@@ -1,14 +1,14 @@
-import Home from './views/Customer/Home';
+import Home from './views/Customer/BuyPass/Home';
 
 import {
   BrowserRouter,
   Routes,
   Route,
 } from 'react-router-dom';
-import VerifyHost from './views/Customer/VerifyHost';
-import ViewBill from './views/Customer/ViewBill';
-import Rides from './views/Customer/Rides';
-import GenerateRacePass from './views/Customer/GenerateRacePass';
+import VerifyHost from './views/Customer/BuyPass/VerifyHost';
+import ViewBill from './views/Customer/BuyPass/ViewBill';
+import Rides from './views/Customer/BuyPass/Rides';
+import GenerateRacePass from './views/Customer/BuyPass/GenerateRacePass';
 import Outlay from './Outlay';
 
 function App() {

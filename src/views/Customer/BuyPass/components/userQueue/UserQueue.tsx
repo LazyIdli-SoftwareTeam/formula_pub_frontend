@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import './styles.css';
-import Button from '../../../../components/hexaButton/Button';
+import Button from '../../../../../components/hexaButton/Button';
 const ArrowLeft: React.FC<{ active: boolean; style: any }> = ({
   style,
   active,

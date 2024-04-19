@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/header/Header';
 import RaceQueue from './views/Customer/RaceQueue/RaceQueue';
+import Leaderboard from './views/Customer/Leaderboard/Leaderboard';
 
 export enum Tab {
   LEADERBOARD = 'LEADERBOARD',
@@ -33,7 +34,7 @@ const Outlay: React.FC<{ children: JSX.Element; backBtn?: boolean }> = ({
 
   const GetComponent = () => {
     if (currentTab === Tab.LEADERBOARD) {
-      return <span>Leaderboard</span>;
+      return <Leaderboard />;
     } else if (currentTab === Tab.QUEUE) {
       return <RaceQueue />;
     } else if (currentTab === Tab.BUY) {

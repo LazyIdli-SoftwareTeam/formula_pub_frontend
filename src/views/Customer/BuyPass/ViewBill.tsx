@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import ApplyCoupons from '../../components/applyCoupons/ApplyCoupons';
-import Bill from '../../components/bill/Bill';
-import Button from '../../components/hexaButton/Button';
-import TextField from '../../components/textField/TextField';
-import { t_order } from '../../types/order';
+import ApplyCoupons from '../../../components/applyCoupons/ApplyCoupons';
+import Bill from '../../../components/bill/Bill';
+import Button from '../../../components/hexaButton/Button';
+import TextField from '../../../components/textField/TextField';
+import { t_order } from '../../../types/order';
 import './styles/view-bill.css';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../store';
+import { RootState } from '../../../store';
 
 const ViewBill = () => {
   const navigate = useNavigate(); 
