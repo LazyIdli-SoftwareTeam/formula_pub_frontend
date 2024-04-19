@@ -10,14 +10,17 @@ export enum Tab {
   RETRIVE = 'RETRIVE',
 }
 
-const Outlay: React.FC<{ children: JSX.Element; backBtn?: boolean }> = ({
+const Outlay: React.FC<{ defaultValue?: Tab,  children: JSX.Element; backBtn?: boolean }> = ({
   children,
   backBtn = true,
+  defaultValue
 }) => {
-  const [currentTab, setCurrentTab] = useState(Tab.BUY);
+  const [currentTab, setCurrentTab] = useState(defaultValue || Tab.BUY);
+
   const changeTabValue = (value: Tab) => {
     setCurrentTab(value);
   };
+
   const GetHeader = () => {
     if (backBtn) {
       return (

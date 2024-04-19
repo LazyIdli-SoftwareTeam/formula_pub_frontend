@@ -31,6 +31,22 @@ export const BannerImage = () => {
   );
 };
 
+export const AlreadyBooked = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="customer-already-booked-container">
+      <div className="--btn">
+        <Button
+          content="Already booked?"
+          disabled={false}
+          onClick={() => navigate('/retrieve')}
+          bgColor='#1CB1D9'
+        />
+      </div>
+    </div>
+  );
+};
+
 const Home = () => {
   const order: t_order = useSelector((state: RootState) => state.order);
   const navigate = useNavigate();
@@ -66,6 +82,7 @@ const Home = () => {
           />
         </div>
       ) : null}
+      <AlreadyBooked />
     </div>
   );
 };

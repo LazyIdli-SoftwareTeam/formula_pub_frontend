@@ -4,6 +4,21 @@
   height: 100%;
 }
 
+.customer-already-booked-container {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  padding: 0px 10px;
+  justify-content: flex-end;
+}
+
+.customer-already-booked-container .--btn {
+  width: 30%;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
 .banner-image-container {
   max-width: 100%;
 }

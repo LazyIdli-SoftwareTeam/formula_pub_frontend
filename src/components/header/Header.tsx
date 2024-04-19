@@ -20,7 +20,11 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
     <div className="navbar">
       {backBtnHandler ? <BackBtn /> : <span></span>}
       <span
-        style={{ flexGrow: 1, display: 'flex', justifyContent: 'start' }}
+        style={
+          backBtnHandler
+            ? { flexGrow: 1, display: 'flex', justifyContent: 'center' }
+            : { flexGrow: 1, display: 'flex', justifyContent: 'start' }
+        }
         onClick={() => (window.location.href = '/')}
       >
         <GillyIcon />
@@ -313,7 +317,7 @@ const HeaderTab: React.FC<{
           <RightArrowSvg text="WIN" />
         </span>,
       ];
-    } else {
+    } else if (currentTab === Tab.LEADERBOARD) {
       return [
         <span
           className="transform-mid-active"
@@ -326,6 +330,21 @@ const HeaderTab: React.FC<{
         </span>,
         <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <MidFullActiveSvg text="WIN" />
+        </span>,
+      ];
+    } else {
+      return [
+        <span
+          className="transform-mid-active"
+          onClick={() => (window.location.href = '/')}
+        >
+          <MidFullSvg text="BUY" />
+        </span>,
+        <span onClick={() => changeTab(Tab.QUEUE)}>
+          <MidCutSvg text="RACE" />
+        </span>,
+        <span onClick={() => changeTab(Tab.LEADERBOARD)}>
+          <LeftArrowSvg text="WIN" />
         </span>,
       ];
     }
