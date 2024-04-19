@@ -98,7 +98,7 @@ export const PlayerRideInformation: React.FC<{
     width: '100%',
     background: '#494949',
     border: 'none',
-    borderRadius:'none'
+    BiBorderRadius:'none'
   };
 
   const PlayerTag = () => {
