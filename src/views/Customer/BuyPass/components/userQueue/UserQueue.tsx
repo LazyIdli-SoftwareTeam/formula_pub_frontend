@@ -49,7 +49,21 @@ const ArrowRight: React.FC<{ active: boolean; style: any }> = ({
   );
 };
 
-const BookingInformation: React.FC<{
+export const RidesCircles: React.FC<{ turn: boolean; q: number }> = ({
+  turn,
+  q,
+}) => {
+  return (
+    <div
+      style={turn ? { boxShadow: '0px 0px 8px 2px #4FBEDBE5' } : {}}
+      className="user-booking-queue-circle"
+    >
+      {q}
+    </div>
+  );
+};
+
+export const BookingInformation: React.FC<{
   rides: number;
   minIndex: number;
   turn: boolean;
@@ -57,7 +71,7 @@ const BookingInformation: React.FC<{
   const [queue, setQueue] = useState<number[]>([]);
   const tempQueue: number[] = [];
   useEffect(() => {
-    let i  = minIndex; 
+    let i = minIndex;
     while (i <= rides + 1) {
       tempQueue.push(i);
       i++;
@@ -80,23 +94,15 @@ const BookingInformation: React.FC<{
         </div>
       </div>
       <div className="user-booking-queue-turns">
-        {queue.map((q, i) => {
-          return (
-            <div
-              key={i}
-              style={turn ? { boxShadow: '0px 0px 8px 2px #4FBEDBE5' } : {}}
-              className="user-booking-queue-circle"
-            >
-              {q}
-            </div>
-          );
-        })}
+        {queue.map((q, i) => (
+          <RidesCircles key={i} q={q} turn={turn} />
+        ))}
       </div>
     </div>
   );
 };
 
-const WaitingQueue = () => {
+export const WaitingQueue: React.FC<{btn?: boolean}> = ({ btn }) => {
   return (
     <div className="waiting-queue-bottom-container">
       <div className="waiting-queue-container">
@@ -114,19 +120,19 @@ const WaitingQueue = () => {
           <div></div>
         </div>
       </div>
-      <div className="waiting-queue-bottom-btn">
+      {!btn ? null : <div className="waiting-queue-bottom-btn">
         <span className="--text">For further information:</span>
         <Button
           content="Check Race Queue"
           disabled={false}
           onClick={() => {}}
         />
-      </div>
+      </div>}
     </div>
   );
 };
 
-const ArrowsPointingRight = () => {
+export const ArrowsPointingRight = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const transforms = [20, 40, 60, 80];
   useEffect(() => {
@@ -156,7 +162,7 @@ const ArrowsPointingRight = () => {
   );
 };
 
-const ArrowsPointingLeft = () => {
+export const ArrowsPointingLeft = () => {
   const [activeIndex, setActiveIndex] = useState(3);
   const transforms = [80, 60, 40, 20];
   useEffect(() => {
@@ -186,7 +192,7 @@ const ArrowsPointingLeft = () => {
   );
 };
 
-const ActiveRaceQueue = () => {
+export const ActiveRaceQueue = () => {
   return (
     <div className="active-race-queue-container">
       <ArrowsPointingRight />

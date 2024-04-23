@@ -1,13 +1,47 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import TextField from '../../../components/textField/TextField';
 import './styles/retrive.css';
+import Otp from '../../../components/otp/Otp';
+import Bookings from './Bookings';
+
+enum OTP_STATE {
+  UNKNOWN,
+  SENT,
+  ACCEPTED,
+}
 
 const Retrieve = () => {
+  const [enteredValue, setEnteredValue] = useState(['', '', '', '']);
+  const [otpState, setOtpState] = useState({ state: OTP_STATE.UNKNOWN });
   const [phoneNumber, setPhoneNumber] = useState('');
-  const onPhoneNumberChangeHandler = (value: string) => {
-    if (phoneNumber.length === 10) return;
-    setPhoneNumber(value);
+  const retriveClickHandler = () => {
+    if (otpState.state == OTP_STATE.UNKNOWN) {
+      setOtpState({ state: OTP_STATE.SENT });
+    } else if (otpState.state === OTP_STATE.SENT) {
+      if (verifyOtp()) {
+        setOtpState({ state: OTP_STATE.ACCEPTED });
+      }
+    }
   };
+
+  const getButtonText = () => {
+    if (otpState.state === OTP_STATE.SENT) {
+      return 'CONFIRM OTP';
+    } else if (otpState.state === OTP_STATE.UNKNOWN) {
+      return 'Retrieve';
+    }
+  };
+
+  const verifyOtp = () =>
+    parseInt(enteredValue.join('')) === 1234 ? true : false;
+
+  const numberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value != ' ' && e.target.value.length === 10) return;
+    setPhoneNumber(e.target.value);
+  };
+
+  if (otpState.state === OTP_STATE.ACCEPTED) return <Bookings />
+
   return (
     <div className="customer-retrieve-container">
       <div className="customer-retrieve-top-heading">
@@ -16,14 +50,23 @@ const Retrieve = () => {
       <div className="customer-retrieve-top-container">
         <TextField
           label="Enter Your Registered Mobile Number :"
-          onChange={(e) => onPhoneNumberChangeHandler(e.target.value)}
+          onChange={numberChangeHandler}
           onClick={() => {}}
           type={'tel'}
           value={phoneNumber}
         />
       </div>
+      {otpState.state === OTP_STATE.SENT ? (
+        <div className="otp">
+          <Otp
+            enteredValue={enteredValue}
+            setEnteredValue={setEnteredValue}
+            error={false}
+          />
+        </div>
+      ) : null}
       <div className="customer-retrieve-bottom-btn-info">
-        <span>Retrieve</span>
+        <span onClick={retriveClickHandler}>{getButtonText()}</span>
       </div>
     </div>
   );

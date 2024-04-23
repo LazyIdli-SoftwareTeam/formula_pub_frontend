@@ -57,7 +57,7 @@
 .user-booking-information-container .user-booking-queue-turns {
   display: flex;
 }
-.user-booking-information-container .user-booking-queue-turns div {
+.user-booking-queue-circle {
   background-color: var(--teho-blue-color);
   display: flex;
   justify-content: center;

@@ -75,7 +75,7 @@ const Otp: React.FC<{
           value={enteredValue["0"] ? enteredValue["0"] : ""}
           name={"0"}
           type="tel"
-          style={error ? { border: "1px solid red" } : {}}
+          style={error ? { borderBottom: "1px solid red" } : {}}
           onChange={handleChange}
         />
         <input
@@ -84,7 +84,7 @@ const Otp: React.FC<{
           type="tel"
           value={enteredValue[1] ? enteredValue[1] : ""}
           name={"1"}
-          style={error ? { border: "1px solid red" } : {}}
+          style={error ? { borderBottom: "1px solid red" } : {}}
           onChange={handleChange}
         />
         <input
@@ -93,7 +93,7 @@ const Otp: React.FC<{
           type="tel"
           value={enteredValue && enteredValue[2] ? enteredValue[2] : ""}
           name={"2"}
-          style={error ? { border: "1px solid red" } : {}}
+          style={error ? { borderBottom: "1px solid red" } : {}}
           onChange={handleChange}
         />
         <input
@@ -102,7 +102,7 @@ const Otp: React.FC<{
           type="tel"
           value={enteredValue && enteredValue[3] ? enteredValue[3] : ""}
           name={"3"}
-          style={error ? { border: "1px solid red" } : {}}
+          style={error ? { borderBottom: "1px solid red" } : {}}
           onChange={handleChange}
         />
         <div></div>

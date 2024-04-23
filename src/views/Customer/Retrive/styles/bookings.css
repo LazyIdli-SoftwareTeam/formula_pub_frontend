@@ -1,0 +1,127 @@
+.customer-booking-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.customer-booking-container .customer-booking-top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+}
+.customer-booking-container .customer-booking-top-container .--btn {
+  padding: 10px 16px;
+  border-radius: 16px;
+  color: white;
+  font-size: 12px;
+  background-color: var(--teho-blue-color);
+}
+.customer-booking-container .customer-booking-top-container .--hidden {
+  opacity: 0;
+}
+.customer-order-card-information-container {
+  padding: 16px 12px;
+  background: var(--Dark-input-box, #494949);
+  border-radius: 4px;
+}
+.customer-booking-container .customer-order-card-information {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  align-items: center;
+}
+
+.customer-order-card-information .--ride {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--teho-orange-color);
+}
+
+.customer-order-card-information .--booking {
+  font-size: 10px;
+  font-weight: 500;
+  color: #c1c1c1;
+}
+
+.customer-order-card-information .--time {
+  font-size: 10px;
+  font-weight: 700;
+  color: #c1c1c1;
+}
+
+.customer-order-card-information .--details {
+  text-decoration: underline;
+  color: white;
+  font-weight: 800;
+  font-size: 10px;
+}
+
+
+.customer-order-card-information .--passes {
+  background-color: var(--teho-orange-color);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-radius: 16px;
+  padding: 8px 16px;
+}
+
+.customer-order-card-information .customer-order-card-start {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customer-order-card-information .customer-order-card-end {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.customer-race-passes-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-race-passes-container .--line {
+  width: 100%;
+  height: 1px;
+  background-color: #484747;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.customer-order-card-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customer-card-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.customer-card-queue .--head {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.customer-card-queue .--circles {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 6px;
+}
