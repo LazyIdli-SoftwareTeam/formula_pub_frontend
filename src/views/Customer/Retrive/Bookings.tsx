@@ -4,12 +4,16 @@ import {
   WaitingQueue,
 } from '../BuyPass/components/userQueue/UserQueue';
 import './styles/bookings.css';
-import { MdArrowDropDown } from 'react-icons/md';
+import { TiArrowSortedDown } from 'react-icons/ti';
+
+import { TiArrowSortedUp } from 'react-icons/ti';
+
 import OrderDetails from '../../../components/orderDetails/OrderDetails';
 import { t_order } from '../../../types/order';
 import { Accordion, AccordionDetails } from '@mui/material';
 import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
-const order: t_order = {
+import History from './History';
+export const order: t_order = {
   cart: {
     combos: [
       {
@@ -38,6 +42,16 @@ const order: t_order = {
     { name: '123', phoneNumber: '2132313', type: 'user', raceCode: '12313' },
   ],
 };
+
+export const BookingStart = () => {
+  return (
+    <div className="customer-order-card-start">
+      <span className="--ride">4 Rides</span>
+      <span className="--booking">Booking ID: 12312</span>
+      <span className="--time">Thursday 9:03pm | 08/03/2024</span>
+    </div>
+  );
+};
 const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
   setOrderDetails,
 }) => {
@@ -45,11 +59,7 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
   return (
     <div className="customer-order-card-information-container">
       <div className="customer-order-card-information">
-        <div className="customer-order-card-start">
-          <span className="--ride">4 Rides</span>
-          <span className="--booking">Booking ID: 12312</span>
-          <span className="--time">Thursday 9:03pm | 08/03/2024</span>
-        </div>
+        <BookingStart />
         <div className="customer-order-card-end">
           <span onClick={() => setOrderDetails(order)} className="--details">
             Order details
@@ -58,7 +68,12 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
             onClick={() => setAccordianOpened(!accordianOpened)}
             className="--passes"
           >
-            <MdArrowDropDown className="--icon" /> View Race Passes
+            {accordianOpened ? (
+              <TiArrowSortedUp />
+            ) : (
+              <TiArrowSortedDown className="--icon" />
+            )}{' '}
+            {accordianOpened ? 'Back' : 'View Race Passes'}
           </span>
         </div>
       </div>
@@ -91,9 +106,11 @@ const Bookings = () => {
   const [showOrderDetails, setShowOrderDetails] = useState<t_order | null>(
     null
   );
+  const [showHistory, setShowHistory] = useState(false);
   const setOrderDetails = (order: t_order) => {
     setShowOrderDetails(order);
   };
+  if (showHistory) return <History  />
 
   return (
     <div className="customer-booking-container">
@@ -106,7 +123,9 @@ const Bookings = () => {
       <div className="customer-booking-top-container">
         <span className="--btn --hidden">History</span>
         <span>All Race Passes</span>
-        <span className="--btn">History</span>
+        <span onClick={() => setShowHistory(true)} className="--btn">
+          History
+        </span>
       </div>
       <div className="customer-race-passes-container">
         {new Array(4).fill(0).map((_, i) => (

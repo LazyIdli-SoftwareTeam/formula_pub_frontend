@@ -36,25 +36,25 @@
   align-items: center;
 }
 
-.customer-order-card-information .--ride {
+.customer-order-card-start .--ride {
   font-size: 20px;
   font-weight: 900;
   color: var(--teho-orange-color);
 }
 
-.customer-order-card-information .--booking {
+.customer-order-card-start .--booking {
   font-size: 10px;
   font-weight: 500;
   color: #c1c1c1;
 }
 
-.customer-order-card-information .--time {
+.customer-order-card-start .--time {
   font-size: 10px;
   font-weight: 700;
   color: #c1c1c1;
 }
 
-.customer-order-card-information .--details {
+.--details {
   text-decoration: underline;
   color: white;
   font-weight: 800;
@@ -73,7 +73,7 @@
   padding: 8px 16px;
 }
 
-.customer-order-card-information .customer-order-card-start {
+ .customer-order-card-start {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -91,7 +91,8 @@
   flex-direction: column;
 }
 
-.customer-race-passes-container .--line {
+.customer-race-passes-container .--line,
+.--global-line {
   width: 100%;
   height: 1px;
   background-color: #484747;

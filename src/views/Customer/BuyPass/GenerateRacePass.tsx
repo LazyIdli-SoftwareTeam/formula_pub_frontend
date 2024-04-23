@@ -8,16 +8,19 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { t_order } from '../../../types/order';
 import { calculateTotalRides } from '../../../utils/cartTotal';
-export const GeneratePlayerCard: React.FC<{ index: number }> = ({ index }) => {
+export const GeneratePlayerCard: React.FC<{
+  index: number;
+  customValue?: string;
+}> = ({ index, customValue }) => {
   const TailElement = () => {
-    const generateRandomPass = () =>
-      Math.floor(Math.random() * 90000 + 10000);
-    const pass = generateRandomPass().toString().split('').join(' ');
+    const generateRandomPass = () => Math.floor(Math.random() * 90000 + 10000);
+    const pass =
+      customValue || generateRandomPass().toString().split('').join(' ');
     return <div className="customer-unique-race-pass">{pass}</div>;
   };
   return (
     <div className="customer-player-card-information">
-      <Accordion  disableGutters expanded={false}>
+      <Accordion disableGutters expanded={false}>
         <AccordionSummary
           sx={{
             display: 'flex',
@@ -36,7 +39,6 @@ const GenerateRacePass = () => {
   const order: t_order = useSelector((state: RootState) => state.order);
 
   const rides = calculateTotalRides(order.cart);
-
 
   return (
     <div className="customer-generate-race-pass">
