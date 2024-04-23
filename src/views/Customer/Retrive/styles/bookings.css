@@ -61,7 +61,6 @@
   font-size: 10px;
 }
 
-
 .customer-order-card-information .--passes {
   background-color: var(--teho-orange-color);
   color: white;
@@ -124,4 +123,20 @@
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 6px;
+}
+
+.customer-booking-container .MuiPaper-root {
+  background-color: #2f2f2f !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 0px !important;
+  box-shadow: none;
+}
+
+.customer-booking-container .MuiAccordionDetails-root {
+  padding: 0px !important;
+}
+
+.customer-booking-container .MuiAccordionSummary-content {
+  justify-content: space-between !important;
 }

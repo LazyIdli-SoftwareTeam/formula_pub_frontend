@@ -25,7 +25,7 @@ const CartComboBox: React.FC<{ combo: t_combo; iteration: number }> = ({
   const order: t_order = useSelector((state: RootState) => state.order);
 
   const onAddClick = () => {
-    console.log('working')
+    console.log('working');
     const index = order.cart.combos.findIndex(
       (com) => com.combo.id === combo.id
     );
@@ -107,11 +107,15 @@ const CartCombo: React.FC<{ cart: t_cart }> = ({ cart }) => {
   );
 };
 
-const Cart = () => {
-  const order: t_order = useSelector((state: RootState) => state.order);
+const Cart: React.FC<{ order?: t_order }> = ({ order }) => {
+  let orderRoot: t_order = useSelector((state: RootState) => state.order);
+  if (order) {
+    orderRoot = order;
+  }
+  console.log('order root', orderRoot);
   return (
     <div className="cart-container">
-      <CartCombo cart={order.cart} />
+      <CartCombo cart={orderRoot.cart} />
     </div>
   );
 };

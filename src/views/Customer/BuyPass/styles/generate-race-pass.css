@@ -24,10 +24,11 @@
   align-items: center;
 }
 
-.customer-generate-race-pass .customer-unique-race-pass {
+.customer-unique-race-pass {
   background-color: var(--teho-orange-color);
   padding: 5px 0px;
   border-radius: 4px;
+  height: max-content ;
   font-size: 14px;
   width: 90px;
   text-align: center;
