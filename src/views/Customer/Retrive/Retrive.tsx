@@ -16,6 +16,7 @@ const Retrieve = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const retriveClickHandler = () => {
     if (otpState.state == OTP_STATE.UNKNOWN) {
+      if (checkDisabled()) return;
       setOtpState({ state: OTP_STATE.SENT });
     } else if (otpState.state === OTP_STATE.SENT) {
       if (verifyOtp()) {
@@ -32,15 +33,28 @@ const Retrieve = () => {
     }
   };
 
+  const checkDisabled = () => {
+    if (otpState.state === OTP_STATE.UNKNOWN) {
+      console.log(phoneNumber.length)
+      if (phoneNumber.length != 10) return true;
+      return false;
+    } else if (otpState.state === OTP_STATE.SENT) {
+      if (enteredValue.join('').length != 4) return true;
+      return false;
+    } else {
+      return false;
+    }
+  };
+
   const verifyOtp = () =>
     parseInt(enteredValue.join('')) === 1234 ? true : false;
 
   const numberChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value != ' ' && e.target.value.length === 10) return;
+    if (e.target.value != ' ' && e.target.value.length === 11) return;
     setPhoneNumber(e.target.value);
   };
 
-  if (otpState.state === OTP_STATE.ACCEPTED) return <Bookings />
+  if (otpState.state === OTP_STATE.ACCEPTED) return <Bookings />;
 
   return (
     <div className="customer-retrieve-container">
@@ -65,7 +79,13 @@ const Retrieve = () => {
           />
         </div>
       ) : null}
-      <div className="customer-retrieve-bottom-btn-info">
+      <div
+        className={
+          checkDisabled()
+            ? 'customer-retrieve-bottom-btn-info btn-disabled'
+            : 'customer-retrieve-bottom-btn-info'
+        }
+      >
         <span onClick={retriveClickHandler}>{getButtonText()}</span>
       </div>
     </div>
