@@ -3,4 +3,5 @@ export type t_userInfo = {
   phoneNumber: string;
   type: 'host' | 'user';
   raceCode?: string;
+  scoreVerified?: boolean;
 };

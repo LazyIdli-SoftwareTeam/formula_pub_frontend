@@ -53,11 +53,26 @@
 
 .leader-board-users-container .user-index {
   height: 24px;
-  width: 24px;
+  max-width: 24px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--teho-black-color);
   border-bottom-right-radius: 8px;
+}
+
+.leader-board-users-verify-overlay {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 290;
+}
+
+.leader-board-column-mask {
+  background-color: transparent;
+  position: relative;
 }

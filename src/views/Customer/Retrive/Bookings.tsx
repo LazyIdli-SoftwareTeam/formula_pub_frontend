@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   RidesCircles,
   WaitingQueue,
@@ -13,6 +13,7 @@ import { t_order } from '../../../types/order';
 import { Accordion, AccordionDetails } from '@mui/material';
 import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
 import History from './History';
+import { enqueueSnackbar } from 'notistack';
 export const order: t_order = {
   cart: {
     combos: [
@@ -110,7 +111,13 @@ const Bookings = () => {
   const setOrderDetails = (order: t_order) => {
     setShowOrderDetails(order);
   };
-  if (showHistory) return <History  />
+  useEffect(() => {
+    enqueueSnackbar('Booking(s) Successfully Retrieved!', {
+      variant: 'info',
+      autoHideDuration: 4000,
+    });
+  }, []);
+  if (showHistory) return <History />;
 
   return (
     <div className="customer-booking-container">
