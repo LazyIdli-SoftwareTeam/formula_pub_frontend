@@ -13,9 +13,9 @@ import { RootState } from '../../store';
 
 const combos: t_combo[] = [
   {
-    comboDescription: 'Some description of the combo. Provides 6 rides with 2 beers',
+    comboDescription: 'Some description of the combo. Provides 1 rides with 2 beers',
     comboName: 'Huge maharaja combo',
-    numberOfRides: 6,
+    numberOfRides: 1,
     price: 200,
     id: '1',
     otherItems: '2 beers also',

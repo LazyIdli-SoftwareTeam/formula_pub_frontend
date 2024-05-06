@@ -1,6 +1,5 @@
 import './Header.css';
 import React from 'react';
-import GillyIcon from '../../assets/icons/Gilly-icon';
 import TehoIcon from '../../assets/icons/Teho-icon';
 import { IoChevronBackSharp } from 'react-icons/io5';
 import { Tab } from '../../Outlay';
@@ -27,7 +26,7 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
         }
         onClick={() => (window.location.href = '/')}
       >
-        <GillyIcon />
+        <img src='/kos.jpeg' style={{ width: '40px', }} />
       </span>
       <TehoIcon />
     </div>

@@ -131,7 +131,7 @@ const LeaderboardUsers: React.FC<{
           key={i}
           score="23.123.000"
           userName={users[0].name}
-          scoreVerified={i == 9 ? false : undefined}
+          scoreVerified={undefined}
           showScoreVerifyPopup={showScoreVerifyPopup}
         />
       ))}

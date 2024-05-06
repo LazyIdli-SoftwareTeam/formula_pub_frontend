@@ -110,17 +110,17 @@ export const PlayerRideInformation: React.FC<{
           size="small"
           placeholder="Name"
           sx={TextFieldStyle}
-          onChange={onChangeName}
+          // onChange={onChangeName}
           onClick={() => {}}
-          value={user ? user.name : ''}
+          // value={user ? user.name : ''}
         />
         <TextField
           size="small"
           placeholder="Mobile Number"
           sx={TextFieldStyle}
-          onChange={onChangePhoneNumber}
+          // onChange={onChangePhoneNumber}
           onClick={() => {}}
-          value={user ? user.phoneNumber : ''}
+          // value={user ? user.phoneNumber : ''}
         />
       </div>
     );

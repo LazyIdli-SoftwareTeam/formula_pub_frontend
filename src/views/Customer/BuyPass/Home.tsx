@@ -82,7 +82,7 @@ const Home = () => {
           />
         </div>
       ) : null}
-      <AlreadyBooked />
+      {/* <AlreadyBooked /> */}
     </div>
   );
 };

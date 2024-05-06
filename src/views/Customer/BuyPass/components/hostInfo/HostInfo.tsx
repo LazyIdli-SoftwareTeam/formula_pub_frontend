@@ -123,6 +123,7 @@ const HostInfo = () => {
           helperText={error.phoneNumber.helperText}
           disabled={otpSent === OTP_STATE.SENT}
           onClick={() => {}}
+          type={'tel'}
           value={order.host.phoneNumber}
         />
       </div>
