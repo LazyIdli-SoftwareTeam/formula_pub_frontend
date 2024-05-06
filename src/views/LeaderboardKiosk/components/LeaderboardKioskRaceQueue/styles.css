@@ -23,8 +23,7 @@ color: var(--Teho-White, #F4F4F4);
 }
 
 .kiosk-race-card-queue-main{
-    width: Fixed (600px)px;
-height: Fixed (48px)px;
+
 padding: 12px 16px 12px 16px;
 gap: 0px;
 border-radius: 8px;
@@ -50,8 +49,8 @@ line-height: 21.78px;
 text-align: left;
 background: var(--Teho-White, #F4F4F4);
 color:black;
-border-radius: 100px;
-padding:4px 9px 4px 9px;
+border-radius: 14px;
+padding:3px 9px 3px 9px;
 }
 
 .leader-kiosk-race-queue-size{
@@ -80,7 +79,7 @@ padding:0px 0px 0px 16px;
 }
 
 .kiosk-go-to-site{
-    padding: 10px 16px 10px 16px;
+   
     gap: 10px;
     border-radius: 19px;
     opacity: 0px;

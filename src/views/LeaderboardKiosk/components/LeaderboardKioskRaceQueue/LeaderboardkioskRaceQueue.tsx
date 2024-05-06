@@ -12,9 +12,19 @@ const kioskRaceQueuStyles = (index: number) => {
       root:{
         'box-shadow' : '0px 0px 8px 0px #1CB1D9CC',
       },
-     
+     button:{
+      padding: '10px 16px 10px 16px'
+     }
     };
-  } else {
+  } 
+   if (index <= 9) {
+    return{
+      element : {
+        padding:'4px 9px 4px 9px'
+      }
+    };
+  }
+    else {
     return { index: {}, root: {} };
   }
 };
@@ -23,7 +33,7 @@ const kioskRaceQueuStyles = (index: number) => {
 export const LeaderboardKioskRaceCard : React.FC<{
     index:number;
     userName:string;
-    site:string;
+    site?:string;
     
     }> = ({index,userName,site}) =>{
       const kioskRace = kioskRaceQueuStyles(index)
@@ -32,10 +42,10 @@ export const LeaderboardKioskRaceCard : React.FC<{
         <div className="main-card-in-race-queue">
             <div className="kiosk-race-card-queue-main" style={kioskRace.root}>
                <div className="">
-                <span className="kiosk-race-queue-index" style= {kioskRace.index}>{index}</span>
+                <span className="kiosk-race-queue-index" style={kioskRace.index}>{index}</span>
                 <span className="kiosk-race-queue-username">{userName}</span>
                </div>
-                <span className="kiosk-go-to-site">{site}</span>
+                <span className="kiosk-go-to-site" style={kioskRace.button}>{site}</span>
             </div>
           
          
@@ -49,11 +59,11 @@ export const LeaderboardKioskRaceUsers : React.FC<{ users: t_userInfo[] }> = ({ 
         return (
           <div className="">
             <p className="race-queue-kiosk-name">NAME</p>
-            {new Array(15).fill(0).map((_, i) => (
+            {new Array(20).fill(0).map((_, i) => (
               <LeaderboardKioskRaceCard
                 index={i+1}
                 key={i}
-                site={'Go to Site'}
+                site={i < 4 ?  "Go to site" :" "}
                 userName={users[0].name}  
               />
             ))}
