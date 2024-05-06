@@ -1,16 +1,39 @@
 .customer-leader-board-container {
-  padding-left: 20px;
-  padding-right: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding-top: 10px;
   padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+ 
+  
 }
 
 .customer-leader-board-container .customer-leader-board-top {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
+  
+
 }
+
+.total-container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure the container takes full viewport height */
+  overflow: auto;
+}
+
+.personal-best-container {
+    position: sticky;
+    bottom: 0;
+    background: radial-gradient(56.74% 76.71% at 48.59% 19.18%, rgba(24, 24, 24, 0.8) 0%, rgba(89, 89, 89, 0.64) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    background-color: black;
+    
+  }
+
+  
+
+

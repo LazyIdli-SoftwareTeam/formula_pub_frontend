@@ -145,7 +145,7 @@ const HostInfo = () => {
         />
       ) : null}
       <div className="host-info-container-bottom">
-        <Button
+        <Button className=''
           content={getButtonContent()}
           disabled={getBtnDisabled()}
           onClick={onBtnClick}

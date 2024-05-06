@@ -1,0 +1,175 @@
+.personal-leader-board-card-header-container {
+  display: flex;
+  font-weight: 700;
+  font-size: 12px;
+  align-items: center;
+}
+
+
+.leader-board-users-container .personal--index {
+  width:20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leader-board-users-container .personal--user-name {
+  width: 85%;
+}
+
+.leader-board-users-container .personal--user-score {
+  width: 25%;
+  display: flex;
+  justify-content: start;
+}
+
+.leader-board-users-container .personal-header-score {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+
+.personal-leader-board-card-container {
+  display: flex;
+  font-size:14px;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600px;
+  background: radial-gradient(121.41% 428.8% at 44.69% 0%, rgba(28, 177, 217, 0.63) 0%, rgba(28, 177, 217, 0.21) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-bottom-right-radius: 12px;
+  border: 1px solid;
+  padding:4px;
+}
+
+.personal-user-index {
+  background: var(--Teho-Orange, #F8990B);
+  width: 32px;
+  height: 32px;
+  gap: 10px;
+  border-radius: 0px 0px 8px 0px;
+  opacity: 0px;
+  font-family: Inter;
+font-size: 16px;
+font-weight: 800;
+line-height: 19.36px;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+  
+}
+  
+.--peronal-user-name{
+ 
+  font-size: 14px;
+  font-weight: 600;
+  padding:7px 0px 0px 0px;
+  
+}
+
+.person-user-score{
+display: flex;
+justify-content: start;
+font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+line-height: 16.94px;
+text-align: center;
+
+}
+
+.personal-board-users-container{
+    height: 24px;
+    width: 24px;
+    background: var(--Teho-Orange, #F8990B);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--teho-black-color);
+    border-bottom-right-radius: 8px;
+  }
+.personal-best-user-container{
+gap:10px;
+}
+
+.personal-leader-board-card-container {
+  display: flex;
+  font-size: 14px;
+  gap: 8px;
+  align-items: center;
+  font-weight: 600;
+  
+  border: 1px solid;
+border-image-source: radial-gradient(107.33% 5722.83% at 21.14% 32.5%, #1C98B9 0%, #136C83 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  border-bottom-right-radius: 12px;
+  padding: 8px;
+ 
+
+
+border-image-source: radial-gradient(107.33% 5722.83% at 21.14% 32.5%, #1C98B9 0%, #136C83 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+width: Fixed (272px)px;
+height: Fixed (32px)px;
+
+gap: 8px;
+border-radius: 0px 0px 12px 0px;
+border: 1px 0px 0px 0px;
+justify: space-between;
+
+
+
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.leader-board-users-container .personal-user-index {
+  height: 24px;
+  max-width: 24px;
+background: #F8990B;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #F4F4F4;
+
+  border-bottom-right-radius: 8px;
+}
+
+.new-index{
+  width:20%;
+}
+.personal--index-icon {
+  width:13%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personal--user-name-icon{
+  width: 39%;
+  
+}
+
+.personal--user-score-icon{
+    width: 25%;
+    display: flex;
+    justify-content: start;
+}
+
+.personal--user-interval{
+font-family: Inter;
+font-size: 12px;
+font-weight: 700;
+line-height: 14.52px;
+text-align: center;
+color:#C1C1C1;
+
+
+
+
+
+}

@@ -1,6 +1,6 @@
 export type t_userInfo = {
   name: string;
   phoneNumber: string;
-  type: 'host' | 'user';
+  type: string;
   raceCode?: string;
 };

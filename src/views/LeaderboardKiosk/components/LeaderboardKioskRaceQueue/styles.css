@@ -1,0 +1,138 @@
+.leader-board-race-queue-heading{
+
+padding: 21px 40px 21px 40px;
+gap: 12px;
+border: 1px 0px 0px 0px;
+opacity: 0px;
+background: radial-gradient(56.74% 76.71% at 48.59% 19.18%, rgba(28, 177, 217, 0.9) 0%, rgba(80, 204, 237, 0.9) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+border: 1px solid;
+
+border-image-source: radial-gradient(67.78% 79.79% at 56.25% 15.41%, rgba(148, 148, 148, 0.9) 0%, rgba(61, 60, 60, 0.4) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+
+}
+
+.race-queue-heading{
+font-family: Inter;
+font-size: 32px;
+font-weight: 800;
+line-height: 38.73px;
+text-align: center;
+color: var(--Teho-White, #F4F4F4);
+
+}
+
+.kiosk-race-card-queue-main{
+    width: Fixed (600px)px;
+height: Fixed (48px)px;
+padding: 12px 16px 12px 16px;
+gap: 0px;
+border-radius: 8px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+opacity: 0px;
+background: var(--Dark-Grey, #2F2F2F);
+
+
+}
+
+.kiosk-race-queue-index{
+    width: 12px;
+height: 13px;
+gap: 0px;
+opacity: 0px;
+
+font-family: Inter;
+font-size: 18px;
+font-weight: 600;
+line-height: 21.78px;
+text-align: left;
+background: var(--Teho-White, #F4F4F4);
+color:black;
+border-radius: 100px;
+padding:4px 9px 4px 9px;
+}
+
+.leader-kiosk-race-queue-size{
+padding:0px 40px 0px 40px;
+}
+
+.main-card-in-race-queue{
+    padding:0px 0px 8px 0px;
+}
+
+.horizonatl-race-queue{
+    border: 1px solid var(--Dark-Grey, #2F2F2F);
+   margin-bottom:5px;
+}
+
+.kiosk-race-queue-username{
+    font-family: Inter;
+font-size: 18px;
+font-weight: 700;
+line-height: 21.78px;
+text-align: left;
+color: var(--Teho-White, #F4F4F4);
+padding:0px 0px 0px 16px;
+
+
+}
+
+.kiosk-go-to-site{
+    padding: 10px 16px 10px 16px;
+    gap: 10px;
+    border-radius: 19px;
+    opacity: 0px;
+    background: var(--Tehe-Blue, #1CB1D9);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    color: var(--Teho-White, #F4F4F4);
+    
+}
+
+.footer-race-queue-last{
+ 
+padding: 6px 78px 6px 78px;
+
+opacity: 0px;
+background: var(--Teho-White, #F4F4F4);
+position: fixed;
+bottom:0%;
+width:100vw;
+height:54px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.footer-race-queue-head{
+ font-family: Inter;
+font-size: 18px;
+font-weight: 700;
+line-height: 21.78px;
+text-align: center;
+color: var(--Tehe-Blue, #1CB1D9);
+display: flex;
+justify-content: center;
+
+}
+.race-queue-kiosk-name{
+    font-family: Inter;
+font-size: 20px;
+font-weight: 700;
+line-height: 24.2px;
+text-align: left;
+padding:16px 0px 13px 55px;
+color: var(--Teho-White, #F4F4F4);
+
+}
+
+.kiosk-race-index-username{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

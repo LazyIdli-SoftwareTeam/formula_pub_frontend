@@ -42,10 +42,11 @@ const ViewBill = () => {
         <Bill order={order} />
         <div className="--btm-btn">
           <Button
+          className=''
             content="Pay"
             sx={{ width: '85%', margin: 'auto' }}
             disabled={false}
-            onClick={() => navigate('/rides')}
+            onClick={() => navigate('/paymentunsuccess')}
           />
         </div>
       </div>

@@ -7,6 +7,7 @@ type t_hexButton = {
   sx?: { [key: string]: string };
   bgColor?: string;
   disabled: boolean;
+  className:string
 };
 
 const Button: React.FC<t_hexButton> = ({
@@ -15,6 +16,7 @@ const Button: React.FC<t_hexButton> = ({
   bgColor,
   sx,
   disabled,
+  className,
 }) => {
   const divRef = useRef<HTMLDivElement | null>(null);
 
@@ -25,11 +27,11 @@ const Button: React.FC<t_hexButton> = ({
       divRef.current.style.setProperty('--oneSide', oneSide + 'px');
       // divRef.current.style.width = (divRef.current.clientWidth - 20) + 'px';
       if (disabled) {
-        divRef.current.style.setProperty('--color', '#c1c1c1');
-        divRef.current.style.setProperty('--border-color', '#c1c1c1');
+        divRef.current.style.setProperty('--color', bgColor||'#c1c1c1');
+        divRef.current.style.setProperty('--border-color', bgColor||'#c1c1c1');
       } else {
-        divRef.current.style.setProperty('--color', '#f8990b');
-        divRef.current.style.setProperty('--border-color', '#ffd25e');
+        divRef.current.style.setProperty('--color', bgColor||'#f8990b');
+        divRef.current.style.setProperty('--border-color', bgColor||'#ffd25e');
 
       }
     }
@@ -42,7 +44,7 @@ const Button: React.FC<t_hexButton> = ({
       style={bgColor ? { backgroundColor: bgColor, ...sx } : sx}
       className={`hex-button global-hex-button-container ${
         disabled ? 'global-hex-btn-disabled' : ''
-      }`}
+      } ${className || ''}`}
     >
       <div className="--tria"></div>
       {content}

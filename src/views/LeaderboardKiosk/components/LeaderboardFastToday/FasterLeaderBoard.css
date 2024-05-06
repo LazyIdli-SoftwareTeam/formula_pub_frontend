@@ -1,0 +1,33 @@
+.leader-board-fastest-header{
+font-family: Roboto;
+font-size: 40px;
+font-style: italic;
+font-weight: 900;
+text-align: center;
+color: var(--Teho-White, #F4F4F4);
+padding-top:10px;
+text-shadow:8px #FFFFFFCC;
+width:30%
+
+
+}
+
+.leader-board-main-card{
+    display: flex;
+    padding:22px 0px 22px 0px;
+    background: linear-gradient(98.39deg, #000000 6.42%, rgba(0, 0, 0, 0.5) 93.58%);
+    border-width: 1px, 0px, 1px, 0px;
+    justify-content: space-between;
+    border-style: solid;
+    
+    border-image-source: radial-gradient(362.1% 2043.53% at 6.67% 15.28%, rgba(255, 255, 255, 0.8) 0%, #000000 0.01%, rgba(176, 176, 176, 0.5) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    
+    width: Fixed (680px)px;
+    height: Fixed (72px)px;
+    padding: 4px 0px 4px 0px;
+    gap: 8px;
+    border: 1px 0px 1px 0px;
+    opacity: 0px;
+        
+    
+}

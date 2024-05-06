@@ -31,10 +31,22 @@ const rankStyles = (index: number) => {
         },
         root: { border: '1px solid #A1522C' },
       };
-    } else {
+    
+    }else if (index == 7) {
+      return {
+        index: {
+        color:'white',
+        background:'#F8990B',
+        },
+        root: { border: '1px solid #1CB1D9' ,  background: 'radial-gradient(121.41% 428.8% at 44.69% 0%, rgba(28, 177, 217, 0.63) 0%, rgba(28, 177, 217, 0.21) 100%)'},
+      };
+    
+    }else {
       return { index: {}, root: {} };
     }
   };
+
+
 export const LeaderboardHeader = () => {
   return (
     <div className="customer-leader-board-card-header-container">
@@ -54,6 +66,7 @@ export const LeaderboardCard: React.FC<{
   index: number;
   userName: string;
   score: string;
+ 
 }> = ({ index, score, userName }) => {
 
   const styles = rankStyles(index);
@@ -64,6 +77,7 @@ export const LeaderboardCard: React.FC<{
       </span>
       <span className="--user-name">{userName}</span>
       <span className="--user-score">{score}</span>
+      
     </div>
   );
 };
@@ -77,7 +91,7 @@ const LeaderboardUsers: React.FC<{ users: t_userInfo[] }> = ({ users }) => {
           index={i}
           key={i}
           score="23.123.000"
-          userName={users[0].name}
+          userName={users[0].name}  
         />
       ))}
     </div>

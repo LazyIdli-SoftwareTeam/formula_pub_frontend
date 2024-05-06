@@ -17,6 +17,7 @@ import './styles/view-bill.css';
 
 const GenerateRacePass = () => {
   const order: t_order = useSelector((state: RootState) => state.order);
+  const rides = calculateTotalRides(order.cart);
   const TailElement = () => {
     const generateRandomPass = () => Math.floor(Math.random() * 90000 + 10000);
     const pass = generateRandomPass().toString().split('').join(' ');
@@ -25,10 +26,14 @@ const GenerateRacePass = () => {
     );
   };
 
+  
+    
+  
+
 
   
 
-  const rides = calculateTotalRides(order.cart);
+  
   const navigate = useNavigate(); 
 
   const GeneratePlayerCard: React.FC<{ index: number }> = ({ index }) => {
@@ -58,7 +63,15 @@ const GenerateRacePass = () => {
         <span className='--btn'>History</span>
       </div>
       <div className="customer-generate-combined-data">
-      
+      <div className="user-booking-top-section">
+      <div className="user-booking-top-section-start">
+        <span className="--text">{rides} Rides</span>
+      </div>
+      <div className="user-booking-top-section-end">
+        <span className="--booking">Booking ID : 654321 </span>
+        <span className="--booking-info">Thursday 9:03pm | 08/03/2024</span>
+      </div>
+    </div>
 
       <div className="customer-generate-race-pass-inputs">
         {new Array(rides).fill(0).map((_, i) => {
@@ -85,6 +98,7 @@ const GenerateRacePass = () => {
           />
         </div>
   </div>
+  
     </div>
     
   );

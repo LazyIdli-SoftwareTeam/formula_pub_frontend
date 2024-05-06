@@ -19,18 +19,12 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
   return (
     <div className="navbar">
       {backBtnHandler ? <BackBtn /> : <span></span>}
-
-        {  backBtnHandler ? <span
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-          onClick={() => (window.location.href = '/')}
-        >
-          <GillyIcon />
-        </span> : <span
+        <span
           style={{ display: 'flex', justifyContent: 'start',alignItems:'start' }}
           onClick={() => (window.location.href = '/')}
         >
           <GillyIcon />
-        </span>}
+        </span>
     
       <TehoIcon />
     </div>

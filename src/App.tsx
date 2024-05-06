@@ -9,8 +9,10 @@ import VerifyHost from './views/Customer/BuyPass/VerifyHost';
 import ViewBill from './views/Customer/BuyPass/ViewBill';
 import Rides from './views/Customer/BuyPass/Rides';
 import GenerateRacePass from './views/Customer/BuyPass/GenerateRacePass';
+import PaymentUnsuccess from './views/Customer/BuyPass/PaymentUnsuccess';
 import Outlay from './Outlay';
-
+import { LeaderboardKioskHeader } from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
+import { LeaderboardkioskMainpage } from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
 function App() {
   // const [searchParams, setSearchParams] = useSearchParams();
   // const eventId = searchParams.get('eventId');
@@ -28,7 +30,7 @@ function App() {
   // }
   return (
     <>
-      <BrowserRouter>
+    <BrowserRouter>
         <Routes>
           <Route
             path="/"
@@ -38,13 +40,17 @@ function App() {
 
           <Route path="/host" element={<Outlay children={<VerifyHost />} />} />
           <Route path="/rides" element={<Outlay children={<Rides />} />} />
+          <Route path="/paymentunsuccess" element={<Outlay children={<PaymentUnsuccess/>}/>}/>
           <Route
             path="/pass"
             element={<Outlay children={<GenerateRacePass />} />}
           />
+         <Route path = "/lb-race-queue" element = {<LeaderboardKioskHeader/>}/>
+         <Route path = "/lb" element = {<LeaderboardkioskMainpage/>}/>
         </Routes>
       </BrowserRouter>
     </>
+
   );
 }
 
