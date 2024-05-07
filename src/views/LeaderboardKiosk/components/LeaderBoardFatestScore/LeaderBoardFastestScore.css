@@ -301,8 +301,8 @@ opacity: 0;
 
 
 .animated-new-card {
-  animation: slideInFromRight 2s linear;
-   animation-duration: 2s; 
+  animation: slideInFromRight 1s linear;
+   animation-duration:1s; 
 }
 
 .images-animations{

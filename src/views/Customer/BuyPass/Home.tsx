@@ -62,8 +62,7 @@ const Home = () => {
           <Button
             content={`Proceed (${buttonVisible()} Items)`}
             disabled={false}
-            onClick={() => navigate('/host')}
-          />
+            onClick={() => navigate('/host')} className={''}          />
         </div>
       ) : null}
     </div>

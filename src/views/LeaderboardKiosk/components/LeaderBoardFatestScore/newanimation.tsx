@@ -77,7 +77,7 @@ export const LeaderboardKioskFastestHeader = () => {
   useEffect(() => {
     if (ImageRef.current) {
       const LeaderHeight = `${ImageRef.current.clientHeight + 260}`;
-      console.log(ImageRef.current.clientHeight);
+     
 
       const getElement = document.getElementById("new-card-height");
       //const getElement = document.querySelectorAll('.kiosk-card-main-dis')
@@ -143,13 +143,16 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
       const index = parseInt(indexInput, 10);
       if (!isNaN(index) && index >= 1 && index <= displayedUsers.length + 2) {
         const updatedUsers = [...displayedUsers];
+        
         updatedUsers.splice(index - 1, 0, {
           name: "Priyanka",
           phoneNumber: "1234567890",
           type: "participant",
           raceCode: "12345",
           animation: true,
+         
         });
+        
 
         const updatedUsersWithAnimation = updatedUsers.map((user, i) => ({
           ...user,
@@ -157,13 +160,31 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
         }));
 
         setDisplayedUsers(updatedUsersWithAnimation);
+        /*if (index > displayedUsers.length) {
+            
+            setTimeout(() => {
+             
+              const newCardRef = newEntryRef.current.children[index - displayedUsers.length - 1];
+              newCardRef.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 10000);
+          }*/
 
         if (newEntryRef.current) {
-          if (index >= displayedUsers.length) {
-            newEntryRef.current.scrollTo({
-              top: newEntryRef.current.scrollHeight+90,
-              behavior: "smooth",
-            });
+          
+          if (index > displayedUsers.length) {
+           setTimeout(() =>{
+            const newcardRef = newEntryRef.current.children.length-1;
+            console.log(newcardRef)
+            const newof = newEntryRef.current.children[newcardRef]
+            console.log(newof)
+            
+            newof.scrollIntoView({behavior: "smooth"})
+            const animationDelay = 1000; 
+            //const newCard = document.createElement("div");
+            newof.className = "animated-new-card";
+            newof.style.animationDelay = animationDelay + "ms"; 
+           // newcard.appendChild(newCard);
+           },1000)
           } else {
             const cardHeight =
               newEntryRef.current.scrollHeight / displayedUsers.length;
@@ -231,6 +252,7 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
               prizeMoney={i < 3 ? "₹50000" : ""}
               animation={user.animation}
               background={false}
+              
             />
           </React.Fragment>
         ))}
@@ -308,3 +330,5 @@ export const LeaderboardKioskFooter = () => {
     </div>
   );
 };
+
+

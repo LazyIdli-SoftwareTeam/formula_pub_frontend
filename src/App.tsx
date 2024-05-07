@@ -28,8 +28,12 @@ function App() {
   //     </div>
   //   );
   // }
+
+
   return (
+    
     <>
+   
     <BrowserRouter>
         <Routes>
           <Route
@@ -53,5 +57,7 @@ function App() {
 
   );
 }
+
+
 
 export default App;
