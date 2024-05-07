@@ -10,4 +10,5 @@ export type t_order = {
   couponApplied?: t_coupon;
   users: t_userInfo[];
   host: t_userInfo;
+  _id?: string;
 };

@@ -71,7 +71,7 @@ export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
 export const PlayerAccordionCloseInfo: React.FC<{
   index: number;
   name?: string;
-  racePass: string;
+  racePass?: string;
   phoneNumber?: string;
 }> = ({ index, name, phoneNumber, racePass }) => {
   return (
@@ -83,9 +83,9 @@ export const PlayerAccordionCloseInfo: React.FC<{
         <span className="--name">{name || 'Name'}</span>
         <span className="--num">{phoneNumber || 'Mobile no.'}</span>
       </div>
-      <div className="--pass">
+      {racePass ? <div className="--pass">
         <span> {racePass}</span>
-      </div>
+      </div> : null}
     </div>
   );
 };

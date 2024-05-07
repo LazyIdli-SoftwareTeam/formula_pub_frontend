@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {
-  RidesCircles,
-  WaitingQueue,
-} from '../BuyPass/components/userQueue/UserQueue';
 import './styles/bookings.css';
 import { TiArrowSortedDown } from 'react-icons/ti';
 
@@ -12,55 +8,29 @@ import OrderDetails from '../../../components/orderDetails/OrderDetails';
 import { t_order } from '../../../types/order';
 import { Accordion, AccordionDetails } from '@mui/material';
 // import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
-import History from './History';
+// import History from './History';
 import { enqueueSnackbar } from 'notistack';
-export const order: t_order = {
-  cart: {
-    combos: [
-      {
-        combo: {
-          comboDescription: 'some thing here',
-          comboName: 'Super mahar raja',
-          id: '1231',
-          numberOfRides: 2,
-          prize: 1324,
-          otherItems: '',
-        },
-        iteration: 0,
-      },
-    ],
-  },
-  host: {
-    name: 'some name',
-    phoneNumber: '3423423424',
-    type: 'host',
-    // raceCode: '1231',
-  },
-  orderDescription: 'wkeq',
-  rides: 2,
-  totalAmount: 12313,
-  users: [
-    { name: '123', phoneNumber: '2132313', type: 'user',  },
-  ],
-};
+import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
 
-export const BookingStart = () => {
+
+export const BookingStart: React.FC<{order: t_order}> = ({ order }) => {
   return (
     <div className="customer-order-card-start">
-      <span className="--ride">4 Rides</span>
-      <span className="--booking">Booking ID: 12312</span>
+      <span className="--ride">{order.rides} Rides</span>
+      <span className="--booking">Booking ID: {order._id}</span>
       <span className="--time">Thursday 9:03pm | 08/03/2024</span>
     </div>
   );
 };
-const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
+const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void, order: t_order }> = ({
   setOrderDetails,
+  order
 }) => {
   const [accordianOpened, setAccordianOpened] = useState(false);
   return (
     <div className="customer-order-card-information-container">
       <div className="customer-order-card-information">
-        <BookingStart />
+        <BookingStart order={order} />
         <div className="customer-order-card-end">
           <span onClick={() => setOrderDetails(order)} className="--details">
             Order details
@@ -81,15 +51,13 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
       {accordianOpened ? (
         <Accordion>
           <AccordionDetails>
-            {/* <GeneratePlayerCard index={1} /> */}
-            {order.users.map(() => (
-              <></>
-              // <GeneratePlayerCard index={i + 2} />
+            {order.users.map((user, i) => (
+              <GeneratePlayerCard index={i} user={user} />
             ))}
           </AccordionDetails>
         </Accordion>
       ) : null}
-      <div className="customer-card-queue">
+      {/* <div className="customer-card-queue">
         <div className="customer-card-top">
           <span className="--head">Your turn (s)</span>
           <div className="--circles">
@@ -99,26 +67,26 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
           </div>
         </div>
         <WaitingQueue btn={false} />
-      </div>
+      </div> */}
     </div>
   );
 };
 
-const Bookings = () => {
+const Bookings: React.FC<{ orders: t_order[] }> = ({ orders }) => {
   const [showOrderDetails, setShowOrderDetails] = useState<t_order | null>(
     null
   );
-  const [showHistory, setShowHistory] = useState(false);
+  // const [showHistory, setShowHistory] = useState(false);
   const setOrderDetails = (order: t_order) => {
     setShowOrderDetails(order);
   };
   useEffect(() => {
     enqueueSnackbar('Booking(s) Successfully Retrieved!', {
       variant: 'info',
-      autoHideDuration: 4000,
+      autoHideDuration: 5000,
     });
   }, []);
-  if (showHistory) return <History />;
+  // if (showHistory) return <History />;
 
   return (
     <div className="customer-booking-container">
@@ -131,15 +99,15 @@ const Bookings = () => {
       <div className="customer-booking-top-container">
         <span className="--btn --hidden">History</span>
         <span>All Race Passes</span>
-        <span onClick={() => setShowHistory(true)} className="--btn">
+        {/* <span onClick={() => setShowHistory(true)} className="--btn">
           History
-        </span>
+        </span> */}
       </div>
       <div className="customer-race-passes-container">
-        {new Array(4).fill(0).map((_, i) => (
+        {orders.map((order, i) => (
           <div>
-            <OrderCard setOrderDetails={setOrderDetails} />
-            {i == 3 ? null : <div className="--line"></div>}
+            <OrderCard order={order} setOrderDetails={setOrderDetails} />
+            {i == orders.length - 1 ? null : <div className="--line"></div>}
           </div>
         ))}
       </div>

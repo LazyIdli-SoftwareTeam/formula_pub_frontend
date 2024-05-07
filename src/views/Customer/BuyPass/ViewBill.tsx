@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import ApplyCoupons from '../../../components/applyCoupons/ApplyCoupons';
 import Bill from '../../../components/bill/Bill';
 import Button from '../../../components/hexaButton/Button';
 import TextField from '../../../components/textField/TextField';
@@ -11,7 +10,7 @@ import { getQueryParams } from '../../../api/query';
 import { createOrder } from '../../../api/order';
 import { AxiosResponse } from 'axios';
 import { PAGE_STATE } from './Home';
-import { useState } from 'react';
+import { useState } from 'react'
 import { FullScreenLoader } from '../../../components/loader/CustomLoader';
 import { setUsers } from '../../../state/order';
 
@@ -26,6 +25,7 @@ const ViewBill = () => {
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
         localStorage.setItem('order_id', response.data.data.order._id); 
+        localStorage.setItem('order', response.data.data.order);
         dispatch(setUsers(response.data.data.players))
         navigate(`/rides?branchId=${branchId}&eventId=${eventId}`);
       } else {

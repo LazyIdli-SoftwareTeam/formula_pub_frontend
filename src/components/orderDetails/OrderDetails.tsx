@@ -4,7 +4,7 @@ import React from 'react';
 import Bill from '../bill/Bill';
 import './styles.css';
 
-const OrderInfo = () => {
+const OrderInfo: React.FC<{ order: t_order }> = ({ order }) => {
   return (
     <div className="order-info-container">
       <div className="--top">
@@ -12,7 +12,7 @@ const OrderInfo = () => {
       </div>
       <div className="--box">
         <span className="--head">Booking ID : </span>
-        <span className="--text">342432</span>
+        <span className="--text">{order._id}</span>
       </div>
       <div className="--box">
         <span className="--head">Date : </span>
@@ -43,7 +43,7 @@ const OrderDetails: React.FC<{ closePopup: () => void; order: t_order }> = ({
           <Bill order={order} />
         </div>
         <div className="customer-order-bottom">
-          <OrderInfo />
+          <OrderInfo  order={order} />
         </div>
       </div>
     </div>

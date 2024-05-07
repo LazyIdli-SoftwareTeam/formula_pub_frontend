@@ -38,16 +38,23 @@ export const BannerImage = () => {
 
 export const AlreadyBooked = () => {
   const navigate = useNavigate();
+  const { branchId, eventId } = getQueryParams(() => {});
   return (
-    <div className="customer-already-booked-container">
-      <div className="--btn">
-        <Button
-          content="Already booked?"
-          disabled={false}
-          onClick={() => navigate('/retrieve')}
-          bgColor="#1CB1D9"
-        />
-      </div>
+    <div style={{ marginBottom: '10px' }} className="customer-already-booked-container">
+      <span
+        onClick={() => navigate(`/retrieve?branchId=${branchId}&eventId=${eventId}`)}
+        style={{
+          backgroundColor: '#1CB1D9',
+          color: 'white',
+          borderRadius: 20,
+          width: '40%',
+          marginBottom: '10px',
+          padding: '10px',
+          textAlign: 'center',
+        }}
+      >
+        Already Booked
+      </span>
     </div>
   );
 };
@@ -65,9 +72,7 @@ const Home = () => {
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const [combos, setCombos] = useState([]);
   const { branchId, eventId } = getQueryParams(() => {});
-  useEffect(() => {
-    console.log(combos);
-  }, [combos]);
+
   useEffect(() => {
     const getCombosAccepted = (response: AxiosResponse) => {
       console.log(response);
@@ -102,18 +107,18 @@ const Home = () => {
       <CardContainer combos={combos} />
       {buttonVisible() != 0 ? (
         <div className="home-container-bottom-btn">
-          <div style={{ width: '80%'}}>
-          <Button
-            content={`Proceed (${buttonVisible()} Items)`}
-            disabled={false}
-            onClick={() =>
-              navigate(`/host?branchId=${branchId}&eventId=${eventId}`)
-            }
-          />
+          <div style={{ width: '80%' }}>
+            <Button
+              content={`Proceed (${buttonVisible()} Items)`}
+              disabled={false}
+              onClick={() =>
+                navigate(`/host?branchId=${branchId}&eventId=${eventId}`)
+              }
+            />
           </div>
         </div>
       ) : null}
-      {/* <AlreadyBooked /> */}
+      {order.cart.combos.length > 0 ? null : <AlreadyBooked />}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import {
   CREATE_ORDER,
   CREATE_PLAYERS,
   ENDPOINT,
+  GET_ORDER,
 } from '../constants/url_config';
 import { getQueryParams } from './query';
 
@@ -60,3 +61,26 @@ export const generateRacepass = async (
     onReject(e);
   }
 };
+
+
+
+
+
+export const getOrder = async (
+  onAccept: (response: AxiosResponse) => void,
+  onReject: (e: any) => void,
+  data: any
+) => {
+  const { branchId, eventId } = getQueryParams(onReject);
+  try {
+    const response = await axios.post(ENDPOINT + GET_ORDER, {
+      branchId: branchId,
+      eventId: eventId,
+      ...data,
+    });
+    onAccept(response);
+  } catch (e) {
+    onReject(e);
+  }
+};
+
