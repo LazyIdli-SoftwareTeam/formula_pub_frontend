@@ -16,13 +16,17 @@ const CreateUserCard: React.FC<{
   state: queueStates | '';
   userInfo: t_userInfo;
   loggedIn?: boolean;
-}> = ({ index, state, loggedIn = false, userInfo }) => {
+  racePass?: string;
+}> = ({ index, state, loggedIn = false, userInfo, racePass }) => {
   const RacePassWithStatus: React.FC<{ children: JSX.Element }> = ({
     children,
   }) => {
     return (
-      <div className="race-pass-with-status">
-        {loggedIn ? <span className="race-pass"> 3 3 3 3 3</span> : null}
+      <div
+        style={{ display: 'flex', gap: '10px' }}
+        className="race-pass-with-status"
+      >
+        {loggedIn ? <span className="race-pass"> {racePass}</span> : null}
         {children}
       </div>
     );
@@ -39,9 +43,9 @@ const CreateUserCard: React.FC<{
   return (
     <div className="create-user-card-container">
       <div className="create-user-card-start">
-        <span className="--index"> {index + 1}  </span>
+        <span className="--index"> {index + 1} </span>
         <span>|</span>
-        <span className="--name">{userInfo.name}</span>
+        <span className="--name">{userInfo.name || userInfo.userName}</span>
       </div>
       <div className="create-state">
         <GetState />

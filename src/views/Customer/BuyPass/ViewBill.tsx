@@ -10,23 +10,26 @@ import { getQueryParams } from '../../../api/query';
 import { createOrder } from '../../../api/order';
 import { AxiosResponse } from 'axios';
 import { PAGE_STATE } from './Home';
-import { useState } from 'react'
+import { useState } from 'react';
 import { FullScreenLoader } from '../../../components/loader/CustomLoader';
 import { setUsers } from '../../../state/order';
 
 const ViewBill = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const order: t_order = useSelector((state: RootState) => state.order);
   const { branchId, eventId } = getQueryParams(() => {});
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const createOrderAfterPay = () => {
     const onAcceptCreateOrder = (response: AxiosResponse) => {
+      console.log(response.status);
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
-        localStorage.setItem('order_id', response.data.data.order._id); 
-        localStorage.setItem('order', response.data.data.order);
-        dispatch(setUsers(response.data.data.players))
+        console.log(response.data.data);
+        const orders = [];
+        orders.push(response.data.data.order);
+        localStorage.setItem('order', JSON.stringify(orders));
+        dispatch(setUsers(response.data.data.players));
         navigate(`/rides?branchId=${branchId}&eventId=${eventId}`);
       } else {
         setPageState(PAGE_STATE.REJECTED);
@@ -47,7 +50,7 @@ const ViewBill = () => {
       couponAppliedId: order.couponApplied ? order.couponApplied._id : '',
     });
   };
-  if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />
+  if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />;
   return (
     <div className="customer-view-bill-container">
       <div className="customer-view-bill-top">

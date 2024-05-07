@@ -46,6 +46,7 @@ const Retrieve = () => {
           };
           orders.push(order);
         }
+        localStorage.setItem('order', JSON.stringify(response.data.data)); 
         setOrders(orders);
       } else {
         enqueueSnackbar(response.data.message, {

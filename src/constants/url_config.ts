@@ -6,5 +6,6 @@ export const CREATE_ORDER = '/order/createOrder';
 export const CREATE_PLAYERS = '/order/addPlayers';
 export const EDIT_PLAYER = '/player/editPlayer';
 export const GET_ORDER = '/order/getOrder';
+export const GET_QUEUE = '/queue/getQueue';
 
 

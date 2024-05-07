@@ -10,7 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../store';
 import { t_order } from '../../../../../types/order';
 import validator from 'validator';
-import { sethostId, setHostName, setHostPhoneNumber } from '../../../../../state/order';
+import {
+  sethostId,
+  setHostName,
+  setHostPhoneNumber,
+} from '../../../../../state/order';
 import { PAGE_STATE } from '../../Home';
 import { registerHost } from '../../../../../api/player';
 import { AxiosResponse } from 'axios';
@@ -52,7 +56,7 @@ const HostInfo = () => {
     const registerHostAccept = (response: AxiosResponse) => {
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
-        dispatch(sethostId(response.data.data._id)); 
+        dispatch(sethostId(response.data.data._id));
         navigate(`/payment?branchId=${branchId}&eventId=${eventId}`);
       } else {
         setPageState(PAGE_STATE.REJECTED);
@@ -113,15 +117,13 @@ const HostInfo = () => {
 
   const onChangeName = (e: any) => {
     setError(DEFAULT_ERROR_STATE);
-    if (e.target.value != '' && validator.isAlpha(e.target.value)) {
-      dispatch(setHostName(e.target.value));
-    }
+    dispatch(setHostName(e.target.value));
   };
 
   const onChangePhoneNumber = (e: any) => {
     if (e.target.value.length > 10) return;
     setError(DEFAULT_ERROR_STATE);
-    if (e.target.value != '' && validator.isNumeric(e.target.value)) {
+    if ( validator.isNumeric(e.target.value) &&  e.target.value != ' ' ) {
       dispatch(setHostPhoneNumber(e.target.value));
     }
   };

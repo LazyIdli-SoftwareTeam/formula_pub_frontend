@@ -10,7 +10,6 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import './styles/rides.css';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../../components/hexaButton/Button';
 import { t_order } from '../../../types/order';
 import { RootState } from '../../../store';
 import { t_cart } from '../../../types/cart';
