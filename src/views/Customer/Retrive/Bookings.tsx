@@ -11,7 +11,7 @@ import { TiArrowSortedUp } from 'react-icons/ti';
 import OrderDetails from '../../../components/orderDetails/OrderDetails';
 import { t_order } from '../../../types/order';
 import { Accordion, AccordionDetails } from '@mui/material';
-import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
+// import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
 import History from './History';
 import { enqueueSnackbar } from 'notistack';
 export const order: t_order = {
@@ -23,7 +23,7 @@ export const order: t_order = {
           comboName: 'Super mahar raja',
           id: '1231',
           numberOfRides: 2,
-          price: 1324,
+          prize: 1324,
           otherItems: '',
         },
         iteration: 0,
@@ -34,13 +34,13 @@ export const order: t_order = {
     name: 'some name',
     phoneNumber: '3423423424',
     type: 'host',
-    raceCode: '1231',
+    // raceCode: '1231',
   },
   orderDescription: 'wkeq',
   rides: 2,
   totalAmount: 12313,
   users: [
-    { name: '123', phoneNumber: '2132313', type: 'user', raceCode: '12313' },
+    { name: '123', phoneNumber: '2132313', type: 'user',  },
   ],
 };
 
@@ -81,9 +81,10 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void }> = ({
       {accordianOpened ? (
         <Accordion>
           <AccordionDetails>
-            <GeneratePlayerCard index={1} />
-            {order.users.map((_, i) => (
-              <GeneratePlayerCard index={i + 2} />
+            {/* <GeneratePlayerCard index={1} /> */}
+            {order.users.map(() => (
+              <></>
+              // <GeneratePlayerCard index={i + 2} />
             ))}
           </AccordionDetails>
         </Accordion>

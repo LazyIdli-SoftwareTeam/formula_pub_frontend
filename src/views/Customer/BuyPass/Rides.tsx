@@ -8,16 +8,22 @@ import {
 } from '@mui/material';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import './styles/rides.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/hexaButton/Button';
 import { t_order } from '../../../types/order';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { t_cart } from '../../../types/cart';
 import { calculateTotalRides } from '../../../utils/cartTotal';
-import { editPhoneNumber, editUserName } from '../../../state/order';
 import { t_userInfo } from '../../../types/userInfo';
+import { getQueryParams } from '../../../api/query';
+import { useDispatch, useSelector } from 'react-redux';
+import { PAGE_STATE } from './Home';
+import { editPlayer } from '../../../api/player';
+import { AxiosResponse } from 'axios';
+import CustomLoader from '../../../components/loader/CustomLoader';
+import { enqueueSnackbar } from 'notistack';
+import { setUsers } from '../../../state/order';
 
 export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   return (
@@ -62,17 +68,23 @@ export const RideDetail: React.FC<{ cart: t_cart }> = ({ cart }) => {
   );
 };
 
-export const PlayerAccordionCloseInfo: React.FC<{ index: number }> = ({
-  index,
-}) => {
+export const PlayerAccordionCloseInfo: React.FC<{
+  index: number;
+  name?: string;
+  racePass: string;
+  phoneNumber?: string;
+}> = ({ index, name, phoneNumber, racePass }) => {
   return (
     <div className="customer-ride-player-information-container-head">
       <div className="--name">
         <span className="--index">{index}</span>
       </div>
       <div className="--text">
-        <span className="--name">Name</span>
-        <span className="--num">Mobile no.</span>
+        <span className="--name">{name || 'Name'}</span>
+        <span className="--num">{phoneNumber || 'Mobile no.'}</span>
+      </div>
+      <div className="--pass">
+        <span> {racePass}</span>
       </div>
     </div>
   );
@@ -80,17 +92,43 @@ export const PlayerAccordionCloseInfo: React.FC<{ index: number }> = ({
 
 export const PlayerRideInformation: React.FC<{
   index: number;
-  editPhoneNumber: (index: number, value: string) => void;
-  editUserName: (index: number, value: string) => void;
   user: t_userInfo;
-}> = ({ index, editPhoneNumber, editUserName, user }) => {
+  enableBtn: () => void;
+  changeUser: (index: number, newUser: t_userInfo) => void;  
+  disableBtn: () => void;
+}> = ({ index, user, disableBtn, enableBtn, changeUser }) => {
   const [accordionOpened, setAccordionOpened] = useState(false);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const phoneNumberRef = useRef<HTMLInputElement | null>(null);
+  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
 
-  const onChangeName = (e: any) => {
-    editUserName(index, e.target.value);
-  };
-  const onChangePhoneNumber = (e: any) => {
-    editPhoneNumber(index, e.target.value);
+  const changeInfo = (playerId: string) => {
+    if (!nameRef.current || !phoneNumberRef.current) return;
+    const onAcceptEditPlayer = (response: AxiosResponse) => {
+      if (response.status === 202) {
+        setPageState(PAGE_STATE.ACCEPTED);
+        changeUser(index, response.data.data);
+      } else {
+        setPageState(PAGE_STATE.REJECTED);
+        enqueueSnackbar('Error occurred try again later', {
+          autoHideDuration: 5000,
+          variant: 'error',
+        });
+      }
+    };
+    const onRejectEditPlayer = (error: any) => {
+      setPageState(PAGE_STATE.REJECTED);
+      enqueueSnackbar('Error occurred try again later', {
+        autoHideDuration: 5000,
+        variant: 'error',
+      });
+    };
+    setPageState(PAGE_STATE.LOADING);
+    editPlayer(onAcceptEditPlayer, onRejectEditPlayer, {
+      userName: nameRef.current.value || user.userName ||  '',
+      phoneNumber: phoneNumberRef.current.value || user.phoneNumber || '',
+      playerId: playerId,
+    });
   };
 
   const TextFieldStyle = {
@@ -101,7 +139,7 @@ export const PlayerRideInformation: React.FC<{
   };
 
   const PlayerTag = () => {
-    return <div className="customer-ride-player-tag">Player {index}</div>;
+    return <div className="customer-ride-player-tag">Player {index + 1}</div>;
   };
   const PlayerInformationInput = () => {
     return (
@@ -110,21 +148,24 @@ export const PlayerRideInformation: React.FC<{
           size="small"
           placeholder="Name"
           sx={TextFieldStyle}
-          // onChange={onChangeName}
-          onClick={() => {}}
-          // value={user ? user.name : ''}
+          ref={nameRef}
+          key={1}
+          onChange={(e) => nameRef.current!.value = e.target.value}
+          defaultValue={user.userName}
         />
         <TextField
           size="small"
+          key={2}
           placeholder="Mobile Number"
           sx={TextFieldStyle}
-          // onChange={onChangePhoneNumber}
-          onClick={() => {}}
-          // value={user ? user.phoneNumber : ''}
+          defaultValue={user.phoneNumber}
+          onChange={(e) => phoneNumberRef.current!.value = e.target.value}
+          ref={phoneNumberRef}
         />
       </div>
     );
   };
+  if (pageState === PAGE_STATE.LOADING) return <CustomLoader />;
 
   return (
     <div className="customer-ride-player-information-container">
@@ -139,13 +180,36 @@ export const PlayerRideInformation: React.FC<{
           }
         >
           {accordionOpened ? (
-            <PlayerTag />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <PlayerTag />
+              <span className="customer-ride-player-pass-accordion">
+                {user.code}
+              </span>
+            </div>
           ) : (
-            <PlayerAccordionCloseInfo index={index + 1} />
+            <PlayerAccordionCloseInfo
+              index={index + 1}
+              racePass={user.code!}
+              name={user.userName}
+              phoneNumber={user?.phoneNumber}
+            />
           )}
         </AccordionSummary>
         <AccordionDetails>
           <PlayerInformationInput />
+          <span
+            onClick={() => changeInfo(user._id!)}
+            className="save-change-btn"
+          >
+            Save Changes
+          </span>
         </AccordionDetails>
       </Accordion>
     </div>
@@ -156,26 +220,16 @@ const Rides = () => {
   const [numberOfRides, setNumberOfRides] = useState(false);
   const order: t_order = useSelector((state: RootState) => state.order);
   const navigate = useNavigate();
-  const [users, setUsers] = useState<any>({});
+  const dispatch = useDispatch(); 
   const totalRides = calculateTotalRides(order.cart);
-
+  const { branchId, eventId } = getQueryParams(() => {});
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const orderId = localStorage.getItem('order_id');
   useEffect(() => {
-    const tempUsers = [];
-    const obj = {
-      name: '',
-      phoneNumber: '',
-      type: 'user',
-    };
-    for (let i = 0; i < totalRides; i++) {
-      tempUsers.push(obj);
+    if (!orderId) {
+      window.location.href = `/?branchId${branchId}&eventId=${eventId}`;
     }
-    console.log(tempUsers);
-    setUsers(tempUsers);
   }, []);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
 
   const GetAccordianText = () => {
     if (numberOfRides) {
@@ -194,31 +248,6 @@ const Rides = () => {
         </span>
       );
     }
-  };
-
-  const editUserName = (index: number, value: string) => {
-    const obj = {
-      name: value,
-      phoneNumber:
-        users[index as keyof typeof users].phoneNumber &&
-        users[index as keyof typeof users].phoneNumber.length
-          ? users[index as keyof typeof users].phoneNumber
-          : '',
-      type: 'user',
-    };
-    setUsers({ ...users, [index]: obj });
-  };
-  const editPhoneNumber = (index: number, value: string) => {
-    const obj = {
-      phoneNumber: value,
-      name:
-        users[index as keyof typeof users].name &&
-        users[index as keyof typeof users].name.length
-          ? users[index as keyof typeof users].name
-          : '',
-      type: 'user',
-    };
-    setUsers({ ...users, [index]: obj });
   };
 
   return (
@@ -250,24 +279,29 @@ const Rides = () => {
         <span>Fill Player Information</span>
       </div>
       <div className="customer-rides-player-information">
-        {new Array(totalRides).fill(0).map((_, i) => (
+        {order.users.map((user, i) => (
           <PlayerRideInformation
             index={i}
             key={i}
-            editUserName={editUserName}
-            editPhoneNumber={editPhoneNumber}
-            user={users[i as keyof typeof users]}
+            changeUser={(index: number, newUser: t_userInfo) => {
+              const users = [...order.users]; 
+              users[index] = newUser; 
+              dispatch(setUsers(users)); 
+            }}
+            user={user}
+            enableBtn={() => setBtnDisabled(false)}
+            disableBtn={() => setBtnDisabled(true)}
           />
         ))}
       </div>
-      <div className="customer-rides-bottom-btn">
+      {/* <div className="customer-rides-bottom-btn">
         <Button
           content="Generate Race Passes"
           disabled
           sx={{ width: '80%', margin: 'auto' }}
           onClick={() => navigate('/pass')}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

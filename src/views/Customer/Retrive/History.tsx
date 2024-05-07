@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import './styles/history.css';
 import { BookingStart, order } from './Bookings';
 import { TiArrowSortedDown } from 'react-icons/ti';
-import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
+// import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
 import { t_order } from '../../../types/order';
 import OrderDetails from '../../../components/orderDetails/OrderDetails';
 import React, { useState } from 'react';
@@ -37,7 +37,8 @@ const CustomerHistoryCard: React.FC<{setOrderDetails: (order: t_order) => void}>
       >
         <div className="customer-history-user-scores">
           {new Array(6).fill(0).map((_, i) => (
-            <GeneratePlayerCard index={i} customValue="23:131:123" key={i} />
+            <></>
+            // <GeneratePlayerCard index={i} customValue="23:131:123" key={i} />
           ))}
         </div>
       </AccordionDetails>

@@ -18,7 +18,7 @@ const Card: React.FC<{
       <div className="card--content">
         <p className="card--heading">{combo.comboName}</p>
         <span className="card--price">
-          {addRsSymbol(combo.price.toString())}
+          {addRsSymbol(combo.prize.toString())}
         </span>
         <p className="card-description">{combo.comboDescription}</p>
         {quantity > 0 && (

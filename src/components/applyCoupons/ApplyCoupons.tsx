@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RxCross1 } from 'react-icons/rx';
 import './ApplyCoupons.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { t_coupon } from '../../types/coupon';
 import { t_order } from '../../types/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { applyCoupon, removeCoupon } from '../../state/order';
+import { PAGE_STATE } from '../../views/Customer/BuyPass/Home';
+import { getCoupons } from '../../api/combos';
+import { AxiosResponse } from 'axios';
+import CustomLoader from '../loader/CustomLoader';
 
 export const CouponApplied: React.FC<{ couponName: string }> = ({
   couponName,
@@ -27,37 +31,6 @@ export const CouponApplied: React.FC<{ couponName: string }> = ({
     </div>
   );
 };
-
-const Coupons: t_coupon[] = [
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    id: 1,
-    name: 'WARMTIRES',
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
-    id: 2,
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
-    id: 3,
-  },
-  {
-    discountPercentage: 10,
-    maxDiscountNumber: 200,
-    minDiscountAmount: 200,
-    name: 'WARMTIRES',
-    id: 4,
-  },
-];
 
 export const CreateCircle: React.FC<{
   index: number;
@@ -92,7 +65,7 @@ export const ViewCoupon: React.FC<{
       <CreateCircle direction="column" index={5} styles={{ left: '-5px' }} />
       <div className="global-view-coupon-container">
         <div className="global-view-coupon-start">
-          <span className="--name">{coupon.name}</span>
+          <span className="--name">{coupon.couponName}</span>
           <span className="--text">
             {coupon.discountPercentage}% discount on your first ride
           </span>
@@ -107,9 +80,10 @@ export const ViewCoupon: React.FC<{
   );
 };
 
-export const ViewAllCoupons: React.FC<{ closePopup: () => void }> = ({
-  closePopup,
-}) => {
+export const ViewAllCoupons: React.FC<{
+  closePopup: () => void;
+  coupons: t_coupon[];
+}> = ({ closePopup, coupons }) => {
   return (
     <div className="global-view-all-coupons-overlay">
       <div className="global-view-all-coupons-container">
@@ -120,7 +94,7 @@ export const ViewAllCoupons: React.FC<{ closePopup: () => void }> = ({
           </span>
         </div>
         <div className="global-view-all-coupons">
-          {Coupons.map((coupon, i) => (
+          {coupons.map((coupon, i) => (
             <ViewCoupon coupon={coupon} key={i} closePopup={closePopup} />
           ))}
         </div>
@@ -133,26 +107,52 @@ const ApplyCoupons = () => {
   const [viewCoupon, setViewCoupon] = useState(false);
   const order: t_order = useSelector((state: RootState) => state.order);
   const dispatch = useDispatch();
+  const [coupons, setCoupons] = useState<t_coupon[]>([]);
+  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+  useEffect(() => {
+    const getCouponAccept = (response: AxiosResponse) => {
+      if (response.status === 202) {
+        setPageState(PAGE_STATE.ACCEPTED);
+        setCoupons(response.data.data);
+      } else {
+        setPageState(PAGE_STATE.REJECTED);
+      }
+    };
+    const getCouponReject = (e: any) => {
+      console.log(e);
+      setPageState(PAGE_STATE.REJECTED);
+    };
+
+    getCoupons(getCouponAccept, getCouponReject);
+    setPageState(PAGE_STATE.LOADING);
+  }, []);
+
   const [couponValue, setCouponValue] = useState({ error: false, value: '' });
   const applyHandler = () => {
-    const index = Coupons.findIndex(
-      (coupon) => coupon.name.toLowerCase() === couponValue.value
+    if (!coupons) return;
+    const index = coupons.findIndex(
+      (coupon) => coupon.couponName.toLowerCase() === couponValue.value.toLowerCase()
     );
     if (index < 0) {
       setCouponValue({ ...couponValue, error: true });
       alert('No coupon found');
     } else {
-      dispatch(applyCoupon(Coupons[index]));
+      dispatch(applyCoupon(coupons[index]));
     }
   };
   const changeHandler = (e: any) => {
     setCouponValue({ value: e.target.value, error: false });
   };
 
+  if (pageState === PAGE_STATE.LOADING) return <CustomLoader />;
+
   return (
     <div className="global-apply-coupons-container">
       {viewCoupon ? (
-        <ViewAllCoupons closePopup={() => setViewCoupon(false)} />
+        <ViewAllCoupons
+          coupons={coupons}
+          closePopup={() => setViewCoupon(false)}
+        />
       ) : null}
       <div className="global-apply-coupon-top">
         <span>Apply Coupons</span>
@@ -176,7 +176,7 @@ const ApplyCoupons = () => {
           </span>
         </div>
       ) : (
-        <CouponApplied couponName={order.couponApplied!.name!} />
+        <CouponApplied couponName={order.couponApplied!.couponName!} />
       )}
       <div
         onClick={() => setViewCoupon(true)}

@@ -27,7 +27,7 @@ const CartComboBox: React.FC<{ combo: t_combo; iteration: number }> = ({
   const onAddClick = () => {
     console.log('working');
     const index = order.cart.combos.findIndex(
-      (com) => com.combo.id === combo.id
+      (com) => com.combo._id === combo._id
     );
     if (index >= 0) {
       dispatch(incrementCombo({ index: index }));
@@ -38,7 +38,7 @@ const CartComboBox: React.FC<{ combo: t_combo; iteration: number }> = ({
 
   const onDecrementClick = () => {
     const index = order.cart.combos.findIndex(
-      (com) => com.combo.id === combo.id
+      (com) => com.combo._id === combo._id
     );
     if (index < 0) return;
     if (order.cart.combos[index].iteration === 1) {
@@ -56,7 +56,7 @@ const CartComboBox: React.FC<{ combo: t_combo; iteration: number }> = ({
         </div>
         <div className="--description">
           <span className="--text">{combo.comboName}</span>
-          <span className="--price">{addRsSymbol(combo.price.toString())}</span>
+          <span className="--price">{addRsSymbol(combo.prize.toString())}</span>
         </div>
       </div>
       <div className="cart-combo-box-end">
@@ -68,7 +68,7 @@ const CartComboBox: React.FC<{ combo: t_combo; iteration: number }> = ({
           />
         </div>
         <div className="--price">
-          <span>{addRsSymbol(combo.price.toString())}</span>
+          <span>{addRsSymbol(combo.prize.toString())}</span>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@ const CartCombo: React.FC<{ cart: t_cart }> = ({ cart }) => {
   const calculateTotal = () => {
     let amount = 0;
     for (const el of cart.combos) {
-      amount += el.combo.price * el.iteration;
+      amount += el.combo.prize * el.iteration;
     }
     return amount;
   };

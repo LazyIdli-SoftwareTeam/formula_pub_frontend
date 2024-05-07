@@ -10,41 +10,15 @@ import Card from '../card/Card';
 import './CardContainer.css';
 import { t_order } from '../../types/order';
 import { RootState } from '../../store';
+import React from 'react';
 
-const combos: t_combo[] = [
-  {
-    comboDescription: 'Some description of the combo. Provides 1 rides with 2 beers',
-    comboName: 'Huge maharaja combo',
-    numberOfRides: 1,
-    price: 200,
-    id: '1',
-    otherItems: '2 beers also',
-  },
-  {
-    comboDescription: 'Some description of the combo. Provides 61 rides with 2 beers',
-    comboName: 'King maharaja combo',
-    numberOfRides: 61,
-    price: 200000,
-    id: '2',
-    otherItems: '2 beers also',
-  },
-  {
-    comboDescription: 'Some description of the combo. Provides 9 rides with 2 beers',
-    comboName: 'Huge2 maharaja combo',
-    numberOfRides: 9,
-    price: 700,
-    id: '3',
-    otherItems: '2 beers also',
-  },
-];
-
-const CardContainer = () => {
+const CardContainer: React.FC<{ combos: t_combo[] }> = ({ combos }) => {
   const dispatch = useDispatch();
   const order: t_order = useSelector((state: RootState) => state.order);
-
+  console.log(combos);
   const onAddClick = (combo: t_combo) => {
     const index = order.cart.combos.findIndex(
-      (com) => com.combo.id === combo.id
+      (com) => com.combo._id === combo._id
     );
     if (index >= 0) {
       dispatch(incrementCombo({ index: index }));
@@ -55,7 +29,7 @@ const CardContainer = () => {
 
   const onDecrementClick = (combo: t_combo) => {
     const index = order.cart.combos.findIndex(
-      (com) => com.combo.id === combo.id
+      (com) => com.combo._id === combo._id
     );
     if (index < 0) return;
     if (order.cart.combos[index].iteration === 1) {
@@ -76,7 +50,7 @@ const CardContainer = () => {
           </div>
           <div className="container-cards">
             {combos.map((combo, i) => {
-              const index = order.cart.combos.findIndex(com => com.combo.id == combo.id); 
+              const index = order.cart.combos.findIndex(com => com.combo._id == combo._id); 
               const quantity = index < 0 ? 0 : order.cart.combos[index].iteration;
               return (
                 <Card

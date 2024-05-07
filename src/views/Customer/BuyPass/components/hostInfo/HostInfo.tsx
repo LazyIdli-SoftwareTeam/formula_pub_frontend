@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Button from '../../../../../components/hexaButton/Button';
 import './styles.css';
@@ -9,7 +10,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../store';
 import { t_order } from '../../../../../types/order';
 import validator from 'validator';
-import { setHostName, setHostPhoneNumber } from '../../../../../state/order';
+import { sethostId, setHostName, setHostPhoneNumber } from '../../../../../state/order';
+import { PAGE_STATE } from '../../Home';
+import { registerHost } from '../../../../../api/player';
+import { AxiosResponse } from 'axios';
+import CustomLoader from '../../../../../components/loader/CustomLoader';
+import { getQueryParams } from '../../../../../api/query';
 
 enum OTP_STATE {
   VERIFIED,
@@ -39,6 +45,28 @@ const HostInfo = () => {
   const [tos, setTos] = useState(false);
   const order: t_order = useSelector((state: RootState) => state.order);
   const dispatch = useDispatch();
+  const { branchId, eventId } = getQueryParams(() => {});
+  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+
+  const registerHostApi = () => {
+    const registerHostAccept = (response: AxiosResponse) => {
+      if (response.status === 202) {
+        setPageState(PAGE_STATE.ACCEPTED);
+        dispatch(sethostId(response.data.data._id)); 
+        navigate(`/payment?branchId=${branchId}&eventId=${eventId}`);
+      } else {
+        setPageState(PAGE_STATE.REJECTED);
+      }
+    };
+    const registerHostReject = (error: any) => {
+      console.log(error);
+      setPageState(PAGE_STATE.REJECTED);
+    };
+    registerHost(registerHostAccept, registerHostReject, {
+      userName: order.host.name,
+      phoneNumber: order.host.phoneNumber,
+    });
+  };
 
   const onBtnClick = () => {
     if (otpSent === OTP_STATE.UNKNOWN) {
@@ -57,10 +85,9 @@ const HostInfo = () => {
         });
       }
       if (getBtnDisabled()) return;
-      setOtpSent(OTP_STATE.SENT);
+      registerHostApi();
     } else if (otpSent === OTP_STATE.SENT && otpValue.join('') === '1234') {
       if (getBtnDisabled()) return;
-      navigate('/payment');
     } else if (otpSent === OTP_STATE.SENT && otpValue.join('') != '1234') {
       alert('Invalid otp value');
     }
@@ -145,13 +172,17 @@ const HostInfo = () => {
           error={error.otp.error}
         />
       ) : null}
-      <div className="host-info-container-bottom">
-        <Button
-          content={getButtonContent()}
-          disabled={getBtnDisabled()}
-          onClick={onBtnClick}
-        />
-      </div>
+      {pageState === PAGE_STATE.LOADING ? (
+        <CustomLoader />
+      ) : (
+        <div className="host-info-container-bottom">
+          <Button
+            content={getButtonContent()}
+            disabled={getBtnDisabled()}
+            onClick={onBtnClick}
+          />
+        </div>
+      )}
     </div>
   );
 };

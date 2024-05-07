@@ -69,18 +69,25 @@ const orderSlice = createSlice({
       if (state.users[payload.index]) {
         state.users[payload.index].name = payload.name;
       } else {
-        state.users[payload.index] = ({ name: payload.name, phoneNumber: '', type: 'user' });
+        state.users[payload.index] = {
+          name: payload.name,
+          phoneNumber: '',
+          type: 'user',
+        };
       }
+    },
+    sethostId: (state, { payload }) => {
+      state.host._id = payload;
     },
     editPhoneNumber: (state, { payload }) => {
       if (state.users[payload.index]) {
         state.users[payload.index].phoneNumber = payload.phoneNumber;
       } else {
-        state.users[payload.index] = ({
+        state.users[payload.index] = {
           name: '',
           phoneNumber: payload.phoneNumber,
           type: 'user',
-        });
+        };
       }
     },
   },
@@ -90,18 +97,20 @@ export const {
   addCombo,
   addUser,
   applyCoupon,
-  editPhoneNumber,  
-  editUserName, 
+  editPhoneNumber,
+  editUserName,
   removeCoupon,
   decrementCombo,
   incrementCombo,
   setHostName,
   setHostPhoneNumber,
+  setUsers,
   removeCombo,
   removeUser,
   setOrderDescription,
   setRides,
   setTotalAmount,
+  sethostId
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

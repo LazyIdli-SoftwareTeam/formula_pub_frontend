@@ -113,6 +113,7 @@
 
  .customer-ride-player-information-container-head {
   display: flex;
+  width: 100%;
   gap: 10px;
   align-items: start;
 }
@@ -188,12 +189,11 @@
 }
 
 .customer-rides-container .customer-ride-player-tag {
-  background-color: var(--teho-orange-color);
+ 
   color: var(--teho-white-color);
-  padding: 5px 10px;
   border-radius: 4px;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .customer-rides-container .customer-ride-player-information-inputs input {
@@ -217,4 +217,45 @@
 
 .customer-rides-container .MuiAccordionDetails-root {
   padding-top: 0px;
+}
+
+
+.customer-ride-player-information-container-head .--pass {
+  align-self: center;
+  margin-left: auto;
+  background-color: var(--teho-orange-color);
+  font-weight: 600;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 5px 10px;
+  border-radius: 4px;
+  justify-self: end;
+  margin-right: 10px;
+  letter-spacing: 1.5px;
+}
+
+.customer-ride-player-pass-accordion {
+  background-color: var(--teho-orange-color);
+  font-weight: 600;
+  padding: 5px 8px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.save-change-btn {
+  background-color: var(--teho-orange-color);
+  margin: auto;
+  width: 40%;
+  padding: 8px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
 }

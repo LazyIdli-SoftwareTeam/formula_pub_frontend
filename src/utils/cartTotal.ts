@@ -6,11 +6,11 @@ export const cartTotal = (cart: t_cart, coupon?: t_coupon) => {
   let couponPrice = -1;
   let taxPrice = -1;
   for (const el of cart.combos) {
-    subTotal += el.combo.price * el.iteration;
+    subTotal += el.combo.prize * el.iteration;
   }
   const beforeCouponAppliedPrice = subTotal;
   if (coupon) {
-    couponPrice = (subTotal * coupon.discountPercentage) / 100;
+    couponPrice = getCouponAmount(subTotal, coupon);
     subTotal = subTotal - couponPrice;
   }
 
@@ -21,8 +21,19 @@ export const cartTotal = (cart: t_cart, coupon?: t_coupon) => {
     couponPrice: couponPrice,
     totalAfterTax: totalAfterTax,
     taxPrice: taxPrice,
-    beforeCouponAppliedPrice: beforeCouponAppliedPrice
+    beforeCouponAppliedPrice: beforeCouponAppliedPrice,
   };
+};
+
+export const getCouponAmount = (amount: number, coupon: t_coupon) => {
+  const couponDiscountedAmount = (amount * coupon.discountPercentage) / 100;
+  console.log(couponDiscountedAmount);
+  console.log(coupon.maxDiscountAmount);
+  if (couponDiscountedAmount > coupon.maxDiscountAmount) {
+    return coupon.maxDiscountAmount;
+  } else {
+    return couponDiscountedAmount;
+  }
 };
 
 export const calculateTotalRides = (cart: t_cart) => {

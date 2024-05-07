@@ -15,24 +15,24 @@ const Bill: React.FC<{ order: t_order }> = ({ order }) => {
               <span className="--name">{combo.combo.comboName}</span>
               <span className="--iteration">x{combo.iteration}</span>
               <span className="--price">
-                {addRsSymbol(combo.combo.price.toString())}
+                {addRsSymbol(combo.combo.prize.toString())}
               </span>
             </div>
           );
         })}
-        <div className="global-bill-table">
+        {/* <div className="global-bill-table">
           <span className="--total">Subtotal</span>
           <span className="--price">
             {addRsSymbol(cartTotalValue.subTotal.toString())}
           </span>
-        </div>
+        </div> */}
 
-        <div className="global-bill-table --tax">
+        {/* <div className="global-bill-table --tax">
           <span className="--total">Tax</span>
           <span className="--price">
             {addRsSymbol(cartTotalValue.taxPrice.toString())}
           </span>
-        </div>
+        </div> */}
       </div>
       <div className="global-bill-bottom">
         <span
@@ -53,28 +53,28 @@ const Bill: React.FC<{ order: t_order }> = ({ order }) => {
           }
           className="--price --btm-price"
         >
-          {addRsSymbol(cartTotalValue.beforeCouponAppliedPrice.toString())}
+          {addRsSymbol(cartTotalValue.subTotal.toString())}
         </span>
       </div>
-      {order.couponApplied ? (
+      {/* {order.couponApplied ? (
         <div className="global-bill-coupon">
           <span className="--total --coupon-total --coupon">
-            Coupon ({order.couponApplied.name})
+            Coupon ({order.couponApplied.couponName})
           </span>
           <span className="--price --coupon-price">
             -{addRsSymbol(cartTotalValue.couponPrice.toString())}
           </span>
         </div>
-      ) : null}
+      ) : null} */}
 
-      {order.couponApplied ? (
-        <div className="global-bill-bottom" style={{ borderTop: 'none' }}>
-          <span className="--btm-subtotal">To Pay</span>
-          <span className="--btm-subprice">
-            {addRsSymbol(cartTotalValue.totalAfterTax.toString())}
-          </span>
-        </div>
-      ) : null}
+      {/* // {order.couponApplied ? (
+      //   <div className="global-bill-bottom" style={{ borderTop: 'none' }}>
+      //     <span className="--btm-subtotal">To Pay</span>
+      //     <span className="--btm-subprice">
+      //       {addRsSymbol(cartTotalValue.totalAfterTax.toString())}
+      //     </span>
+      //   </div>
+      // ) : null} */}
     </div>
   );
 };

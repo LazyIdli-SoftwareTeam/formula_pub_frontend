@@ -3,10 +3,12 @@ import React from 'react';
 import TehoIcon from '../../assets/icons/Teho-icon';
 import { IoChevronBackSharp } from 'react-icons/io5';
 import { Tab } from '../../Outlay';
+import { getQueryParams } from '../../api/query';
 
 const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
   backBtnHandler,
 }) => {
+  const { branchId, eventId } = getQueryParams(() => {});
   const BackBtn = () => {
     return (
       <div onClick={backBtnHandler} className="global-navbar-back-btn">
@@ -24,9 +26,11 @@ const Navbar: React.FC<{ backBtnHandler?: () => void }> = ({
             ? { flexGrow: 1, display: 'flex', justifyContent: 'center' }
             : { flexGrow: 1, display: 'flex', justifyContent: 'start' }
         }
-        onClick={() => (window.location.href = '/')}
+        onClick={() =>
+          (window.location.href = `/?branchId=${branchId}&eventId=${eventId}`)
+        }
       >
-        <img src='/kos.jpeg' style={{ width: '40px', }} />
+        <img src="/kos.jpeg" style={{ width: '40px' }} />
       </span>
       <TehoIcon />
     </div>

@@ -1,7 +1,7 @@
 export type t_coupon = {
-  name: string;
-  maxDiscountNumber: number;
+  couponName: string;
+  maxDiscountAmount: number;
   discountPercentage: number;
   minDiscountAmount: number;
-  id: number
+  _id: number
 };

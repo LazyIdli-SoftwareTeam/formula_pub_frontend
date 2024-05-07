@@ -90,9 +90,15 @@
 } */
 
 .home-container .home-container-bottom-btn {
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 15px;
   padding-bottom: 10px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--teho-black-color);
 }
