@@ -293,6 +293,7 @@ const HeaderTab: React.FC<{
   };
 
   const GetComponents = () => {
+    const { branchId, eventId } = getQueryParams(() => {});
     if (currentTab === Tab.BUY) {
       return [
         <span onClick={() => changeTab(Tab.BUY)}>
@@ -339,7 +340,9 @@ const HeaderTab: React.FC<{
       return [
         <span
           className="transform-mid-active"
-          onClick={() => (window.location.href = '/')}
+          onClick={() =>
+            (window.location.href = `/?branchId=${branchId}&eventId=${eventId}`)
+          }
         >
           <MidFullSvg text="BUY" />
         </span>,

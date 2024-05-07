@@ -40,9 +40,14 @@ export const AlreadyBooked = () => {
   const navigate = useNavigate();
   const { branchId, eventId } = getQueryParams(() => {});
   return (
-    <div style={{ marginBottom: '10px' }} className="customer-already-booked-container">
+    <div
+      style={{ marginBottom: '10px' }}
+      className="customer-already-booked-container"
+    >
       <span
-        onClick={() => navigate(`/retrieve?branchId=${branchId}&eventId=${eventId}`)}
+        onClick={() =>
+          navigate(`/retrieve?branchId=${branchId}&eventId=${eventId}`)
+        }
         style={{
           backgroundColor: '#1CB1D9',
           color: 'white',
@@ -102,7 +107,10 @@ const Home = () => {
   if (pageState === PAGE_STATE.REJECTED)
     return <span>Error occurred try again later</span>;
   return (
-    <div className="home-container">
+    <div
+      style={order.cart.combos.length > 0 ? { paddingBottom: '70px' } : {}}
+      className="home-container"
+    >
       <BannerImage />
       <CardContainer combos={combos} />
       {buttonVisible() != 0 ? (

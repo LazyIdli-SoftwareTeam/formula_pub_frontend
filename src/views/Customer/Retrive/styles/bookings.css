@@ -141,3 +141,9 @@
 .customer-booking-container .MuiAccordionSummary-content {
   justify-content: space-between !important;
 }
+
+
+.customer-booking-top-container  .--txt {
+  text-align: center;
+  flex-grow: 1;
+}

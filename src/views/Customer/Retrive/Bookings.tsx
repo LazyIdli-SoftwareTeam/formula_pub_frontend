@@ -11,9 +11,10 @@ import { Accordion, AccordionDetails } from '@mui/material';
 // import History from './History';
 import { enqueueSnackbar } from 'notistack';
 import { GeneratePlayerCard } from '../BuyPass/GenerateRacePass';
+import Button from '../../../components/hexaButton/Button';
+import { getQueryParams } from '../../../api/query';
 
-
-export const BookingStart: React.FC<{order: t_order}> = ({ order }) => {
+export const BookingStart: React.FC<{ order: t_order }> = ({ order }) => {
   return (
     <div className="customer-order-card-start">
       <span className="--ride">{order.rides} Rides</span>
@@ -22,10 +23,10 @@ export const BookingStart: React.FC<{order: t_order}> = ({ order }) => {
     </div>
   );
 };
-const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void, order: t_order }> = ({
-  setOrderDetails,
-  order
-}) => {
+const OrderCard: React.FC<{
+  setOrderDetails: (order: t_order) => void;
+  order: t_order;
+}> = ({ setOrderDetails, order }) => {
   const [accordianOpened, setAccordianOpened] = useState(false);
   return (
     <div className="customer-order-card-information-container">
@@ -73,6 +74,7 @@ const OrderCard: React.FC<{ setOrderDetails: (order: t_order) => void, order: t_
 };
 
 const Bookings: React.FC<{ orders: t_order[] }> = ({ orders }) => {
+  const { branchId, eventId } = getQueryParams(() => {});
   const [showOrderDetails, setShowOrderDetails] = useState<t_order | null>(
     null
   );
@@ -98,7 +100,7 @@ const Bookings: React.FC<{ orders: t_order[] }> = ({ orders }) => {
       ) : null}
       <div className="customer-booking-top-container">
         <span className="--btn --hidden">History</span>
-        <span>All Race Passes</span>
+        <span className="--txt">All Race Passes</span>
         {/* <span onClick={() => setShowHistory(true)} className="--btn">
           History
         </span> */}
@@ -110,6 +112,15 @@ const Bookings: React.FC<{ orders: t_order[] }> = ({ orders }) => {
             {i == orders.length - 1 ? null : <div className="--line"></div>}
           </div>
         ))}
+      </div>
+      <div className="bottom-btn-booking-container">
+        <Button
+          content="Buy More"
+          disabled={false}
+          onClick={() =>
+            (window.location.href = `/?branchId=${branchId}&eventId=${eventId}`)
+          }
+        />
       </div>
     </div>
   );
