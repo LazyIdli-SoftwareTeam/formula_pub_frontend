@@ -52,9 +52,9 @@ export const LeaderboardHeader = () => {
 };
 
 const LeaderboardUsers: React.FC<{
-  users: t_userInfo[];
-  showScoreVerifyPopup: () => void;
-}> = ({ users, showScoreVerifyPopup }) => {
+  scores: { player: t_userInfo; score: string }[];
+  // showScoreVerifyPopup?: () => void;
+}> = ({ scores }) => {
   const [showOverlay, setShowOverlay] = useState(false);
   const LeaderboardCard: React.FC<{
     index: number;
@@ -68,7 +68,6 @@ const LeaderboardUsers: React.FC<{
 
     useEffect(() => {
       if (scoreVerified === false && globalRef && globalRef.current) {
-        console.log('this is working');
         globalRef.current!.scrollIntoView();
         setShowOverlay(true);
         const rootEl: HTMLDivElement | null = document.querySelector(
@@ -125,14 +124,14 @@ const LeaderboardUsers: React.FC<{
         </div>
       ) : null}
       <LeaderboardHeader />
-      {new Array(20).fill(0).map((_, i) => (
+      {scores.map((score, i) => (
         <LeaderboardCard
           index={i}
           key={i}
-          score="23.123.000"
-          userName={users[0].name}
+          score={score.score}
+          userName={score.player.userName!}
           scoreVerified={undefined}
-          showScoreVerifyPopup={showScoreVerifyPopup}
+          showScoreVerifyPopup={() => {}}
         />
       ))}
     </div>

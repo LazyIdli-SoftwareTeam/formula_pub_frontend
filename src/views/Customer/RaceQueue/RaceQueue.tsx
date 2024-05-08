@@ -24,6 +24,7 @@ const RaceQueue = () => {
         setPageState(PAGE_STATE.ACCEPTED);
         const users: any[] = [];
         for (const el of response.data.data) {
+          if (el.status === 'completed') continue; 
           users.push({ ...el.player, state: el.status });
         }
         if (orderInfo) {
@@ -70,7 +71,7 @@ const RaceQueue = () => {
             state={
               user.state === 'playing'
                 ? queueStates.PLAYING
-                : i > 5 && i < 10
+                : i > 0 && i <= 4 
                 ? queueStates.GO_TO_SITE
                 : ''
             }

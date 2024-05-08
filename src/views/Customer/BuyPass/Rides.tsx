@@ -223,10 +223,10 @@ const Rides = () => {
   const totalRides = calculateTotalRides(order.cart);
   const { branchId, eventId } = getQueryParams(() => {});
   const [btnDisabled, setBtnDisabled] = useState(false);
-  const orderId = localStorage.getItem('order_id');
+  const orderL = localStorage.getItem('order');
   useEffect(() => {
-    if (!orderId) {
-      window.location.href = `/?branchId${branchId}&eventId=${eventId}`;
+    if (!orderL) {
+      window.location.href = `/?branchId=${branchId}&eventId=${eventId}`;
     }
   }, []);
 

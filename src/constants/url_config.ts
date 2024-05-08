@@ -7,5 +7,5 @@ export const CREATE_PLAYERS = '/order/addPlayers';
 export const EDIT_PLAYER = '/player/editPlayer';
 export const GET_ORDER = '/order/getOrder';
 export const GET_QUEUE = '/queue/getQueue';
-
+export const GET_SCORES = '/score/fetchScore'; 
 

@@ -22,7 +22,6 @@ const ViewBill = () => {
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const createOrderAfterPay = () => {
     const onAcceptCreateOrder = (response: AxiosResponse) => {
-      console.log(response.status);
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
         console.log(response.data.data);
