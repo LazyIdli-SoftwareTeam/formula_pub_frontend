@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef } from "react";
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { FaTrophy } from "react-icons/fa6";
 import "./LeaderBoardFastestScore.css";
 
@@ -71,7 +73,43 @@ const kioskStylesRank = (index: number) => {
   }
 };
 
+
+const CustomPrevArrow = () => {
+  return <></>; 
+};
+
+const CustomNextArrow = () => {
+  return <></>; 
+};
+
+
 export const LeaderboardKioskFastestHeader = () => {
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow:<CustomNextArrow />,
+    prevArrow: <CustomPrevArrow/>,
+  };
+
+  const images = [
+    "/src/assets/images/Frame 1233.png",
+    "/src/assets/images/newcover1.png",
+    "/src/assets/images/newcover2.png",
+    "/src/assets/images/newcover3.png",
+    
+    "/src/assets/images/back3.png", 
+  ];
+  
+
+
+ 
+ 
   const ImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -107,26 +145,29 @@ export const LeaderboardKioskFastestHeader = () => {
                 </span>
               </div>
             </div>
-            <LeaderboardKioskUsers users={initialUsers} />;
+            <LeaderboardKioskUsers users={initialUsers} />
           </div>
         </div>
       </div>
       <RecentEntryKiosk />
-      <div className="images-animations" ref={ImageRef}>
-        <img
-          src="/src/assets/images/Frame 1233.png"
-          className="leaderboar-kiosk-background-image image"
-        />
-        <img
-          src="/src/assets/images/banner-image.png"
-          className="leaderboar-kiosk-background-image image"
-        />
-
+      <div  >
+      <Slider {...settings}>
+        {images.map((imageUrl, index) => (
+          <div key={index} className="images-animations" ref={ImageRef}>
+            <img className="image-slide" src={imageUrl} alt={`Slide ${index}`} />
+          </div>
+        ))}
+      </Slider>
+     
       </div>
       <LeaderboardKioskFooter />
     </>
   );
 };
+
+
+
+
 
 const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
   users,
@@ -144,7 +185,7 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
       if (!isNaN(index) && index >= 1 && index <= displayedUsers.length + 2) {
         const updatedUsers = [...displayedUsers];
         
-        updatedUsers.splice(index - 1, 0, {
+        updatedUsers.splice(index-1, 0, {
           name: "Priyanka",
           phoneNumber: "1234567890",
           type: "participant",
@@ -152,23 +193,16 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
           animation: true,
          
         });
-        
-
+       // setDisplayedUsers(updatedUsers);
+       
         const updatedUsersWithAnimation = updatedUsers.map((user, i) => ({
           ...user,
           animation: i === index - 1 ? true : false,
         }));
 
         setDisplayedUsers(updatedUsersWithAnimation);
-        /*if (index > displayedUsers.length) {
-            
-            setTimeout(() => {
-             
-              const newCardRef = newEntryRef.current.children[index - displayedUsers.length - 1];
-              newCardRef.scrollIntoView({ behavior: "smooth", block: "nearest" });
-            }, 10000);
-          }*/
-
+        console.log(updatedUsersWithAnimation);
+      
         if (newEntryRef.current) {
           
           if (index > displayedUsers.length) {
@@ -197,34 +231,6 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
           }
         }
 
-        /*if (newEntryRef.current) {
-            const cards = Array.from(newEntryRef.current.children);
-            cards.forEach((card, i) => {
-              if (i >= index) {
-                const delay = (i - index + 1) * 100; 
-                card.style.animationDelay = `${delay}ms`;
-                card.classList.add('animated-card');
-              }
-            });
-          }
-          */
-        /*if (newEntryRef.current) {
-            const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
-            let cardMiddle;
-            if (index > displayedUsers.length) { // Check if the new card is one of the last 5 indexes
-              const containerHeight = newEntryRef.current.clientHeight;
-              const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
-              cardMiddle = (index - 1) * cardHeight - containerHeight / 2 + cardHeight / 2;
-            } else {
-              cardMiddle = index * cardHeight - newEntryRef.current.clientHeight / 2;
-            }
-            newEntryRef.current.scrollTo({ top: cardMiddle, behavior: 'smooth' });
-          }
-          */
-
-        /*
-          
-          */
       } else {
         alert(
           "Invalid index. Please enter a number between 1 and " +
@@ -232,6 +238,7 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
         );
       }
     }
+   
   };
 
   return (
@@ -242,6 +249,7 @@ const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
         </button>
       }
       <div ref={newEntryRef} className="leaderboard-scroll">
+        console.log(displayedUsers)
         {displayedUsers.map((user, i) => (
           <React.Fragment key={i}>
             <LeaderboardKioskCard
@@ -332,3 +340,32 @@ export const LeaderboardKioskFooter = () => {
 };
 
 
+
+        /*if (newEntryRef.current) {
+            const cards = Array.from(newEntryRef.current.children);
+            cards.forEach((card, i) => {
+              if (i >= index) {
+                const delay = (i - index + 1) * 100; 
+                card.style.animationDelay = `${delay}ms`;
+                card.classList.add('animated-card');
+              }
+            });
+          }
+          */
+        /*if (newEntryRef.current) {
+            const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
+            let cardMiddle;
+            if (index > displayedUsers.length) { // Check if the new card is one of the last 5 indexes
+              const containerHeight = newEntryRef.current.clientHeight;
+              const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
+              cardMiddle = (index - 1) * cardHeight - containerHeight / 2 + cardHeight / 2;
+            } else {
+              cardMiddle = index * cardHeight - newEntryRef.current.clientHeight / 2;
+            }
+            newEntryRef.current.scrollTo({ top: cardMiddle, behavior: 'smooth' });
+          }
+          */
+
+        /*
+          
+          */
