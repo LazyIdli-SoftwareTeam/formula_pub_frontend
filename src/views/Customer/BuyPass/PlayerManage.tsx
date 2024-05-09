@@ -26,13 +26,15 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
   const [tosChecked, setTosChecked] = useState(false);
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const getDisabled = () => {
-    if (userName.length === 0 && phoneNumber.length === 0) return true;
+    if (userName.length === 0) return true; 
+    if (phoneNumber.length > 1 &&  phoneNumber.length != 10) return true;
     if (!tosChecked) return true;
     return false;
   };
 
   const changeRideInfoHandler = async () => {
     const onChangeAccept = (response: AxiosResponse) => {
+        console.log(response);
       if (response.status === 202) {
         enqueueSnackbar('Saved', {
           autoHideDuration: autoHide,
@@ -47,17 +49,22 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
         });
       }
     };
-    const onChangeReject = () => {
+    const onChangeReject = (e: any) => {
       setPageState(PAGE_STATE.REJECTED);
-      enqueueSnackbar('Try again later', {
-        autoHideDuration: autoHide,
-        variant: 'error',
-      });
+      enqueueSnackbar(
+        e?.response?.status === 502
+          ? 'Player with same name already exists'
+          : 'Try again later',
+        {
+          autoHideDuration: autoHide,
+          variant: 'error',
+        }
+      );
     };
     setPageState(PAGE_STATE.LOADING);
     changeRideInfo(onChangeAccept, onChangeReject, {
       userName: userName,
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumber.length == 0 ? ' ' : phoneNumber,
       code: user.code,
     });
   };
@@ -194,7 +201,7 @@ const PlayerManage = () => {
   };
   const getPlayerInfo = () => {
     const onAcceptRide = (response: AxiosResponse) => {
-        console.log(response);
+      console.log(response);
       if (response.status === 202) {
         setUser(response.data.data);
       } else if (response.status === 404) {
@@ -212,7 +219,10 @@ const PlayerManage = () => {
     const onRejectRide = (e: any) => {
       setPageState({
         state: PAGE_STATE.REJECTED,
-        message: e?.response?.status === 404 ? 'Player not found' : 'Some error occurred try again later',
+        message:
+          e?.response?.status === 404
+            ? 'Player not found'
+            : 'Some error occurred try again later',
       });
     };
     setPageState({ state: PAGE_STATE.LOADING, message: 'loading' });

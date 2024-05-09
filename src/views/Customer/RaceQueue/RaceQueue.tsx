@@ -21,7 +21,6 @@ const RaceQueue = () => {
   useEffect(() => {
     const onGetQueueAccepted = (response: AxiosResponse) => {
       if (response.status === 202) {
-        console.log(response);
         setPageState(PAGE_STATE.ACCEPTED);
         const users: any[] = [];
         for (const el of response.data.data) {
@@ -39,7 +38,8 @@ const RaceQueue = () => {
         }
         setUsers(users);
       } else {
-        setPageState(PAGE_STATE.ACCEPTED);
+        alert(response.status);
+        setPageState(PAGE_STATE.REJECTED);
       }
     };
     const onGetQueueRejected = (error: any) => {
