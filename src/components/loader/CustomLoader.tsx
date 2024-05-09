@@ -1,4 +1,4 @@
-import { CircleLoader } from 'react-spinners';
+import { CircleLoader, ClipLoader } from 'react-spinners';
 const CustomLoader: React.FC<{
     color?: string;
 }> = ({ color = 'black' }) => {
@@ -25,4 +25,9 @@ export const FullScreenLoader = () => {
         </div>
     );
 };
+
+
+export const ClipLoaderSmall = () => {
+    return <ClipLoader color='white' size={50} loading />
+}
 export default CustomLoader;

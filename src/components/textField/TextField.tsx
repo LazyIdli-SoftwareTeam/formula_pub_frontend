@@ -11,8 +11,10 @@ type t_textField = {
   disabled?: boolean;
   size?: any;
   type?: any;
+  placeHolder?: string;
   error?: boolean;
   helperText?: string;
+  sx?: any; 
 };
 
 const TextField: React.FC<t_textField> = ({
@@ -24,6 +26,8 @@ const TextField: React.FC<t_textField> = ({
   disabled,
   error,
   helperText,
+  sx,
+  placeHolder,
   type,
 }) => {
   return (
@@ -32,12 +36,13 @@ const TextField: React.FC<t_textField> = ({
       size={size || 'small'}
       onChange={onChange}
       onClick={onClick}
+      placeholder={placeHolder}
       error={error}
       helperText={helperText}
       value={value}
       type={type}
       disabled={disabled}
-      sx={{ color: 'white' }}
+      sx={{ color: 'white', ...sx }}
     />
   );
 };

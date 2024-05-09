@@ -24,8 +24,8 @@
 }
 
 .Mui-disabled {
-  color: white !important;
-  -webkit-text-fill-color: var(--teho-white-color) !important;
+  /* color: white !important; */
+  /* -webkit-text-fill-color: var(--teho-white-color) !important; */
 }
 
 .customer-view-bill-container input {

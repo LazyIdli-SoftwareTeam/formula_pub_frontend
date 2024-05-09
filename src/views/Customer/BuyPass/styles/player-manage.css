@@ -1,0 +1,112 @@
+.player-management-global-container * {
+  box-sizing: border-box;
+}
+.player-management-global-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 100px;
+}
+.get-player-info-top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.player-management-global-container .--btn {
+  background-color: var(--teho-orange-color);
+  padding: 8px;
+  border-radius: 20px;
+  width: 150px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.player-management-global-container .--disabled, .get-player-info-container .--disabled  {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+.get-player-info-container {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+  padding-right: 20px;
+}
+.get-player-info-container .--inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.global-player-buttons {
+  padding-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.global-player-buttons span {
+  background-color: var(--teho-orange-color);
+  padding: 8px;
+  width: 30%;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.get-player-info-container .MuiFormHelperText-root,
+.MuiFormHelperText-filled,
+.Mui-disabled {
+  color: #9e9e9e !important;
+}
+
+.get-player-info-tos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  padding-top: 16px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.get-player-info-tos-container .--tos {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding-top: 8px;
+}
+.get-player-info-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 16px;
+}
+
+.get-player-info-tos-container .--heading {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.global-player-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  padding-top: 0;
+  gap: 16px !important;
+}
+
+
+.get-player-info-container .MuiFormHelperText-root {
+    font-size: 10px !important;
+}

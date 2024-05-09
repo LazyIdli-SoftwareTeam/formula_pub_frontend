@@ -6,8 +6,8 @@ import rootStore from './store/index.ts';
 import { SnackbarProvider } from 'notistack';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <SnackbarProvider>
-    <Provider store={rootStore}>
+  <SnackbarProvider autoHideDuration={2000}>
+    <Provider store={rootStore} >
       <App />
     </Provider>
   </SnackbarProvider>

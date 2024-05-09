@@ -21,11 +21,12 @@ const RaceQueue = () => {
   useEffect(() => {
     const onGetQueueAccepted = (response: AxiosResponse) => {
       if (response.status === 202) {
+        console.log(response);
         setPageState(PAGE_STATE.ACCEPTED);
         const users: any[] = [];
         for (const el of response.data.data) {
           if (el.status === 'completed') continue; 
-          users.push({ ...el.player, state: el.status });
+          users.push({ ...el.code, state: el.status });
         }
         if (orderInfo) {
           const tempPlayerInfo: any  = []; 
@@ -63,6 +64,7 @@ const RaceQueue = () => {
       </div>
       <div className="race-queue-box">
         {users.map((user: any, i: number) => {
+          console.log(user);
           const index = playerInfo.findIndex((playerinfo: any) => playerinfo._id === user._id); 
           return <CreateUserCard
             index={i}
@@ -71,7 +73,7 @@ const RaceQueue = () => {
             state={
               user.state === 'playing'
                 ? queueStates.PLAYING
-                : i > 0 && i <= 4 
+                : i >= 0 && i <= 4 
                 ? queueStates.GO_TO_SITE
                 : ''
             }
