@@ -33,7 +33,7 @@ const Leaderboard = () => {
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
         const newScores = response.data.data.map((score: any) => {
-          return { player: score.playerId, score: score.score };
+          return { player: score.code, score: score.score };
         });
         setScores(newScores)
       } else {
