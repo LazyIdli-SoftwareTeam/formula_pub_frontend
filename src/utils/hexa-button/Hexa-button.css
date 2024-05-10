@@ -1,8 +1,0 @@
-.hexagonal-button {
-  color: white;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  clip-path: polygon(0% 50%, 10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%);
-}
-

@@ -1,63 +1,68 @@
-import Home from './views/Customer/BuyPass/Home';
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useState } from 'react';
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
-import VerifyHost from './views/Customer/BuyPass/VerifyHost';
-import ViewBill from './views/Customer/BuyPass/ViewBill';
-import Rides from './views/Customer/BuyPass/Rides';
-import GenerateRacePass from './views/Customer/BuyPass/GenerateRacePass';
-import PaymentUnsuccess from './views/Customer/BuyPass/PaymentUnsuccess';
-import Outlay from './Outlay';
-import { LeaderboardKioskHeader } from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
-import { LeaderboardkioskMainpage } from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
+  LeaderboardKioskHeader,
+  LeaderboardkioskMainpage,
+} from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
+import { io } from 'socket.io-client';
+import {  SOCKET_ENDPOINT } from './constants/url_config';
 function App() {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const eventId = searchParams.get('eventId');
-  // const branchId = searchParams.get('branchId');
-  // console.log(eventId);
-  // console.log(branchId);
-  // if (!eventId || !branchId) {
-  //   return (
-  //     <div>
-  //       <span style={{ color: 'white', fontSize: '30px' }}>
-  //         Event id or branch id is required
-  //       </span>
-  //     </div>
-  //   );
-  // }
+  const path = window.location.search;
+  console.log(path);
+  const [queue, setQueue] = useState(false);
+  const [heading, setHeading] = useState('LEADERBOARD');
+  useEffect(() => {
+    const socket = io(SOCKET_ENDPOINT);
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('connected');
+    })
+    socket.on('dSwitch', (data) => {
+      console.log(data); 
+      if (data === 'queue') {
+        setQueue(!queue);
+      } else if (data === 'daily') {
+        setHeading('FASTEST OF TODAY');
+        setQueue(false);
+      } else if (data === 'monthly') {
+        setHeading('LEADERBOARD');
+        setQueue(false);
+      }
+    });
+    return () => {
+      socket.off('switch');
+      socket.disconnect();
+    };
+  }, [heading, queue]);
+  const pathInspector = new URLSearchParams(path);
+  const eventId = pathInspector.get('eventId');
+  const branchId = pathInspector.get('branchId');
+  console.log(branchId);
+  console.log(eventId);
+  if (!eventId || !branchId) {
+    return (
+      <div>
+        <span style={{ color: 'white', fontSize: '30px' }}>
+          Event id or branch id is required
+        </span>
+      </div>
+    );
+  }
+  if (queue) {
+    return <LeaderboardKioskHeader />;
+  }
+  return <LeaderboardkioskMainpage heading={heading} />;
 
-
-  return (
-    
-    <>
-   
-    <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<Outlay backBtn={false} children={<Home />} />}
-          />
-          <Route path="/payment" element={<Outlay children={<ViewBill />} />} />
-
-          <Route path="/host" element={<Outlay children={<VerifyHost />} />} />
-          <Route path="/rides" element={<Outlay children={<Rides />} />} />
-          <Route path="/paymentunsuccess" element={<Outlay children={<PaymentUnsuccess/>}/>}/>
-          <Route
-            path="/pass"
-            element={<Outlay children={<GenerateRacePass />} />}
-          />
-         <Route path = "/lb-race-queue" element = {<LeaderboardKioskHeader/>}/>
-         <Route path = "/lb" element = {<LeaderboardkioskMainpage/>}/>
-        </Routes>
-      </BrowserRouter>
-    </>
-
-  );
+  // return (
+  //   <>
+  //     <BrowserRouter>
+  //       <Routes>
+  //         <Route path="/lb-race-queue" element={<LeaderboardKioskHeader />} />
+  //         <Route path="/lb" element={<LeaderboardkioskMainpage />} />
+  //       </Routes>
+  //     </BrowserRouter>
+  //   </>
+  // );
 }
-
-
 
 export default App;

@@ -1,71 +1,70 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
-import Slider from 'react-slick';
+import React, { useState, useEffect, useRef } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { FaTrophy } from "react-icons/fa6";
-import "./LeaderBoardFastestScore.css";
+import './LeaderBoardFastestScore.css';
 
-import { t_userInfoKiosk } from "../../../../types/userinfoKiosk";
-import { TimeButton } from "../../../../components/GlobalBuyHelpButtoons/timebutton";
+import { t_userInfoKiosk } from '../../../../types/userinfoKiosk';
+import { SOCKET_ENDPOINT } from '../../../../constants/url_config';
+import { io } from 'socket.io-client';
 
-const initialUsers: t_userInfoKiosk[] = new Array(20).fill(0).map((_, i) => ({
-  name: "Sahil" + (i + 1),
-  phoneNumber: "",
-  type: "",
-  raceCode: "",
-  animation: false,
-}));
+// const initialUsers: t_userInfoKiosk[] = new Array(20).fill(0).map((_, i) => ({
+//   name: 'Sahil' + (i + 1),
+//   phoneNumber: '',
+//   type: '',
+//   raceCode: '',
+//   animation: false,
+// }));
 
 const kioskStylesRank = (index: number) => {
   if (index === 1) {
     return {
       index: {
-        color: "#D2A73EE5",
+        color: '#D2A73EE5',
 
-        background: "var(--Teho-Black, #181818)",
+        background: 'var(--Teho-Black, #181818)',
       },
       name: {
-        color: "#181818",
+        color: '#181818',
       },
       root: {
         background:
-          "linear-gradient(90deg, rgba(184, 133, 27, 0.9) 0%, rgba(210, 167, 62, 0.9) 8.33%, rgba(214, 171, 66, 0.9) 17.19%, rgba(248, 221, 123, 0.9) 31.25%, rgba(253, 237, 153, 0.9) 48.96%, rgba(251, 234, 146, 0.9) 66.15%, rgba(243, 215, 115, 0.9) 82.29%, rgba(226, 189, 86, 0.9) 91.67%, rgba(181, 128, 23, 0.9) 100%)",
+          'linear-gradient(90deg, rgba(184, 133, 27, 0.9) 0%, rgba(210, 167, 62, 0.9) 8.33%, rgba(214, 171, 66, 0.9) 17.19%, rgba(248, 221, 123, 0.9) 31.25%, rgba(253, 237, 153, 0.9) 48.96%, rgba(251, 234, 146, 0.9) 66.15%, rgba(243, 215, 115, 0.9) 82.29%, rgba(226, 189, 86, 0.9) 91.67%, rgba(181, 128, 23, 0.9) 100%)',
       },
     };
   } else if (index === 2) {
     return {
       index: {
-        color: "#D2D2D2",
-        background: "var(--Teho-Black, #181818)",
+        color: '#D2D2D2',
+        background: 'var(--Teho-Black, #181818)',
       },
       name: {
-        color: "#181818",
+        color: '#181818',
       },
       root: {
         background:
-          "linear-gradient(90deg, #565656 0%, #D2D2D2 0%, #989898 9.67%, #FFFFFF 69.66%, #C0C0C0 82.12%, #757575 100%)",
+          'linear-gradient(90deg, #565656 0%, #D2D2D2 0%, #989898 9.67%, #FFFFFF 69.66%, #C0C0C0 82.12%, #757575 100%)',
       },
     };
   } else if (index == 3) {
     return {
       index: {
-        color: "#A1522C",
-        background: "var(--Teho-Black, #181818)",
+        color: '#A1522C',
+        background: 'var(--Teho-Black, #181818)',
       },
       root: {
         background:
-          "linear-gradient(90deg, #A1522C 0%, #7D3E1C 4.61%, #C76D41 17.85%, #A4512B 48.49%, #F2B192 67.69%, #E37F49 72.66%, #BD663D 87.48%, #954D2A 94.2%, #A5552F 100%)",
+          'linear-gradient(90deg, #A1522C 0%, #7D3E1C 4.61%, #C76D41 17.85%, #A4512B 48.49%, #F2B192 67.69%, #E37F49 72.66%, #BD663D 87.48%, #954D2A 94.2%, #A5552F 100%)',
       },
     };
   } else if (index > 10) {
     return {
       root: {
         background:
-          "linear-gradient(98.39deg, #000000 6.42%, rgba(0, 0, 0, 0.5) 93.58%)",
+          'linear-gradient(98.39deg, #000000 6.42%, rgba(0, 0, 0, 0.5) 93.58%)',
 
         border:
-          "radial-gradient(107.33% 5722.83% at 21.14% 32.5%, #1C98B9 0%, #136C83 100%)",
+          'radial-gradient(107.33% 5722.83% at 21.14% 32.5%, #1C98B9 0%, #136C83 100%)',
       },
     };
   } else {
@@ -73,58 +72,70 @@ const kioskStylesRank = (index: number) => {
   }
 };
 
+// const CustomPrevArrow = () => {
+//   return <></>;
+// };
 
-const CustomPrevArrow = () => {
-  return <></>; 
-};
+// const CustomNextArrow = () => {
+//   return <></>;
+// };
 
-const CustomNextArrow = () => {
-  return <></>; 
-};
+export const LeaderboardKioskFastestHeader: React.FC<{
+  users: any;
+  setUsers: any;
+}> = ({ users }) => {
+  const [recentEntry, setRecentEntry] = useState();
 
+  // const settings = {
+  //   dots: false,
+  //   infinite: true,
+  //   autoplay: true,
+  //   autoplaySpeed: 3000,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   nextArrow: <CustomNextArrow />,
+  //   prevArrow: <CustomPrevArrow />,
+  // };
 
-export const LeaderboardKioskFastestHeader = () => {
+  // const images = [
+  //   '/src/assets/images/Frame 1233.png',
+  //   '/src/assets/images/newcover1.png',
+  //   '/src/assets/images/newcover2.png',
+  //   '/src/assets/images/newcover3.png',
+  //   '/src/assets/images/back3.png',
+  // ];
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    nextArrow:<CustomNextArrow />,
-    prevArrow: <CustomPrevArrow/>,
-  };
-
-  const images = [
-    "/src/assets/images/Frame 1233.png",
-    "/src/assets/images/newcover1.png",
-    "/src/assets/images/newcover2.png",
-    "/src/assets/images/newcover3.png",
-    
-    "/src/assets/images/back3.png", 
-  ];
-  
-
-
- 
- 
   const ImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (ImageRef.current) {
-      const LeaderHeight = `${ImageRef.current.clientHeight + 260}`;
-     
+    const socket = io(SOCKET_ENDPOINT);
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('connect');
+    });
+    socket.on('addScore', (data) => {
+      console.log(data);
+      setRecentEntry(data);
 
-      const getElement = document.getElementById("new-card-height");
-      //const getElement = document.querySelectorAll('.kiosk-card-main-dis')
-      //getElement.style['height'] =  LeaderHeight;
+      //   const users: any[] = [...users];
+      //   setUsers();
+    });
+    return () => {
+      socket.off('addScore');
+      socket.disconnect();
+    };
+  }, [recentEntry]);
+  useEffect(() => {
+    if (ImageRef.current) {
+      const LeaderHeight = `${ImageRef.current.clientHeight + 340}`;
+      const getElement = document.getElementById('new-card-height');
       if (getElement) {
         getElement.style.height = `calc(100dvh - ${LeaderHeight}px)`;
       }
     }
-  }, [ImageRef]);
+  }, []);
+
   return (
     <>
       <div className="main-leaderboard-card" id="new-card-height">
@@ -133,137 +144,141 @@ export const LeaderboardKioskFastestHeader = () => {
             <div className="leader-board-fastest-header">
               <div className="race-queue-rank">
                 <span className="kiosk-index-icon">
-                  {" "}
-                  <FaTrophy />
+                  {' '}
+                  {/* <FaTrophy /> */}
                 </span>
                 <span className="race-queue-fast-name">NAME</span>
               </div>
               <div>
                 <span className="race-queue-fast-time  race-queue-rank">
-                  <TimeButton />
+                  {/* <TimeButton  /> */}
                   <span> TIME</span>
                 </span>
               </div>
             </div>
-            <LeaderboardKioskUsers users={initialUsers} />
+            <LeaderboardKioskUsers users={users} recentEntry={recentEntry} />
           </div>
         </div>
       </div>
-      <RecentEntryKiosk />
-      <div  >
-      <Slider {...settings}>
-        {images.map((imageUrl, index) => (
-          <div key={index} className="images-animations" ref={ImageRef}>
-            <img className="image-slide" src={imageUrl} alt={`Slide ${index}`} />
-          </div>
-        ))}
-      </Slider>
-     
+      {/* <RecentEntryKiosk user={recentEntry || {}} /> */}
+      <div>
+        {/* <Slider {...settings}>
+          {images.map((imageUrl, index) => ( */}
+        <div key={1} className="images-animations" ref={ImageRef}>
+          <img
+            className="image-slide"
+            src={'/src/assets/images/Frame 1233.png'}
+            alt={`Slide ${1}`}
+          />
+        </div>
+        {/* ))} */}
+        {/* </Slider> */}
       </div>
       <LeaderboardKioskFooter />
     </>
   );
 };
 
-
-
-
-
-const LeaderboardKioskUsers: React.FC<{ users: t_userInfoKiosk[] }> = ({
+const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
   users,
+  recentEntry,
 }) => {
   const [displayedUsers, setDisplayedUsers] =
     useState<t_userInfoKiosk[]>(users);
   const newEntryRef = useRef<HTMLDivElement>(null);
+  const total = 5000;
+  const getPrizes = (index: number) => {
+    if (index === 0) {
+      return (total * 60) / 100;
+    } else if (index === 1) {
+      return (total * 30) / 100;
+    } else if (index === 2) {
+      return (total * 10) / 100;
+    } else {
+      return '';
+    }
+  };
 
-  const addNewCard = () => {
-    const indexInput = prompt(
-      "Enter the index to add new card (1 to " + displayedUsers.length + "):"
+  useEffect(() => {
+    if (!recentEntry) return;
+    console.log('recent  entry', recentEntry);
+    addNewCard(
+      recentEntry.index,
+      recentEntry.newScore.code,
+      recentEntry.newScore.score
     );
-    if (indexInput) {
-      const index = parseInt(indexInput, 10);
-      if (!isNaN(index) && index >= 1 && index <= displayedUsers.length + 2) {
-        const updatedUsers = [...displayedUsers];
-        
-        updatedUsers.splice(index-1, 0, {
-          name: "Priyanka",
-          phoneNumber: "1234567890",
-          type: "participant",
-          raceCode: "12345",
-          animation: true,
-         
-        });
-       // setDisplayedUsers(updatedUsers);
-       
-        const updatedUsersWithAnimation = updatedUsers.map((user, i) => ({
-          ...user,
-          animation: i === index - 1 ? true : false,
-        }));
+  }, [recentEntry]);
+  const addNewCard = (index: number, user: any, score: string) => {
+    console.log('index in add card', index);
+    const updatedUsers: any = [...displayedUsers];
 
-        setDisplayedUsers(updatedUsersWithAnimation);
-        console.log(updatedUsersWithAnimation);
-      
-        if (newEntryRef.current) {
-          
-          if (index > displayedUsers.length) {
-           setTimeout(() =>{
-            const newcardRef = newEntryRef.current.children.length-1;
-            console.log(newcardRef)
-            const newof = newEntryRef.current.children[newcardRef]
-            console.log(newof)
-            
-            newof.scrollIntoView({behavior: "smooth"})
-            const animationDelay = 1000; 
-            //const newCard = document.createElement("div");
-            newof.className = "animated-new-card";
-            newof.style.animationDelay = animationDelay + "ms"; 
-           // newcard.appendChild(newCard);
-           },1000)
-          } else {
-            const cardHeight =
-              newEntryRef.current.scrollHeight / displayedUsers.length;
-            const cardMiddle =
-              index * cardHeight - newEntryRef.current.clientHeight / 2;
-            newEntryRef.current.scrollTo({
-              top: cardMiddle,
-              behavior: "smooth",
-            });
+    updatedUsers.splice(index, 0, {
+      userName: user.userName,
+      phoneNumber: '1234567890',
+      type: 'participant',
+      raceCode: '12345',
+      score: score,
+      animation: true,
+    });
+    const updatedUsersWithAnimation = updatedUsers.map(
+      (user: any, i: number) => ({
+        ...user,
+        animation: i === index ? true : false,
+      })
+    );
+
+    setDisplayedUsers(updatedUsersWithAnimation);
+    console.log('updatedUsersWithAnimation', updatedUsersWithAnimation);
+
+    if (newEntryRef.current) {
+      if (index > displayedUsers.length) {
+        setTimeout(() => {
+          if (!newEntryRef.current) return;
+          const newcardRef = newEntryRef.current.children.length - 1;
+          console.log(newcardRef);
+          const newof: any = newEntryRef.current.children[newcardRef];
+          if (!newof) return;
+          console.log(newof);
+
+          newof.scrollIntoView({ behavior: 'smooth' });
+          const animationDelay = 1000;
+          newof.className = 'animated-new-card';
+          if (newof.style) {
+            newof.style.animationDelay = animationDelay + 'ms';
           }
-        }
-
+        }, 1000);
       } else {
-        alert(
-          "Invalid index. Please enter a number between 1 and " +
-            displayedUsers.length
-        );
+        const cardHeight =
+          newEntryRef.current.scrollHeight / displayedUsers.length;
+        const cardMiddle =
+          index * cardHeight - newEntryRef.current.clientHeight / 2;
+        newEntryRef.current.scrollTo({
+          top: cardMiddle,
+          behavior: 'smooth',
+        });
       }
     }
-   
   };
 
   return (
     <>
-      {
-        <button style={{ position: "absolute", top: 0 }} onClick={addNewCard}>
-          Add
-        </button>
-      }
       <div ref={newEntryRef} className="leaderboard-scroll">
-        console.log(displayedUsers)
-        {displayedUsers.map((user, i) => (
-          <React.Fragment key={i}>
-            <LeaderboardKioskCard
-              index={i + 1}
-              key={i}
-              score={user ? "00:56:23" : ""}
-              userName={user ? user.name : ""}
-              prizeMoney={i < 3 ? "₹50000" : ""}
-              animation={user.animation}
-              background={false}
-              
-            />
-          </React.Fragment>
-        ))}
+        {displayedUsers.map((user: any, i) => {
+          console.log(user);
+          return (
+            <React.Fragment key={i}>
+              <LeaderboardKioskCard
+                index={i + 1}
+                key={i}
+                score={user.score}
+                userName={user ? user.userName : ''}
+                prizeMoney={getPrizes(i).toString()}
+                animation={user.animation}
+                background={false}
+              />
+            </React.Fragment>
+          );
+        })}
       </div>
     </>
   );
@@ -281,10 +296,10 @@ export const LeaderboardKioskCard: React.FC<{
 
   return (
     <div
-      className={`kiosk-card-main-dis ${animation ? "animated-new-card" : ""} `}
+      className={`kiosk-card-main-dis ${animation ? 'animated-new-card' : ''} `}
     >
       <div
-        className={`kiosk-card ${background ? "background-recent" : ""}`}
+        className={`kiosk-card ${background ? 'background-recent' : ''}`}
         style={kioskStyles.root}
       >
         <div className="kios-index-username">
@@ -299,31 +314,28 @@ export const LeaderboardKioskCard: React.FC<{
         <div className="kiosk-prize-money-score">
           {prizeMoney && (
             <span className="kiosk-prize-money" style={kioskStyles.name}>
-              {prizeMoney}
+              ₹{prizeMoney}
             </span>
           )}
-          <span className="kiosk-score">{score}</span>
+          <span style={kioskStyles.name} className="kiosk-score">{score}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export const RecentEntryKiosk = () => {
+export const RecentEntryKiosk: React.FC<{ user: any }> = ({ user }) => {
   return (
     <div className="leader-board-kiosk-recent-entry">
       <p className="leader-board-kiosk-recent-heading">RECENT ENTRY</p>
       <div className="">
-        {new Array(1).fill(0).map((_, i) => (
-          <LeaderboardKioskCard
-            index={11}
-            key={i}
-            score="00.56.23"
-            userName={"Priya"}
-            animation={false}
-            background={true}
-          />
-        ))}
+        <LeaderboardKioskCard
+          index={11}
+          score={user.score}
+          userName={user.userName}
+          animation={false}
+          background
+        />
       </div>
     </div>
   );
@@ -332,40 +344,17 @@ export const RecentEntryKiosk = () => {
 export const LeaderboardKioskFooter = () => {
   return (
     <div className="leader-board-footer-card">
-      <div className="footer-text-kiosk scroll-text">
-        Footer: Disclaimers/ Announcements/ etc
+      <div
+        style={{
+          fontSize: '25px',
+          alignSelf: 'center',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+        className="footer-text-kiosk scroll-text"
+      >
+        Get your name on leaderboard win exciting prizes!
       </div>
     </div>
   );
 };
-
-
-
-        /*if (newEntryRef.current) {
-            const cards = Array.from(newEntryRef.current.children);
-            cards.forEach((card, i) => {
-              if (i >= index) {
-                const delay = (i - index + 1) * 100; 
-                card.style.animationDelay = `${delay}ms`;
-                card.classList.add('animated-card');
-              }
-            });
-          }
-          */
-        /*if (newEntryRef.current) {
-            const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
-            let cardMiddle;
-            if (index > displayedUsers.length) { // Check if the new card is one of the last 5 indexes
-              const containerHeight = newEntryRef.current.clientHeight;
-              const cardHeight = newEntryRef.current.scrollHeight / displayedUsers.length;
-              cardMiddle = (index - 1) * cardHeight - containerHeight / 2 + cardHeight / 2;
-            } else {
-              cardMiddle = index * cardHeight - newEntryRef.current.clientHeight / 2;
-            }
-            newEntryRef.current.scrollTo({ top: cardMiddle, behavior: 'smooth' });
-          }
-          */
-
-        /*
-          
-          */

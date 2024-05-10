@@ -7,6 +7,7 @@ const TehoIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
     height={21}
     viewBox="0 0 68 21"
     fill="none"
+    style={{ height: '80px' }}
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
