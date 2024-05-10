@@ -34,7 +34,6 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
 
   const changeRideInfoHandler = async () => {
     const onChangeAccept = (response: AxiosResponse) => {
-        console.log(response);
       if (response.status === 202) {
         enqueueSnackbar('Saved', {
           autoHideDuration: autoHide,
@@ -102,7 +101,6 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
         </div>
         <div className="--inputs">
           {Object.keys(user).map((key) => {
-            console.log(key);
             if (
               key === '_id' ||
               key === 'branchId' ||
@@ -201,7 +199,6 @@ const PlayerManage = () => {
   };
   const getPlayerInfo = () => {
     const onAcceptRide = (response: AxiosResponse) => {
-      console.log(response);
       if (response.status === 202) {
         setUser(response.data.data);
       } else if (response.status === 404) {

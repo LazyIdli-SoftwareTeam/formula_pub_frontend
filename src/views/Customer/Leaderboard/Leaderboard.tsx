@@ -10,6 +10,8 @@ import { getScores } from '../../../api/lb';
 import { AxiosResponse } from 'axios';
 import { FullScreenLoader } from '../../../components/loader/CustomLoader';
 import { t_userInfo } from '../../../types/userInfo';
+import { SOCKET_ENDPOINT } from '../../../constants/url_config';
+import { io } from 'socket.io-client';
 
 export enum HEADER_STATE {
   TODAY = 'FASTEST OF TODAY',
@@ -26,7 +28,26 @@ const Leaderboard = () => {
   );
   useEffect(() => {
     console.log('score', scores);
-  }, [scores])
+  }, [scores]);
+
+  useEffect(() => {
+    const socket = io(SOCKET_ENDPOINT);
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('connect');
+    });
+    socket.on('score', (data) => {
+      console.log(data);
+      const newScores = data.map((score: any) => {
+        return { player: score.code, score: score.score };
+      });
+      setScores(newScores);
+    });
+    return () => {
+      socket.off('score');
+      socket.disconnect();
+    };
+  }, [scores]);
 
   useEffect(() => {
     const onAcceptGetScores = (response: AxiosResponse) => {
@@ -35,7 +56,7 @@ const Leaderboard = () => {
         const newScores = response.data.data.map((score: any) => {
           return { player: score.code, score: score.score };
         });
-        setScores(newScores)
+        setScores(newScores);
       } else {
         setPageState(PAGE_STATE.REJECTED);
       }

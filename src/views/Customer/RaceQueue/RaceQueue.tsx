@@ -7,6 +7,8 @@ import { PAGE_STATE } from '../BuyPass/Home';
 import { AxiosResponse } from 'axios';
 import { getQueue } from '../../../api/queue';
 import { FullScreenLoader } from '../../../components/loader/CustomLoader';
+import { io } from 'socket.io-client'; 
+import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 
 const RaceQueue = () => {
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
@@ -14,9 +16,32 @@ const RaceQueue = () => {
   const orderInfo = localStorage.getItem('order');
   const [playerInfo, setPlayerInfo] = useState<any>([]);
 
+
   useEffect(() => {
-    console.log('playerInfo', playerInfo);
-  }, [playerInfo, users])
+    const socket = io(SOCKET_ENDPOINT); 
+    socket.connect();
+    socket.on('connect', () => {
+      console.log('connect');
+    });
+    socket.on('queue', data => {
+      console.log(data);
+      const users: any[] = [];
+      for (const el of data) {
+        if (el.status === 'completed') continue; 
+        users.push({ ...el.code, state: el.status });
+      }
+      setUsers(users);
+    })
+    return () => {
+      socket.off('queue');
+      socket.disconnect(); 
+    }
+  }, [users])
+
+
+  useEffect(() => {
+
+  }, [])
 
   useEffect(() => {
     const onGetQueueAccepted = (response: AxiosResponse) => {
@@ -64,7 +89,6 @@ const RaceQueue = () => {
       </div>
       <div className="race-queue-box">
         {users.map((user: any, i: number) => {
-          console.log(user);
           const index = playerInfo.findIndex((playerinfo: any) => playerinfo._id === user._id); 
           return <CreateUserCard
             index={i}
