@@ -134,7 +134,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
         getElement.style.height = `calc(100dvh - ${LeaderHeight}px)`;
       }
     }
-  }, []);
+  }, [ImageRef]);
 
   return (
     <>
@@ -143,10 +143,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
           <div className="leader-board-race-fsat-card-image">
             <div className="leader-board-fastest-header">
               <div className="race-queue-rank">
-                <span className="kiosk-index-icon">
-                  {' '}
-                  {/* <FaTrophy /> */}
-                </span>
+                <span className="kiosk-index-icon"> {/* <FaTrophy /> */}</span>
                 <span className="race-queue-fast-name">NAME</span>
               </div>
               <div>
@@ -260,6 +257,11 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
     }
   };
 
+  const changeScore = (score: string) => {
+    const newScore = score.split(':');
+    return `${newScore[0]}:${newScore[1]}.${newScore[2]}`;
+  };
+
   return (
     <>
       <div ref={newEntryRef} className="leaderboard-scroll">
@@ -270,7 +272,7 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
               <LeaderboardKioskCard
                 index={i + 1}
                 key={i}
-                score={user.score}
+                score={changeScore(user.score)}
                 userName={user ? user.userName : ''}
                 prizeMoney={getPrizes(i).toString()}
                 animation={user.animation}
@@ -317,7 +319,9 @@ export const LeaderboardKioskCard: React.FC<{
               ₹{prizeMoney}
             </span>
           )}
-          <span style={kioskStyles.name} className="kiosk-score">{score}</span>
+          <span style={kioskStyles.name} className="kiosk-score">
+            {score}
+          </span>
         </div>
       </div>
     </div>

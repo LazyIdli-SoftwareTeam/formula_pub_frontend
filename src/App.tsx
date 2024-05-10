@@ -5,20 +5,26 @@ import {
   LeaderboardkioskMainpage,
 } from './views/LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
 import { io } from 'socket.io-client';
-import {  SOCKET_ENDPOINT } from './constants/url_config';
+import { SOCKET_ENDPOINT } from './constants/url_config';
 function App() {
   const path = window.location.search;
-  console.log(path);
   const [queue, setQueue] = useState(false);
   const [heading, setHeading] = useState('LEADERBOARD');
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setQueue(!queue);
+    }, 50000);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [queue]);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
     socket.on('connect', () => {
       console.log('connected');
-    })
+    });
     socket.on('dSwitch', (data) => {
-      console.log(data); 
       if (data === 'queue') {
         setQueue(!queue);
       } else if (data === 'daily') {
