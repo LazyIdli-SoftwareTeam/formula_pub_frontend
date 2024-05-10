@@ -14,7 +14,8 @@ export const getRide = async (
     const response = await axios.post(ENDPOINT + GET_RIDE, {
       branchId: branchId,
       eventId: eventId,
-      ...data
+      ...data, 
+      user: true
     });
     onAccept(response);
   } catch (e) {

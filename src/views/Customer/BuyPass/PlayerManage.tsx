@@ -15,7 +15,7 @@ type t_user = {
   score?: string;
   _id: string;
 };
-const autoHide = 2000;
+const autoHide = 3000;
 
 const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
   user,
@@ -26,8 +26,8 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
   const [tosChecked, setTosChecked] = useState(false);
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const getDisabled = () => {
-    if (userName.length === 0) return true; 
-    if (phoneNumber.length > 1 &&  phoneNumber.length != 10) return true;
+    if (userName.length === 0) return true;
+    if (phoneNumber.length > 1 && phoneNumber.length != 10) return true;
     if (!tosChecked) return true;
     return false;
   };
@@ -40,6 +40,9 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
           variant: 'success',
         });
         setPageState(PAGE_STATE.ACCEPTED);
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000)
       } else {
         setPageState(PAGE_STATE.REJECTED);
         enqueueSnackbar('Try again later', {
@@ -128,6 +131,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
                   label={'Phone Number'}
                   helperText="To contact you if you win"
                   value={phoneNumber}
+                  type={'tel'}
                   disabled={false}
                   onClick={() => {}}
                   onChange={phoneNumberChangeHandler}
@@ -164,6 +168,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
         </div>
       ) : (
         <div className="global-player-buttons">
+          <span style={{ backgroundColor: 'grey' }} onClick={() => goBack()}>Go Back</span>
           <span
             onClick={() => {
               if (getDisabled()) return;
@@ -173,7 +178,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
           >
             Confirm
           </span>
-          <span onClick={() => goBack()}>Go Back</span>
+          
         </div>
       )}
     </div>
@@ -206,6 +211,11 @@ const PlayerManage = () => {
           state: PAGE_STATE.ACCEPTED,
           message: 'No player found',
         });
+      } else if (response.status === 409) {
+        setPageState({
+          state: PAGE_STATE.ACCEPTED,
+          message: 'This race pass is already registered contact operator',
+        });
       } else {
         setPageState({
           state: PAGE_STATE.REJECTED,
@@ -214,11 +224,14 @@ const PlayerManage = () => {
       }
     };
     const onRejectRide = (e: any) => {
+      console.log(e);
       setPageState({
         state: PAGE_STATE.REJECTED,
         message:
           e?.response?.status === 404
             ? 'Player not found'
+            : e?.response?.status === 409
+            ? 'This race pass is already registered contact operator'
             : 'Some error occurred try again later',
       });
     };
@@ -268,7 +281,7 @@ const PlayerManage = () => {
           onClick={clickHandler}
           className={`--btn ${btnDisabled ? '--disabled' : ''}`}
         >
-          Get Info
+          Activate
         </span>
       )}
     </div>

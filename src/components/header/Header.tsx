@@ -297,7 +297,7 @@ const HeaderTab: React.FC<{
     if (currentTab === Tab.BUY) {
       return [
         <span onClick={() => changeTab(Tab.BUY)}>
-          <MidFullActiveSvg text="BUY" />
+          <MidFullActiveSvg text="REGISTER" />
         </span>,
         <span onClick={() => changeTab(Tab.QUEUE)}>
           <RightArrowSvg text="RACE" />
@@ -312,7 +312,7 @@ const HeaderTab: React.FC<{
           className="transform-mid-active"
           onClick={() => changeTab(Tab.BUY)}
         >
-          <LeftArrowSvg text="BUY" />
+          <LeftArrowSvg text="REGISTER" />
         </span>,
         <span onClick={() => changeTab(Tab.QUEUE)}>
           <MidFullActiveSvg text="RACE" />
@@ -327,7 +327,7 @@ const HeaderTab: React.FC<{
           className="transform-mid-active"
           onClick={() => changeTab(Tab.BUY)}
         >
-          <MidFullSvg text="BUY" />
+          <MidFullSvg text="REGISTER" />
         </span>,
         <span onClick={() => changeTab(Tab.QUEUE)}>
           <MidCutSvg text="RACE" />
@@ -344,7 +344,7 @@ const HeaderTab: React.FC<{
             (window.location.href = `/?branchId=${branchId}&eventId=${eventId}`)
           }
         >
-          <MidFullSvg text="BUY" />
+          <MidFullSvg text="REGISTER" />
         </span>,
         <span onClick={() => changeTab(Tab.QUEUE)}>
           <MidCutSvg text="RACE" />
