@@ -120,6 +120,7 @@ export const LeaderboardKioskRaceQueue = () => {
   }, [users]);
   useEffect(() => {
     const onGetQueueAccepted = (response: AxiosResponse) => {
+      console.log(response);
       if (response.status === 202) {
         setPageState(PAGE_STATE.ACCEPTED);
         const users: any[] = [];
