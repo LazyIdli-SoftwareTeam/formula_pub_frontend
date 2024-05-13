@@ -42,7 +42,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
         setPageState(PAGE_STATE.ACCEPTED);
         setTimeout(() => {
           window.location.reload();
-        }, 5000)
+        }, 5000);
       } else {
         setPageState(PAGE_STATE.REJECTED);
         enqueueSnackbar('Try again later', {
@@ -75,10 +75,16 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
     return (
       <div className="get-player-info-tos-container">
         <span className="--heading">T & C </span>
-        <span>1. Weight limit is 120 kg</span>
-        <span>2. Don't be too much drunk</span>
         <span>
-          3. At the end of the day the final decision depends on the TEHO team
+          1. I agree that I will follow all instructions of the operator.
+        </span>
+        <span>
+          2. I agree that the organizer may change the terms under some
+          unforeseen conditions.
+        </span>
+        <span>
+          3. I agree that I don't hold the organizers liable for any damages
+          arising out of my participation in this event
         </span>
         <span className="--tos">
           <input
@@ -168,7 +174,9 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
         </div>
       ) : (
         <div className="global-player-buttons">
-          <span style={{ backgroundColor: 'grey' }} onClick={() => goBack()}>Go Back</span>
+          <span style={{ backgroundColor: 'grey' }} onClick={() => goBack()}>
+            Go Back
+          </span>
           <span
             onClick={() => {
               if (getDisabled()) return;
@@ -178,7 +186,6 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
           >
             Confirm
           </span>
-          
         </div>
       )}
     </div>
