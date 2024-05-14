@@ -83,7 +83,8 @@ const kioskStylesRank = (index: number) => {
 export const LeaderboardKioskFastestHeader: React.FC<{
   users: any;
   setUsers: any;
-}> = ({ users }) => {
+  heading: string;
+}> = ({ users, heading }) => {
   const [recentEntry, setRecentEntry] = useState();
 
   // const settings = {
@@ -176,23 +177,28 @@ export const LeaderboardKioskFastestHeader: React.FC<{
   );
 };
 
-const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
-  users,
-  recentEntry,
-}) => {
+const LeaderboardKioskUsers: React.FC<{
+  users: any[];
+  recentEntry: any;
+  heading: string;
+}> = ({ users, recentEntry, heading }) => {
   const [displayedUsers, setDisplayedUsers] =
     useState<t_userInfoKiosk[]>(users);
   const newEntryRef = useRef<HTMLDivElement>(null);
   const total = 5000;
   const getPrizes = (index: number) => {
-    if (index === 0) {
-      return (total * 60) / 100;
-    } else if (index === 1) {
-      return (total * 30) / 100;
-    } else if (index === 2) {
-      return (total * 10) / 100;
+    if (heading === 'FASTEST OF TODAY' && index === 0) {
+      return '₹' + 250;
     } else {
-      return '';
+      if (index === 0) {
+        return '₹' + 1500;
+      } else if (index === 1) {
+        return '₹' + 1000;
+      } else if (index === 2) {
+        return '₹' + 750;
+      } else {
+        return '';
+      }
     }
   };
 

@@ -58,7 +58,7 @@ export const LeaderboardkioskMainpage: React.FC<{ heading?: string }> = ({
         <span className="leader-board-kiosk-fastest-main-text">{heading}</span>
         <LeftSide />
       </div>
-      <LeaderboardKioskFastestHeader users={users} setUsers={setUsers} />
+      <LeaderboardKioskFastestHeader users={users} setUsers={setUsers} heading={heading} />
       </div>
     </div>
   );

@@ -185,12 +185,10 @@
   padding: 14px 0px 14px 0px;
   background: var(--Teho-Black, #181818);
   overflow: hidden;
-  align-items: center;
-  display: flex;
+
 }
 
-.scroll-text {
-}
+
 .footer-text-kiosk {
   font-family: Inter;
   font-size: 16px;
