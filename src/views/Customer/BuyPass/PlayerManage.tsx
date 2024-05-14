@@ -192,6 +192,10 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
   );
 };
 
+const BulletPoint = () => {
+  return <div className="bullet-point-container"></div>;
+};
+
 const PlayerManage = () => {
   const [racePass, setRacePass] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -270,6 +274,37 @@ const PlayerManage = () => {
     );
   return (
     <div className="player-management-global-container">
+      <div className="--instructions">
+        <span
+          style={{
+            fontSize: '20px',
+            fontWeight: '700',
+            textAlign: 'center',
+            width: '100%',
+          }}
+        >
+          Instructions
+        </span>
+        <span className="--bullet">
+          <BulletPoint />
+          Please purchase your tickets from KOS Menu
+        </span>
+        <span style={{ alignSelf: 'self-start'}}>
+          <BulletPoint />
+          <span
+            style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
+          >
+            Your best lap time will be added on the leaderboard{' '}
+            <span style={{ marginLeft: '4px' }}>
+              * If there is a penalty 10 seconds will be added to your best time
+            </span>
+          </span>
+        </span>
+        <span>
+          <BulletPoint />
+          Check "WIN" tab to see prizes
+        </span>
+      </div>
       <TextField
         label=""
         placeHolder="Enter Race Pass"
