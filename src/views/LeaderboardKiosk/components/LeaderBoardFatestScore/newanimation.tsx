@@ -72,13 +72,6 @@ const kioskStylesRank = (index: number) => {
   }
 };
 
-// const CustomPrevArrow = () => {
-//   return <></>;
-// };
-
-// const CustomNextArrow = () => {
-//   return <></>;
-// };
 
 export const LeaderboardKioskFastestHeader: React.FC<{
   users: any;
@@ -86,26 +79,16 @@ export const LeaderboardKioskFastestHeader: React.FC<{
 }> = ({ users }) => {
   const [recentEntry, setRecentEntry] = useState();
 
-  // const settings = {
-  //   dots: false,
-  //   infinite: true,
-  //   autoplay: true,
-  //   autoplaySpeed: 3000,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   nextArrow: <CustomNextArrow />,
-  //   prevArrow: <CustomPrevArrow />,
-  // };
+ 
 
-  // const images = [
-  //   '/src/assets/images/Frame 1233.png',
-  //   '/src/assets/images/newcover1.png',
-  //   '/src/assets/images/newcover2.png',
-  //   '/src/assets/images/newcover3.png',
-  //   '/src/assets/images/back3.png',
-  // ];
-
+  /*const images = [
+    '/src/assets/images/Frame 1233.png',
+    '/src/assets/images/newcover1.png',
+   '/src/assets/images/newcover2.png',
+    '/src/assets/images/newcover3.png',
+     '/src/assets/images/back3.png',
+   ];
+*/
   const ImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -159,17 +142,15 @@ export const LeaderboardKioskFastestHeader: React.FC<{
       </div>
       {/* <RecentEntryKiosk user={recentEntry || {}} /> */}
       <div>
-        {/* <Slider {...settings}>
-          {images.map((imageUrl, index) => ( */}
-        <div key={1} className="images-animations" ref={ImageRef}>
-          <img
-            className="image-slide"
-            src={'/src/assets/images/Frame 1233.png'}
-            alt={`Slide ${1}`}
-          />
+       
+      <div  className="images-animations" ref={ImageRef}>
+         <img src = "/src/assets/images/Frame 1233.png" className='image-slide image'/>
+         <img src = "/src/assets/images/newcover1.png" className='image-slide image'/>
+         <img src = "/src/assets/images/newcover2.png" className='image-slide image'/>
+         <img src = "/src/assets/images/newcover3.png" className='image-slide image'/>
+         <img src = "/src/assets/images/back3.png" className='image-slide image'/>
+         
         </div>
-        {/* ))} */}
-        {/* </Slider> */}
       </div>
       <LeaderboardKioskFooter />
     </>
