@@ -154,7 +154,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
                 </span>
               </div>
             </div>
-            <LeaderboardKioskUsers users={users} recentEntry={recentEntry} />
+            <LeaderboardKioskUsers users={users} recentEntry={recentEntry} heading={heading} />
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
         <div key={1} className="images-animations" ref={ImageRef}>
           <img
             className="image-slide"
-            src={'/src/assets/images/Frame 1233.png'}
+            src={'/scan.png'}
             alt={`Slide ${1}`}
           />
         </div>
@@ -185,17 +185,18 @@ const LeaderboardKioskUsers: React.FC<{
   const [displayedUsers, setDisplayedUsers] =
     useState<t_userInfoKiosk[]>(users);
   const newEntryRef = useRef<HTMLDivElement>(null);
-  const total = 5000;
+  // const total = 5000;
+  const prize = 'F1 Collectable';
   const getPrizes = (index: number) => {
     if (heading === 'FASTEST OF TODAY' && index === 0) {
-      return '₹' + 250;
+      return prize
     } else {
       if (index === 0) {
-        return '₹' + 1500;
+        return prize
       } else if (index === 1) {
-        return '₹' + 1000;
+        return prize
       } else if (index === 2) {
-        return '₹' + 750;
+        return prize
       } else {
         return '';
       }
@@ -322,7 +323,7 @@ export const LeaderboardKioskCard: React.FC<{
         <div className="kiosk-prize-money-score">
           {prizeMoney && (
             <span className="kiosk-prize-money" style={kioskStyles.name}>
-              ₹{prizeMoney}
+              {prizeMoney}
             </span>
           )}
           <span style={kioskStyles.name} className="kiosk-score">
