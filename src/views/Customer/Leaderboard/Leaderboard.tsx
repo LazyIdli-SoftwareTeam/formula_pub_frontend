@@ -26,10 +26,7 @@ const Leaderboard = () => {
   const [scores, setScores] = useState<{ player: t_userInfo; score: string }[]>(
     []
   );
-  useEffect(() => {
-    console.log('score', scores);
-  }, [scores]);
-
+  const [click, setClick] = useState(false);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
@@ -88,7 +85,7 @@ const Leaderboard = () => {
         <ScoreVerification closePopup={closeVerifyPopup} />
       ) : null}
       <div className="customer-leader-board-top">
-        <Prizes />
+        <Prizes click={click} setClick={setClick} />
         <LeaderboardHeader
           activeTabIndex={headerTab}
           tabs={TABS}
