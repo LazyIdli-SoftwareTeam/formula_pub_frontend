@@ -296,7 +296,7 @@ const PlayerManage = () => {
           >
             Your best lap time will be added on the leaderboard{' '}
             <span style={{ marginLeft: '4px' }}>
-              * If there is a penalty 10 seconds will be added to your best time
+              * If there is a penalty 5 seconds will be added to your best time
             </span>
           </span>
         </span>
