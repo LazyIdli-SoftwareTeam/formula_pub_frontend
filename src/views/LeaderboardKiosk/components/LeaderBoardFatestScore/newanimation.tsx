@@ -144,7 +144,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
       <div>
        
       <div  className="images-animations" ref={ImageRef}>
-         <img src = "/src/assets/images/Frame 1233.png" className='image-slide image'/>
+         <img src = "/src/assets/images/Frame 1233.png" className='image-slide '/>
          <img src = "/src/assets/images/newcover1.png" className='image-slide image'/>
          <img src = "/src/assets/images/newcover2.png" className='image-slide image'/>
          <img src = "/src/assets/images/newcover3.png" className='image-slide image'/>
