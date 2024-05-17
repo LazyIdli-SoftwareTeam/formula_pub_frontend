@@ -154,7 +154,11 @@ export const LeaderboardKioskFastestHeader: React.FC<{
                 </span>
               </div>
             </div>
-            <LeaderboardKioskUsers users={users} recentEntry={recentEntry} heading={heading} />
+            <LeaderboardKioskUsers
+              users={users}
+              recentEntry={recentEntry}
+              heading={heading}
+            />
           </div>
         </div>
       </div>
@@ -163,11 +167,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
         {/* <Slider {...settings}>
           {images.map((imageUrl, index) => ( */}
         <div key={1} className="images-animations" ref={ImageRef}>
-          <img
-            className="image-slide"
-            src={'/scan.png'}
-            alt={`Slide ${1}`}
-          />
+          <img className="image-slide" src={'/scan.png'} alt={`Slide ${1}`} />
         </div>
         {/* ))} */}
         {/* </Slider> */}
@@ -188,15 +188,17 @@ const LeaderboardKioskUsers: React.FC<{
   // const total = 5000;
   const prize = 'F1 Collectable';
   const getPrizes = (index: number) => {
+    console.log(index);
+    console.log(heading);
     if (heading === 'FASTEST OF TODAY' && index === 0) {
-      return prize
+      return prize;
     } else {
-      if (index === 0) {
-        return prize
-      } else if (index === 1) {
-        return prize
-      } else if (index === 2) {
-        return prize
+      if (index === 0 && heading != 'FASTEST OF TODAY') {
+        return prize;
+      } else if (index === 1 && heading != 'FASTEST OF TODAY') {
+        return prize;
+      } else if (index === 2 && heading != 'FASTEST OF TODAY') {
+        return prize;
       } else {
         return '';
       }

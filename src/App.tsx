@@ -9,7 +9,7 @@ import { SOCKET_ENDPOINT } from './constants/url_config';
 function App() {
   const path = window.location.search;
   const [queue, setQueue] = useState(false);
-  const [heading, setHeading] = useState('LEADERBOARD');
+  const [heading, setHeading] = useState('FASTEST OF TODAY');
   useEffect(() => {
     const id = setTimeout(() => {
       setQueue(!queue);
