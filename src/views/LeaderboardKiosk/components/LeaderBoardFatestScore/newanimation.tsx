@@ -7,7 +7,10 @@ import './LeaderBoardFastestScore.css';
 import { t_userInfoKiosk } from '../../../../types/userinfoKiosk';
 import { SOCKET_ENDPOINT } from '../../../../constants/url_config';
 import { io } from 'socket.io-client';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/autoplay';
 // const initialUsers: t_userInfoKiosk[] = new Array(20).fill(0).map((_, i) => ({
 //   name: 'Sahil' + (i + 1),
 //   phoneNumber: '',
@@ -167,7 +170,34 @@ export const LeaderboardKioskFastestHeader: React.FC<{
         {/* <Slider {...settings}>
           {images.map((imageUrl, index) => ( */}
         <div key={1} className="images-animations" ref={ImageRef}>
-          <img className="image-slide" src={'/scan.png'} alt={`Slide ${1}`} />
+          <Swiper
+            spaceBetween={50}
+            autoplay={{
+              delay: 10000,
+              // delay: 1000,
+            }}
+            modules={[Autoplay]}
+            slidesPerView={1}
+            defaultValue={0}
+            style={{ height: '100%', width: '100%' }}
+          >
+            <SwiperSlide>
+              <img
+                className="image-slide"
+                src={'/scan.png'}
+                alt={`Slide ${1}`}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="image-slide" src={'/2.png'} alt={`Slide ${2}`} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="image-slide" src={'/3.png'} alt={`Slide ${1}`} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img className="image-slide" src={'/4.png'} alt={`Slide ${1}`} />
+            </SwiperSlide>
+          </Swiper>
         </div>
         {/* ))} */}
         {/* </Slider> */}
@@ -188,8 +218,6 @@ const LeaderboardKioskUsers: React.FC<{
   // const total = 5000;
   const prize = 'F1 Collectable';
   const getPrizes = (index: number) => {
-    console.log(index);
-    console.log(heading);
     if (heading === 'FASTEST OF TODAY' && index === 0) {
       return prize;
     } else {
