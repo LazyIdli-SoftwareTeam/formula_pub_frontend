@@ -189,7 +189,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
               />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="image-slide" src={'/2.png'} alt={`Slide ${2}`} />
+              <img className="image-slide"  src={'/2.png'} alt={`Slide ${2}`} />
             </SwiperSlide>
             <SwiperSlide>
               <img className="image-slide" src={'/3.png'} alt={`Slide ${1}`} />
