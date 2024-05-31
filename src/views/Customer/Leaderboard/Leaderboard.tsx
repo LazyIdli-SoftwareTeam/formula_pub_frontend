@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import Prizes from './components/prize/Prizes';
+// import Prizes from './components/prize/Prizes';
 import './styles/leaderboard.css';
 import LeaderboardHeader from './components/leaderboardHeader/LeaderboardHeader';
 import LeaderboardUsers from './components/leaderboardUsers/LeaderboardUsers';
@@ -26,7 +26,7 @@ const Leaderboard = () => {
   const [scores, setScores] = useState<{ player: t_userInfo; score: string }[]>(
     []
   );
-  const [click, setClick] = useState(false);
+  // const [click, setClick] = useState(false);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
@@ -85,7 +85,7 @@ const Leaderboard = () => {
         <ScoreVerification closePopup={closeVerifyPopup} />
       ) : null}
       <div className="customer-leader-board-top">
-        <Prizes click={click} setClick={setClick} />
+        {/* <Prizes click={click} setClick={setClick} /> */}
         <LeaderboardHeader
           activeTabIndex={headerTab}
           tabs={TABS}
