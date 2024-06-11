@@ -25,7 +25,8 @@
   font-weight: 600;
 }
 
-.player-management-global-container .--disabled, .get-player-info-container .--disabled  {
+.player-management-global-container .--disabled,
+.get-player-info-container .--disabled {
   background-color: rgba(255, 255, 255, 0.4);
   color: white;
 }
@@ -74,7 +75,7 @@
   line-height: 1.1;
 }
 
-.get-player-info-tos-container .--tos {
+.get-player-info-tos-updates-container .--tos {
   display: flex;
   align-items: center;
   text-align: center;
@@ -105,11 +106,9 @@
   gap: 16px !important;
 }
 
-
 .get-player-info-container .MuiFormHelperText-root {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
-
 
 .player-management-global-container .--instructions {
   padding-left: 20px;
@@ -127,13 +126,20 @@
 .player-management-global-container .--instructions span {
   display: flex;
   align-items: center;
-  gap: 12px ;
+  gap: 12px;
 }
 
-.bullet-point-container  {
+.bullet-point-container {
   height: 5px;
   width: 5px;
   flex-shrink: 0;
   background-color: white;
   border-radius: 50%;
+}
+
+.get-player-info-tos-updates-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
 }

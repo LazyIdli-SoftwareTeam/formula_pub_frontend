@@ -24,6 +24,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
   const [userName, setUserName] = useState(user.userName || '');
   const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || '');
   const [tosChecked, setTosChecked] = useState(false);
+  const [updates, setUpdates] = useState(false);
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const getDisabled = () => {
     if (userName.length === 0) return true;
@@ -68,32 +69,45 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
       userName: userName,
       phoneNumber: phoneNumber.length == 0 ? ' ' : phoneNumber,
       code: user.code,
+      updates: updates
     });
   };
 
   const GetTos = () => {
     return (
-      <div className="get-player-info-tos-container">
-        <span className="--heading">T & C </span>
-        <span>
-          1. I agree that I will follow all instructions of the operator.
-        </span>
-        <span>
-          2. I agree that the organizer may change the terms under some
-          unforeseen conditions.
-        </span>
-        <span>
-          3. I agree that I don't hold the organizers liable for any damages
-          arising out of my participation in this event
-        </span>
-        <span className="--tos">
-          <input
-            onChange={(e) => setTosChecked(e.target.checked)}
-            type="checkbox"
-            checked={tosChecked}
-          />{' '}
-          I accept
-        </span>
+      <div className="get-player-info-tos-updates-container">
+        <div className="get-player-info-tos-container">
+          <span className="--heading">T & C </span>
+          <span>
+            1. I agree that I will follow all instructions of the operator.
+          </span>
+          <span>
+            2. I agree that the organizer may change the terms under some
+            unforeseen conditions.
+          </span>
+          <span>
+            3. I agree that I don't hold the organizers liable for any damages
+            arising out of my participation in this event
+          </span>
+          <span className="--tos">
+            <input
+              onChange={(e) => setTosChecked(e.target.checked)}
+              type="checkbox"
+              checked={tosChecked}
+            />{' '}
+            I accept
+          </span>
+        </div>
+        <div>
+          <span className="--tos">
+            <input
+              onChange={(e) => setUpdates(e.target.checked)}
+              type="checkbox"
+              checked={updates}
+            />{' '}
+            Receive updates on whatsapp
+          </span>
+        </div>
       </div>
     );
   };
@@ -289,7 +303,7 @@ const PlayerManage = () => {
           <BulletPoint />
           Please purchase your tickets from KOS Menu
         </span>
-        <span style={{ alignSelf: 'self-start'}}>
+        <span style={{ alignSelf: 'self-start' }}>
           <BulletPoint />
           <span
             style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
