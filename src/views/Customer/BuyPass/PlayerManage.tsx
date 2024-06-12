@@ -69,7 +69,7 @@ const GetPlayerInfo: React.FC<{ user: t_user; goBack: () => void }> = ({
       userName: userName,
       phoneNumber: phoneNumber.length == 0 ? ' ' : phoneNumber,
       code: user.code,
-      updates: updates
+      updates: updates ? 'yes' : 'no'
     });
   };
 
