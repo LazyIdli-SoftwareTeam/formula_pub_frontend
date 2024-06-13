@@ -14,3 +14,18 @@
   gap: 8px;
   width: 100%;
 }
+
+.leaderboard-filters-wrapper-container {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  gap: 15px;
+}
+
+.leaderboard-filters-wrapper-container .MuiOutlinedInput-root {
+  color: white !important;
+}
+
+.leaderboard-filters-wrapper-container .MuiSelect-icon {
+  color: white !important;
+}

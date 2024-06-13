@@ -8,10 +8,12 @@ import ScoreVerification from '../../../components/ScoreVerification/ScoreVerifi
 import { PAGE_STATE } from '../BuyPass/Home';
 import { getScores } from '../../../api/lb';
 import { AxiosResponse } from 'axios';
-import { FullScreenLoader } from '../../../components/loader/CustomLoader';
+import { ClipLoaderSmall } from '../../../components/loader/CustomLoader';
 import { t_userInfo } from '../../../types/userInfo';
 import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 import { io } from 'socket.io-client';
+import LeaderboardSearch from './components/leaderboardFilters/Search';
+import LeaderboardFilters from './components/leaderboardFilters/Filters';
 
 export enum HEADER_STATE {
   TODAY = 'FASTEST OF TODAY',
@@ -21,11 +23,43 @@ export enum HEADER_STATE {
 const TABS = [HEADER_STATE.TODAY, HEADER_STATE.LEADERBOARD];
 const Leaderboard = () => {
   const [headerTab, setHeaderTab] = useState<number>(0);
+  const [requestState, setRequestState] = useState(PAGE_STATE.UNKNOWN);
   const [scoreVerifyPopup, setScoreVerifyPopup] = useState(false);
-  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+
   const [scores, setScores] = useState<{ player: t_userInfo; score: string }[]>(
     []
   );
+  const [searchName, setSearchName] = useState('');
+  const [sort, setSort] = useState('all');
+
+  const changeName = (value: string) => {
+    setSearchName(value);
+  };
+  const changeSort = (value: string) => {
+    setSort(value);
+  };
+  const resetState = () => {
+    setSearchName('');
+  };
+
+  const LeaderboardFiltersWrapper = () => {
+    return (
+      <div className="leaderboard-filters-wrapper-container">
+        <div style={headerTab == 0 ? { width: '100%' } : { width: '65%' }}>
+          <LeaderboardSearch
+            resetState={resetState}
+            changeHandler={changeName}
+            value={searchName}
+          />
+        </div>
+        {headerTab === 0 ? null : (
+          <div style={{ width: '35%' }}>
+            <LeaderboardFilters changeHandler={changeSort} value={sort} />
+          </div>
+        )}
+      </div>
+    );
+  };
   // const [click, setClick] = useState(false);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
@@ -47,25 +81,45 @@ const Leaderboard = () => {
   }, [scores]);
 
   useEffect(() => {
+    if (searchName.length > 2) {
+      const nwScores = [];
+      for (const score of scores) {
+        if (!score.player || !score.player.userName) continue;
+        if (score.player.userName.startsWith(searchName)) {
+          nwScores.push(score);
+        }
+      }
+      setScores(nwScores);
+    } else {
+      fetchScores();
+    }
+  }, [searchName]);
+  const fetchScores = () => {
+    setRequestState(PAGE_STATE.LOADING);
     const onAcceptGetScores = (response: AxiosResponse) => {
       if (response.status === 202) {
-        setPageState(PAGE_STATE.ACCEPTED);
+        setRequestState(PAGE_STATE.ACCEPTED);
         const newScores = response.data.data.map((score: any) => {
           return { player: score.code, score: score.score };
         });
         setScores(newScores);
       } else {
-        setPageState(PAGE_STATE.REJECTED);
+        setRequestState(PAGE_STATE.ACCEPTED);
       }
     };
     const onRejectGetScores = (error: any) => {
       console.log(error);
-      setPageState(PAGE_STATE.REJECTED);
+      setRequestState(PAGE_STATE.REJECTED);
     };
     getScores(onAcceptGetScores, onRejectGetScores, {
       scoreFilter: headerTab === 0 ? 'today' : '',
+      sort: sort,
     });
-  }, [headerTab]);
+  };
+
+  useEffect(() => {
+    fetchScores();
+  }, [headerTab, sort]);
 
   const updateTab = (index: number) => {
     setHeaderTab(index);
@@ -76,8 +130,8 @@ const Leaderboard = () => {
   const closeVerifyPopup = () => {
     setScoreVerifyPopup(false);
   };
-  if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />;
-  if (pageState === PAGE_STATE.REJECTED)
+
+  if (requestState === PAGE_STATE.REJECTED)
     return <span>Some error occurred try again later</span>;
   return (
     <div className="customer-leader-board-container">
@@ -91,12 +145,27 @@ const Leaderboard = () => {
           tabs={TABS}
           updateTab={updateTab}
         />
+        <LeaderboardFiltersWrapper />
       </div>
+
       <div className="customer-leader-board-users">
-        <LeaderboardUsers
-          // showScoreVerifyPopup={showVerifyPopup}
-          scores={scores}
-        />
+        {requestState === PAGE_STATE.LOADING ? (
+          <div
+            style={{
+              height: '60dvh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <ClipLoaderSmall />
+          </div>
+        ) : (
+          <LeaderboardUsers
+            // showScoreVerifyPopup={showVerifyPopup}
+            scores={scores}
+          />
+        )}
       </div>
     </div>
   );
