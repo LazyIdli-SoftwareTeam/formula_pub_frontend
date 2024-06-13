@@ -30,7 +30,7 @@ const Leaderboard = () => {
     []
   );
   const [searchName, setSearchName] = useState('');
-  const [sort, setSort] = useState('all');
+  const [sort, setSort] = useState('canada');
 
   const changeName = (value: string) => {
     setSearchName(value);
