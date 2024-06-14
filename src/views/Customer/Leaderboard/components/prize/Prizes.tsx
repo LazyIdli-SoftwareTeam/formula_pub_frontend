@@ -25,9 +25,11 @@ const Prizes: React.FC<{ click: boolean; setClick: any }> = ({
             </span>
           </div>
           <div className="prizes-for-today">
-            <span>Top 3 of the week</span>
-            <span>&</span>
-            <span>Fastest of the day</span>
+            <span>
+              Fastest of the week will get an Amazon Voucher worth ₹ 1,000/-
+            </span>
+            <span>2nd will get an Amazon Voucher worth ₹ 750/-</span>
+            <span>3rd will get an Amazon Voucher worth ₹ 500/-</span>
           </div>
         </div>
       </div>

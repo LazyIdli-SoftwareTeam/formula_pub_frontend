@@ -14,6 +14,7 @@ import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 import { io } from 'socket.io-client';
 import LeaderboardSearch from './components/leaderboardFilters/Search';
 import LeaderboardFilters from './components/leaderboardFilters/Filters';
+import Prizes from './components/prize/Prizes';
 
 export enum HEADER_STATE {
   TODAY = 'FASTEST OF TODAY',
@@ -60,7 +61,7 @@ const Leaderboard = () => {
       </div>
     );
   };
-  // const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
@@ -139,7 +140,7 @@ const Leaderboard = () => {
         <ScoreVerification closePopup={closeVerifyPopup} />
       ) : null}
       <div className="customer-leader-board-top">
-        {/* <Prizes click={click} setClick={setClick} /> */}
+        <Prizes click={click} setClick={setClick} />
         <LeaderboardHeader
           activeTabIndex={headerTab}
           tabs={TABS}
