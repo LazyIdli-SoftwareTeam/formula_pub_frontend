@@ -31,7 +31,7 @@ const Leaderboard = () => {
     []
   );
   const [searchName, setSearchName] = useState('');
-  const [sort, setSort] = useState('canada');
+  const [sort, setSort] = useState('Austrian');
 
   const changeName = (value: string) => {
     setSearchName(value);
@@ -114,7 +114,7 @@ const Leaderboard = () => {
     };
     getScores(onAcceptGetScores, onRejectGetScores, {
       scoreFilter: headerTab === 0 ? 'today' : '',
-      sort: sort,
+      sort: sort.toLowerCase(),
     });
   };
 

@@ -19,7 +19,7 @@ const LeaderboardSearch: React.FC<{
         onChange={(e) => {
           setLocalState(e.target.value);
         }}
-        placeholder="Search your name..."
+        placeholder="Search name"
         InputProps={{
           endAdornment: (
             <div

@@ -14,7 +14,7 @@ const Prizes: React.FC<{ click: boolean; setClick: any }> = ({
       <div className="prizes-popup-overlay-container">
         <div className="prize-popup-container">
           <div className="prize-popup-container-top-heading">
-            <span className="--head">Win exciting F1 collectables</span>
+            <span className="--head">Podium Winners</span>
             <span
               onClickCapture={() => {
                 setClick(false);
@@ -25,11 +25,9 @@ const Prizes: React.FC<{ click: boolean; setClick: any }> = ({
             </span>
           </div>
           <div className="prizes-for-today">
-            <span>
-              Fastest of the week will get an Amazon Voucher worth ₹ 1,000/-
-            </span>
-            <span>2nd will get an Amazon Voucher worth ₹ 750/-</span>
-            <span>3rd will get an Amazon Voucher worth ₹ 500/-</span>
+            <span>1st : Voucher worth ₹ 1,000/-</span>
+            <span>2nd : Voucher worth ₹ 750/-</span>
+            <span>3rd : Voucher worth ₹ 500/-</span>
           </div>
         </div>
       </div>

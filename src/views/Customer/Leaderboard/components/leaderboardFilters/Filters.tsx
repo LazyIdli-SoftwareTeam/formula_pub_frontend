@@ -1,6 +1,6 @@
 import { MenuItem, Select } from '@mui/material';
 
-const filters = ['monaco', 'imola', 'canada', 'all'];
+const filters = ['Austrian', 'Spanish','Canada', 'Monaco', 'Imola', 'All'];
 const LeaderboardFilters: React.FC<{
   changeHandler: (value: string) => void;
   value: string;
