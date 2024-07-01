@@ -1,6 +1,31 @@
 import { MenuItem, Select } from '@mui/material';
 
-const filters = ['Austrian', 'Spanish','Canada', 'Monaco', 'Imola', 'All'];
+const filters = [
+  {
+    name: 'SilverStone (British GP)',
+    value: 'British',
+  },
+  {
+    name: 'Austrian',
+    value: 'Austrian',
+  },
+  {
+    name: 'Canada',
+    value: 'Canada',
+  },
+  {
+    name: 'Monaco',
+    value: 'Monaco',
+  },
+  {
+    name: 'Imola',
+    value: 'Imola',
+  },
+  {
+    name: 'All',
+    value: 'All',
+  },
+];
 const LeaderboardFilters: React.FC<{
   changeHandler: (value: string) => void;
   value: string;
@@ -17,8 +42,8 @@ const LeaderboardFilters: React.FC<{
       size="small"
     >
       {filters.map((name) => (
-        <MenuItem key={name} value={name}>
-          {name}
+        <MenuItem key={name.value} value={name.value}>
+          {name.name}
         </MenuItem>
       ))}
     </Select>
