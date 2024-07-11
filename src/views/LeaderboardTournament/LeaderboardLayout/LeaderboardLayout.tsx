@@ -7,34 +7,47 @@ import './styles.css';
 import LeaderboardList from '../LeaderboardList/LeaderboardList';
 
 const LeaderboardLayout = () => {
-    const [mainPage, setMainPage] = useState(true);
-    const tracks = ['track1', 'track2', 'track3'];
+    const [mainPage, setMainPage] = useState(false);
+    const tracks = [
+        {
+            name: 'British GP',
+            value: 'track1',
+        },
+        {
+            name: 'Hungarian GP',
+            value: 'track2',
+        },
+        {
+            name: 'Belgium GP',
+            value: 'track3',
+        },
+    ];
     const [index, setIndex] = useState(0);
-    useEffect(() => {
-        let id: any;
-        if (mainPage) {
-            id = setTimeout(() => {
-                setMainPage(false);
-                setIndex(0);
-            }, 10000);
-        } else {
-            id = setTimeout(() => {
-                setIndex(index + 1);
-                if (index >= 2) {
-                    setMainPage(true);
-                    setIndex(0);
-                }
-            }, 5000);
-        }
-        return () => {
-            clearTimeout(id);
-        };
-    }, [mainPage, index]);
+    // useEffect(() => {
+    //     let id: any;
+    //     if (mainPage) {
+    //         id = setTimeout(() => {
+    //             setMainPage(false);
+    //             setIndex(0);
+    //         }, 20000);
+    //     } else {
+    //         id = setTimeout(() => {
+    //             setIndex(index + 1);
+    //             if (index >= 2) {
+    //                 setMainPage(true);
+    //                 setIndex(0);
+    //             }
+    //         }, 10000);
+    //     }
+    //     return () => {
+    //         clearTimeout(id);
+    //     };
+    // }, [mainPage, index]);
 
     useEffect(() => {
-        console.log(mainPage); 
+        console.log(mainPage);
         console.log(index);
-    }, [index, mainPage])
+    }, [index, mainPage]);
     return (
         <div className="leader-board-layout-container">
             <div className="leader-board-top-container"></div>

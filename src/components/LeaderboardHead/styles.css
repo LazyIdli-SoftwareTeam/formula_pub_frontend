@@ -34,6 +34,16 @@
     display: flex;
 }
 
+.leader-board-head-container .--track1 {
+    color: #1cb1d9;
+}
+.leader-board-head-container .--track2 {
+    color: #f8990b
+}
+.leader-board-head-container .--track3 {
+    color: #00CD5E
+}
+
 .leader-board-head-container .--total-score {
     width: 18%;
 }

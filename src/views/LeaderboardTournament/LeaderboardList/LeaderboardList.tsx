@@ -84,7 +84,7 @@ const LeaderboardList = () => {
                 click here
             </button> */}
             <div className="leader-board-top-heading">
-                <LeaderboardHeading heading="Some heading" />
+                <LeaderboardHeading heading="Tournament Leaderboard" />
             </div>
             <div className="leader-board-list-scores-container">
                 <LeaderboardHead />

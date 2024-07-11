@@ -37,7 +37,7 @@
 
 .leader-board-heading-container .left-lines {
   display: flex;
-  width: 28%;
+  width: 20%;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +45,7 @@
 
 .leader-board-heading-container .right-lines {
   display: flex;
-  width: 28%;
+  width: 20%;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;

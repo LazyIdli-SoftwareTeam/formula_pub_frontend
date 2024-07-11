@@ -8,6 +8,29 @@ const LeaderboardRow: React.FC<{
     score: any;
     entered?: boolean;
 }> = ({ index, style, score, entered }) => {
+    const getScore = (track: string, pos: string) => {
+        if (score[track] && score[track].score) {
+            return (
+                <span>
+                    {score[track].score.score}{' '}
+                    <span
+                        style={{
+                            color:
+                                track === 'track1'
+                                    ? '#1cb1d9'
+                                    : track === 'track2'
+                                    ? '#f8990b'
+                                    : '#00CD5E',
+                        }}
+                    >
+                        ({score[pos]})
+                    </span>
+                </span>
+            );
+        } else {
+            return 'DNF';
+        }
+    };
     return (
         <div
             style={style}
@@ -23,14 +46,13 @@ const LeaderboardRow: React.FC<{
                 {score.totalScore === 100000 ? '_' : score.totalScore}
             </div>
             <div className="--score --track1">
-                {(score?.track1?.score?.score + '(' + (score.posTrack1) + ')') || 'DNF'}
+                {getScore('track1', 'posTrack1')}
             </div>
             <div className="--score --track2">
-                {' '}
-                {score?.track2?.score?.score + '(' + (score.posTrack2) + ')' || 'DNF'}
+                {getScore('track2', 'posTrack2')}
             </div>
             <div className="--score --track3">
-                {score?.track3?.score?.score + '(' + (score.posTrack3) + ')' || 'DNF'}
+                {getScore('track3', 'posTrack3')}
             </div>
         </div>
     );

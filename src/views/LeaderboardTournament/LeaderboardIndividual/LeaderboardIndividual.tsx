@@ -11,7 +11,9 @@ import { getScores } from '../../../api/scores';
 import LeaderboardIndividualCards from '../../../components/LeaderboardIndividualCard/LeadeboardIndividualCards';
 // const BORDER= '1px solid #009db5'
 
-const LeaderboardIndividual: React.FC<{ mapType: string }> = ({ mapType }) => {
+const LeaderboardIndividual: React.FC<{
+    mapType: { name: string; value: string };
+}> = ({ mapType }) => {
     const [scores, setScores] = useState<any>([]);
     const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
     const getScoresMap = () => {
@@ -29,7 +31,7 @@ const LeaderboardIndividual: React.FC<{ mapType: string }> = ({ mapType }) => {
         const onReject = () => {
             setPageState(PAGE_STATE.REJECTED);
         };
-        getScores(onAccept, onReject, { mapType: mapType });
+        getScores(onAccept, onReject, { mapType: mapType.value });
     };
     useEffect(() => {
         getScoresMap();
@@ -40,7 +42,7 @@ const LeaderboardIndividual: React.FC<{ mapType: string }> = ({ mapType }) => {
     return (
         <div className="leader-board-list-container">
             <div className="leader-board-top-heading">
-                <LeaderboardHeading heading={mapType} />
+                <LeaderboardHeading heading={mapType.name} />
             </div>
             <div className="leader-board-list-scores-container">
                 <LeaderboardIndividualHeader />
