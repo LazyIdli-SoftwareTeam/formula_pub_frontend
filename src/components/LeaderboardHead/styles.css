@@ -1,0 +1,73 @@
+.leader-board-head-container {
+    display: flex;
+    height: 4.76%;
+    font-weight: 700;
+    font-size: 20px;
+    align-items: center;
+    border-radius: 4px;
+    background: radial-gradient(
+            56.74% 76.71% at 48.59% 19.18%,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.8) 100%
+        )
+        /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+
+.leader-board-head-container div {
+    color: #ff9900;
+}
+.leader-board-head-container .--index {
+    width: 5%;
+    justify-content: center;
+    display: flex;
+}
+
+.leader-board-head-container .--name {
+    width: 23%;
+    justify-content: center;
+    display: flex;
+}
+
+.leader-board-head-container .--score {
+    width: 18%;
+    justify-content: center;
+    display: flex;
+}
+
+.leader-board-head-container .--total-score {
+    width: 18%;
+}
+
+.leader-board-header-individual-container {
+    display: flex;
+    height: 4.76%;
+    font-weight: 700;
+    font-size: 20px;
+    align-items: center;
+    border-radius: 4px;
+    background: radial-gradient(
+        56.74% 76.71% at 48.59% 19.18%,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    gap: 1%;
+}
+
+.leader-board-header-individual-container div {
+    color: #ff9900;
+}
+
+.leader-board-header-individual-container .--index {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.leader-board-header-individual-container .--name {
+    width: 72%;
+}
+
+.leader-board-header-individual-container .--score {
+    width: 20%;
+    justify-content: center;
+}

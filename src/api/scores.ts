@@ -6,7 +6,9 @@ import { getQueryParams } from './query';
 export const getScores = async (
   onAccept: (response: AxiosResponse) => void,
   onReject: (e: any) => void, 
-  data:  any
+  data:  {
+    mapType: string; 
+  }
 ) => {
   const { branchId, eventId } = getQueryParams(onReject);
   try {

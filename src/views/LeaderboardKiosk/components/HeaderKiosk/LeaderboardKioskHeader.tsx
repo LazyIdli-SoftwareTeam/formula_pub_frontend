@@ -6,9 +6,9 @@ import './LeaderboardKioskHeader.css';
 import { LeaderboardKioskRaceQueue } from '../LeaderboardKioskRaceQueue/LeaderboardkioskRaceQueue';
 import { LeaderboardKioskFastestHeader } from '../LeaderBoardFatestScore/newanimation';
 import React, { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
-import { getScores } from '../../../../api/scores';
-import { FullScreenLoader } from '../../../../components/loader/CustomLoader';
+// import { AxiosResponse } from 'axios';
+// import { getScores } from '../../../../api/scores';
+// import { FullScreenLoader } from '../../../../components/loader/CustomLoader';
 export enum PAGE_STATE {
   REJECTED,
   ACCEPTED,
@@ -18,34 +18,34 @@ export enum PAGE_STATE {
 export const LeaderboardkioskMainpage: React.FC<{ heading?: string }> = ({
   heading = 'LEADERBOARD',
 }) => {
-  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+  // const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const onAcceptGetScores = (response: AxiosResponse) => {
-      if (response.status === 202) {
-        setPageState(PAGE_STATE.ACCEPTED);
-        const newScores = response.data.data.map((score: any) => {
-          return { ...score.code, score: score.score };
-        });
-        setUsers(newScores);
-      } else {
-        setPageState(PAGE_STATE.REJECTED);
-      }
-    };
-    const onRejectGetScores = (error: any) => {
-      console.log(error);
-      setPageState(PAGE_STATE.REJECTED);
-    };
-    setPageState(PAGE_STATE.LOADING);
-    getScores(onAcceptGetScores, onRejectGetScores, {
-      scoreFilter: heading === 'FASTEST OF TODAY' ? 'today' : '',
-    });
+    // const onAcceptGetScores = (response: AxiosResponse) => {
+    //   if (response.status === 202) {
+    //     setPageState(PAGE_STATE.ACCEPTED);
+    //     const newScores = response.data.data.map((score: any) => {
+    //       return { ...score.code, score: score.score };
+    //     });
+    //     setUsers(newScores);
+    //   } else {
+    //     setPageState(PAGE_STATE.REJECTED);
+    //   }
+    // };
+    // const onRejectGetScores = (error: any) => {
+    //   console.log(error);
+    //   setPageState(PAGE_STATE.REJECTED);
+    // };
+    // setPageState(PAGE_STATE.LOADING);
+    // getScores(onAcceptGetScores, onRejectGetScores, {
+      
+    // });
   }, [heading]);
   useEffect(() => {
     console.log(users);
   }, [users])
-  if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />;
+  // if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />;
   return (
     <div className="leader-board-kiosk-global-container">
       <div className="leader-board-kiosk-header">

@@ -1,0 +1,58 @@
+.leader-board-row-container {
+  display: flex;
+  height: calc(100% / 20);
+  background: linear-gradient(
+    98.39deg,
+    #000000 6.42%,
+    rgba(0, 0, 0, 0.5) 93.58%
+  );
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom-right-radius: 60px;
+
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+}
+
+.leader-board-row-container .--index {
+  width: 5%;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  flex-shrink: 0;
+  display: flex;
+  background: var(--Teho-White, #f4f4f4);
+  border-bottom-right-radius: 10px;
+}
+
+.leader-board-row-container .--name {
+  width: 23%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.leader-board-row-container .--score {
+  width: 18%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.leader-board-row-container .--total-score {
+  width: 18%;
+  align-items: center;
+}
+
+
+.leader-board-enter {
+  animation: identifier 3s 1 linear;
+}
+
+@keyframes identifier {
+  0% {
+    transform: translateX(1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

@@ -1,0 +1,36 @@
+.leader-board-individual-card-container {
+    display: flex;
+    height: calc(100% / 20);
+    background: linear-gradient(
+        98.39deg,
+        #000000 6.42%,
+        rgba(0, 0, 0, 0.5) 93.58%
+    );
+    font-size: 18px;
+    gap: 1%;
+    font-weight: 700;
+    border-bottom-right-radius: 60px;
+}
+
+.leader-board-individual-card-container .--index {
+    justify-content: center;
+    display: flex;
+    width: 5%;
+    justify-content: center;
+    color: black;
+    align-items: center;
+    display: flex;
+    background: var(--Teho-White, #f4f4f4);
+    border-bottom-right-radius: 10px;
+}
+.leader-board-individual-card-container .--name {
+    width: 72%;
+    align-items: center;
+    display: flex;
+}
+
+.leader-board-individual-card-container .--score {
+    width: 20%;
+    align-items: center;
+    display: flex;
+}

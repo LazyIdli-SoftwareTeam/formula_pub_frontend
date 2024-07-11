@@ -216,7 +216,7 @@ const LeaderboardKioskUsers: React.FC<{
     useState<t_userInfoKiosk[]>(users);
   const newEntryRef = useRef<HTMLDivElement>(null);
   // const total = 5000;
-  const prize = 'F1 Collectable';
+  const prize = '';
   const getPrizes = (index: number) => {
     if (heading === 'FASTEST OF TODAY' && index === 0) {
       return prize;

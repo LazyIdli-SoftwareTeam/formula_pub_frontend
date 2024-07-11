@@ -1,0 +1,29 @@
+.leader-board-list-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.leader-board-list-container .leader-board-top-heading {
+  font-size: 32px;
+  color: white;
+  height: 70px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    98.39deg,
+    #000000 6.42%,
+    rgba(0, 0, 0, 0.5) 93.58%
+  );
+}
+
+.leader-board-list-scores-container {
+  display: flex;
+  gap: 1%;
+  flex-direction: column;
+  padding: 20px;
+  background: url('/image 65.png') no-repeat;
+  background-position: top;
+  background-size: cover;
+  height: calc(100% - 70px);
+}

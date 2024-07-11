@@ -1,0 +1,9 @@
+.leader-board-footer-container {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}

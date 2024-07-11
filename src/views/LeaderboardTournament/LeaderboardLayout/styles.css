@@ -1,0 +1,20 @@
+.leader-board-layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.leader-board-layout-container .leader-board-top-container {
+  height: 70px;
+  background: var(--Teho-Black, #181818);
+
+}
+
+.leader-board-layout-container .leader-board-content-container {
+  height: calc(100dvh - 70px - 70px);
+}
+
+.leader-board-layout-container .leader-board-footer-container {
+  height: 70px;
+  background: var(--Teho-Black, #181818);
+}
