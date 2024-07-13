@@ -2,7 +2,19 @@ import { MenuItem, Select } from '@mui/material';
 
 const filters = [
   {
-    name: 'SilverStone (British GP)',
+    name: 'British GP',
+    value: 'track1',
+  },
+  {
+    name: 'Hungarian GP',
+    value: 'track2',
+  },
+  {
+    name: 'Belgium GP',
+    value: 'track3',
+  },
+  {
+    name: 'SilverStone',
     value: 'British',
   },
   {

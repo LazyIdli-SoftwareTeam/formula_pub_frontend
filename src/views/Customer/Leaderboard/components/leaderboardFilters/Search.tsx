@@ -27,7 +27,7 @@ const LeaderboardSearch: React.FC<{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
-                paddingLeft: '6px'
+                paddingLeft: '6px',
               }}
             >
               <span

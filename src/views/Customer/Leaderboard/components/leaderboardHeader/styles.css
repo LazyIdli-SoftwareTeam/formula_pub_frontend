@@ -10,9 +10,12 @@
   );
   padding: 12px 10px;
   border-radius: 8px;
+  text-align: center;
+  justify-content: center;
 }
 
 .customer-leader-board-header .--txt {
   font-weight: 800;
   font-size: 16px;
+  text-align: center;
 }

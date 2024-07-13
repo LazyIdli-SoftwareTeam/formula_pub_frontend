@@ -1,5 +1,5 @@
-export const ENDPOINT = 'https://onboardbackend.projectteho.com/api';
-// export const ENDPOINT = 'http://192.168.8.159:8080/api';
+// export const ENDPOINT = 'https://onboardbackend.projectteho.com/api';
+export const ENDPOINT = 'http://192.168.9.255:8080/api';
 
 export const SOCKET_ENDPOINT = 'https://onboardbackend.projectteho.com';
 export const GET_COMBOS = '/combo/combos';

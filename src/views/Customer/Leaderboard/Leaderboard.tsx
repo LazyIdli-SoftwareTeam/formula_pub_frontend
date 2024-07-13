@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 // import Prizes from './components/prize/Prizes';
@@ -23,7 +24,7 @@ export enum HEADER_STATE {
 
 const TABS = [HEADER_STATE.TODAY, HEADER_STATE.LEADERBOARD];
 const Leaderboard = () => {
-  const [headerTab, setHeaderTab] = useState<number>(0);
+  const [headerTab, setHeaderTab] = useState<number>(1);
   const [requestState, setRequestState] = useState(PAGE_STATE.UNKNOWN);
   const [scoreVerifyPopup, setScoreVerifyPopup] = useState(false);
 
@@ -122,9 +123,9 @@ const Leaderboard = () => {
     fetchScores();
   }, [headerTab, sort]);
 
-  const updateTab = (index: number) => {
-    setHeaderTab(index);
-  };
+  // const updateTab = (index: number) => {
+  //   setHeaderTab(index);
+  // };
   // const showVerifyPopup = () => {
   //   setScoreVerifyPopup(true);
   // };
@@ -144,7 +145,7 @@ const Leaderboard = () => {
         <LeaderboardHeader
           activeTabIndex={headerTab}
           tabs={TABS}
-          updateTab={updateTab}
+          // updateTab={updateTab}
         />
         <LeaderboardFiltersWrapper />
       </div>

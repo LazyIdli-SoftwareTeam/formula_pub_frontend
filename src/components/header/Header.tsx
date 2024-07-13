@@ -299,9 +299,9 @@ const HeaderTab: React.FC<{
         <span onClick={() => changeTab(Tab.BUY)}>
           <MidFullActiveSvg text="REGISTER" />
         </span>,
-        <span onClick={() => changeTab(Tab.QUEUE)}>
-          <RightArrowSvg text="RACE" />
-        </span>,
+        // <span onClick={() => changeTab(Tab.QUEUE)}>
+        //   <RightArrowSvg text="RACE" />
+        // </span>,
         <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <RightArrowSvg text="WIN" />
         </span>,
@@ -314,9 +314,9 @@ const HeaderTab: React.FC<{
         >
           <LeftArrowSvg text="REGISTER" />
         </span>,
-        <span onClick={() => changeTab(Tab.QUEUE)}>
-          <MidFullActiveSvg text="RACE" />
-        </span>,
+        // <span onClick={() => changeTab(Tab.QUEUE)}>
+        //   <MidFullActiveSvg text="RACE" />
+        // </span>,
         <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <RightArrowSvg text="WIN" />
         </span>,
@@ -329,9 +329,9 @@ const HeaderTab: React.FC<{
         >
           <MidFullSvg text="REGISTER" />
         </span>,
-        <span onClick={() => changeTab(Tab.QUEUE)}>
-          <MidCutSvg text="RACE" />
-        </span>,
+        // <span onClick={() => changeTab(Tab.QUEUE)}>
+        //   <MidCutSvg text="RACE" />
+        // </span>,
         <span onClick={() => changeTab(Tab.LEADERBOARD)}>
           <MidFullActiveSvg text="WIN" />
         </span>,
