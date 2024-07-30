@@ -2,7 +2,8 @@ import React from 'react';
 import './styles.css';
 const LeaderboardHeading: React.FC<{
     heading: string;
-}> = ({ heading }) => {
+    width?: string 
+}> = ({ heading, width }) => {
     return (
         <div className="leader-board-heading-container">
             <div className="left-lines">
@@ -10,7 +11,7 @@ const LeaderboardHeading: React.FC<{
                 <div className="line line2"></div>
                 <div className="line line3"></div>
             </div>
-            <div className="leader-board-heading">
+            <div style={{ width: width }}  className="leader-board-heading">
                 <span>{heading}</span>
             </div>
             <div className="right-lines">

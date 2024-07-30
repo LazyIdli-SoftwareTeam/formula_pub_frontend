@@ -1,0 +1,12 @@
+.leader-board-poster-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100%;
+}
+.leader-board-poster-container img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}

@@ -12,50 +12,49 @@ import LeaderboardIndividualCards from '../../../components/LeaderboardIndividua
 // const BORDER= '1px solid #009db5'
 
 const LeaderboardIndividual: React.FC<{
-    mapType: { name: string; value: string };
+  mapType: { name: string; value: string };
 }> = ({ mapType }) => {
-    const [scores, setScores] = useState<any>([]);
-    const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
-    const getScoresMap = () => {
-        setPageState(PAGE_STATE.LOADING);
-        const onAccept = (response: any) => {
-            console.log(response);
-            if (response.status === HttpStatusCode.Accepted) {
-                setPageState(PAGE_STATE.ACCEPTED);
-                setScores(response.data.data);
-                console.log(response);
-            } else {
-                setPageState(PAGE_STATE.REJECTED);
-            }
-        };
-        const onReject = () => {
-            setPageState(PAGE_STATE.REJECTED);
-        };
-        getScores(onAccept, onReject, { mapType: mapType.value });
+  const [scores, setScores] = useState<any>([]);
+  const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+  const getScoresMap = () => {
+    setPageState(PAGE_STATE.LOADING);
+    const onAccept = (response: any) => {
+      if (response.status === HttpStatusCode.Accepted) {
+        setPageState(PAGE_STATE.ACCEPTED);
+        setScores(response.data.data);
+        console.log(response);
+      } else {
+        setPageState(PAGE_STATE.REJECTED);
+      }
     };
-    useEffect(() => {
-        getScoresMap();
-    }, [mapType]);
-    if (pageState === PAGE_STATE.LOADING) return <CustomLoader />;
-    if (pageState === PAGE_STATE.REJECTED)
-        return <span>Some error occurred try again later</span>;
-    return (
-        <div className="leader-board-list-container">
-            <div className="leader-board-top-heading">
-                <LeaderboardHeading heading={mapType.name} />
-            </div>
-            <div className="leader-board-list-scores-container">
-                <LeaderboardIndividualHeader />
-                {scores.map((score: any, i: number) => (
-                    <LeaderboardIndividualCards
-                        name={score.code.userName}
-                        key={i}
-                        score={score.score}
-                        index={i}
-                    />
-                ))}
-            </div>
-        </div>
-    );
+    const onReject = () => {
+      setPageState(PAGE_STATE.REJECTED);
+    };
+    getScores(onAccept, onReject, { mapType: mapType.value });
+  };
+  useEffect(() => {
+    getScoresMap();
+  }, [mapType]);
+  if (pageState === PAGE_STATE.LOADING) return <CustomLoader />;
+  if (pageState === PAGE_STATE.REJECTED)
+    return <span>Some error occurred try again later</span>;
+  return (
+    <div className="leader-board-list-container">
+      <div className="leader-board-top-heading">
+        <LeaderboardHeading heading={mapType.name}/>
+      </div>
+      <div className="leader-board-list-scores-container">
+        <LeaderboardIndividualHeader />
+        {scores.map((score: any, i: number) => (
+          <LeaderboardIndividualCards
+            name={score.code.userName}
+            key={i}
+            score={score.score}
+            index={i}
+          />
+        ))}
+      </div>
+    </div>
+  );
 };
 export default LeaderboardIndividual;
