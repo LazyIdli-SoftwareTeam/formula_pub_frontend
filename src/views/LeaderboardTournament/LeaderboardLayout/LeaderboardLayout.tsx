@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
-import LeaderboardFooter from '../../../components/LeaderboardFooter/LeaderboardFooter';
 import LeaderboardIndividual from '../LeaderboardIndividual/LeaderboardIndividual';
 // import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import './styles.css';
 import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import LeaderboardPosters from '../../../components/LeaderboardPosters/LeaderboardPoster';
+import Nav from '../../../components/Nav/Nav';
 
 const LeaderboardLayout = () => {
     const [mainPage, setMainPage] = useState(true);
@@ -50,16 +50,15 @@ const LeaderboardLayout = () => {
 
     return (
         <div className="leader-board-layout-container">
-            <div className="leader-board-top-container"></div>
+            <div className="leader-board-top-container">
+                <Nav />
+            </div>
             <div className="leader-board-content-container">
                 {!mainPage ? (
                     <LeaderboardIndividual mapType={tracks[index]} />
                 ) : (
                     <LeaderboardList />
                 )}
-            </div>
-            <div className="leader-board-footer-container">
-                <LeaderboardFooter />
             </div>
         </div>
     );

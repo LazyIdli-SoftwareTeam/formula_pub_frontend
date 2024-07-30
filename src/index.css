@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: formula_pub;
+  font-weight: normal;
+  src: url(/Users/lazyidlidev01/Desktop/formula_pub/formula_pub_lb/src/assets/font/Formula1-Regular_web_0.ttf);
+}
+
+
+@font-face {
+  font-family: formula_pub;
+  font-weight: bolder;
+  src: url(/Users/lazyidlidev01/Desktop/formula_pub/formula_pub_lb/src/assets/font/Formula1-Bold_web_0.ttf);
+}
+
+
+
 :root {
   --teho-black-color: #181818;
   --teho-white-color: #f4f4f4;
@@ -16,9 +31,7 @@
 
 body {
   background-color: var(--teho-black-color);
-
-  font-family: 'Inter';
-
+  font-family: 'formula_pub', 'Inter';
   color: var(--teho-white-color);
 }
 

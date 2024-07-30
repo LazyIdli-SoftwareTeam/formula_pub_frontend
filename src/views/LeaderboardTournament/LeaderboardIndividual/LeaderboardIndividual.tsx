@@ -41,18 +41,20 @@ const LeaderboardIndividual: React.FC<{
   return (
     <div className="leader-board-list-container">
       <div className="leader-board-top-heading">
-        <LeaderboardHeading heading={mapType.name}/>
+        <LeaderboardHeading heading={mapType.name} />
       </div>
       <div className="leader-board-list-scores-container">
         <LeaderboardIndividualHeader />
-        {scores.map((score: any, i: number) => (
-          <LeaderboardIndividualCards
-            name={score.code.userName}
-            key={i}
-            score={score.score}
-            index={i}
-          />
-        ))}
+        <div className="--scores">
+          {scores.map((score: any, i: number) => (
+            <LeaderboardIndividualCards
+              name={score.code.userName}
+              key={i}
+              score={score.score}
+              index={i}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

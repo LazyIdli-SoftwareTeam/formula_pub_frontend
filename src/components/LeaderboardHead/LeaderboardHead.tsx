@@ -1,12 +1,11 @@
 import './styles.css';
-import { FaTrophy } from 'react-icons/fa6';
 
 const LeaderboardHead = () => {
     return (
         <div className="leader-board-head-container">
             <div className="--index">
                 <span>
-                    <FaTrophy />
+                    POS
                 </span>
             </div>
             <div className="--name">
@@ -33,8 +32,8 @@ export const LeaderboardIndividualHeader = () => {
     return (
         <div className="leader-board-header-individual-container">
             <div className="--index">
-                <span>
-                    <FaTrophy />
+            <span>
+                    POS
                 </span>
             </div>
             <div className="--name">

@@ -20,10 +20,33 @@
 .leader-board-list-scores-container {
   display: flex;
   gap: 1%;
+  position: relative;
   flex-direction: column;
-  padding: 20px;
-  background: url('/image 65.png') no-repeat;
+  position: relative;
   background-position: top;
   background-size: cover;
   height: calc(100% - 70px);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.55);
+}
+.leader-board-list-scores-container::before { 
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: url('/image 67 (2).png') no-repeat;
+  background-position: top;
+  background-size: cover;
+  filter: blur(10px);
+  z-index: -1;
+  top: 0;
+}
+
+
+.leader-board-list-scores-container .--scores {
+  height: calc(100% - 4.76%);
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 10px;
 }

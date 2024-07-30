@@ -1,16 +1,26 @@
 .leader-board-row-container {
   display: flex;
-  height: calc(100% / 20);
-  background: linear-gradient(
-    98.39deg,
-    #000000 6.42%,
-    rgba(0, 0, 0, 0.5) 93.58%
-  );
+  height: 90%;
   font-size: 18px;
   font-weight: 700;
-  border-bottom-right-radius: 60px;
+  background-color: #141414;
+  border-top-left-radius: 22px;
 
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+}
+
+.leader-board-row-overlay {
+  display: flex;
+  flex-direction: column;
+  height: calc((100% / 20));
+}
+.leader-board-line {
+  height: 10%;
+  border: 1px solid #7f7f7f;
+  width: 95%;
+  border-top: 0;
+  align-items: center;
+  align-self: center;
 }
 
 .leader-board-row-container .--index {
@@ -20,8 +30,67 @@
   align-items: center;
   flex-shrink: 0;
   display: flex;
-  background: var(--Teho-White, #f4f4f4);
   border-bottom-right-radius: 10px;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.--winning-index {
+  border-radius: 17px 0px;
+  transform: scaleY(1.05) scaleX(1.05);
+  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.--index-one {
+  color: white;
+  background: var(
+    --gold-number,
+    linear-gradient(
+      90deg,
+      #b07904 0%,
+      #f4c408 14%,
+      #c68b03 28%,
+      #ac7500 46%,
+      #a36c05 64%,
+      #dea609 84%,
+      #f5c80b 100%
+    )
+  );
+}
+
+.--index-two {
+  color: black !important;
+  background: var(
+    --silver-number,
+    linear-gradient(
+      90deg,
+      #b6b4b5 0%,
+      #d4d0cf 16.67%,
+      #e7e6e6 33.33%,
+      #bfc0c2 50%,
+      #c4c5c7 66.67%,
+      #bfc0c2 83.33%,
+      #f0f0f0 100%
+    )
+  );
+}
+
+.--index-three {
+  color: white;
+  background: var(
+    --bronze-number,
+    linear-gradient(
+      90deg,
+      #974e27 0%,
+      #7d3e1c 16.67%,
+      #a8582c 33.33%,
+      #db7f50 50%,
+      #b7592b 66.67%,
+      #c56434 83.33%,
+      #cb7346 100%
+    )
+  );
 }
 
 .leader-board-row-container .--name {
@@ -29,10 +98,14 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  font-weight: 14px;
+  font-weight: 500;
 }
 
 .leader-board-row-container .--score {
   width: 18%;
+  font-size: 14px;
+  font-weight: 500;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -42,7 +115,6 @@
   width: 18%;
   align-items: center;
 }
-
 
 .leader-board-enter {
   animation: identifier 3s 1 linear;

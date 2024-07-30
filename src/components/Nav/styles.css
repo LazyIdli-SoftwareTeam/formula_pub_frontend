@@ -1,0 +1,7 @@
+.tournament-leader-board-nav-container {
+    display: flex;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+    padding-right: 12px;
+}

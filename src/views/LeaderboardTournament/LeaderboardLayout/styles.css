@@ -11,7 +11,7 @@
 }
 
 .leader-board-layout-container .leader-board-content-container {
-  height: calc(100dvh - 70px - 70px);
+  height: calc(100dvh - 70px);
 }
 
 .leader-board-layout-container .leader-board-footer-container {
