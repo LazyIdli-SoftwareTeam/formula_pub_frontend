@@ -12,12 +12,12 @@
       rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0.8) 100%
     )
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
 
 .leader-board-head-container div {
   color: white;
   font-weight: 500;
+
 }
 .leader-board-head-container .--index {
   width: 5%;
@@ -27,7 +27,9 @@
 
 .leader-board-head-container .--name {
   width: 23%;
-  justify-content: center;
+  justify-content: start;
+  padding-left: 15px;
+
   display: flex;
 }
 
@@ -70,10 +72,12 @@
 
 .leader-board-header-individual-container .--name {
   width: 70%;
+  padding-left: 5%;
 }
 
 .leader-board-header-individual-container .--score {
   width: 20%;
+  padding-right: 5%;
   justify-content: center;
   text-align: center;
 }

@@ -8,7 +8,7 @@ import LeaderboardPosters from '../../../components/LeaderboardPosters/Leaderboa
 import Nav from '../../../components/Nav/Nav';
 
 const LeaderboardLayout = () => {
-    const [mainPage, setMainPage] = useState(true);
+    const [mainPage, setMainPage] = useState(false);
     const tracks = [
         {
             name: 'British GP',
@@ -23,7 +23,7 @@ const LeaderboardLayout = () => {
             value: 'track3',
         },
     ];
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(3);
     useEffect(() => {
         let id: any;
         if (mainPage) {

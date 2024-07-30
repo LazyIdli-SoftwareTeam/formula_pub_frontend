@@ -1,7 +1,10 @@
 // export const ENDPOINT = 'https://onboardbackend.projectteho.com/api';
-export const ENDPOINT = 'http://localhost:8080/api';
+// export const ENDPOINT = 'http://localhost:8080/api';
+export const ENDPOINT = 'http://3.110.88.80:8080/api';
 // export const SOCKET_ENDPOINT = 'https://onboardbackend.projectteho.com';
-export const SOCKET_ENDPOINT = 'http://localhost:8080';
+// export const SOCKET_ENDPOINT = 'http://localhost:8080';
+export const SOCKET_ENDPOINT = 'http://3.110.88.80:8080/';
+
 
 export const GET_COMBOS = '/combo/combos';
 export const REGISTER_HOST = '/player/registerHost';

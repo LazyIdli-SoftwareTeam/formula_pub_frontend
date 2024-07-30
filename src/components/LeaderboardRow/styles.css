@@ -30,6 +30,7 @@
   align-items: center;
   flex-shrink: 0;
   display: flex;
+
   border-bottom-right-radius: 10px;
   color: white;
   font-size: 24px;
@@ -95,9 +96,10 @@
 
 .leader-board-row-container .--name {
   width: 23%;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   display: flex;
+  padding-left: 15px;
   font-weight: 14px;
   font-weight: 500;
 }
