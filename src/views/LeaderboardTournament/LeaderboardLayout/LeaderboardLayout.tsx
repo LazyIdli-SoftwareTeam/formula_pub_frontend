@@ -8,7 +8,7 @@ import LeaderboardPosters from '../../../components/LeaderboardPosters/Leaderboa
 import Nav from '../../../components/Nav/Nav';
 
 const LeaderboardLayout = () => {
-    const [mainPage, setMainPage] = useState(false);
+    const [mainPage, setMainPage] = useState(true);
     const tracks = [
         {
             name: 'British GP',
@@ -23,27 +23,27 @@ const LeaderboardLayout = () => {
             value: 'track3',
         },
     ];
-    const [index, setIndex] = useState(3);
-    useEffect(() => {
-        let id: any;
-        if (mainPage) {
-            id = setTimeout(() => {
-                setMainPage(false);
-                setIndex(0);
-            }, 20000);
-        } else {
-            id = setTimeout(() => {
-                setIndex(index + 1);
-                if (index >= 4) {
-                    setMainPage(true);
-                    setIndex(0);
-                }
-            }, 10000);
-        }
-        return () => {
-            clearTimeout(id);
-        };
-    }, [mainPage, index]);
+    const [index, setIndex] = useState(0);
+    // useEffect(() => {
+    //     let id: any;
+    //     if (mainPage) {
+    //         id = setTimeout(() => {
+    //             setMainPage(false);
+    //             setIndex(0);
+    //         }, 20000);
+    //     } else {
+    //         id = setTimeout(() => {
+    //             setIndex(index + 1);
+    //             if (index >= 4) {
+    //                 setMainPage(true);
+    //                 setIndex(0);
+    //             }
+    //         }, 10000);
+    //     }
+    //     return () => {
+    //         clearTimeout(id);
+    //     };
+    // }, [mainPage, index]);
     if (index > 2) { 
         return <LeaderboardPosters index={index} /> 
     }

@@ -5,6 +5,8 @@
   font-weight: 700;
   background-color: #141414;
   border-top-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+
 
   /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
 }
@@ -20,6 +22,8 @@
   width: 95%;
   border-top: 0;
   align-items: center;
+  border-bottom-right-radius: 10px;
+
   align-self: center;
 }
 
@@ -100,13 +104,13 @@
   align-items: center;
   display: flex;
   padding-left: 15px;
-  font-weight: 14px;
+  font-weight: 18px;
   font-weight: 500;
 }
 
 .leader-board-row-container .--score {
   width: 18%;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   justify-content: center;
   display: flex;
@@ -115,6 +119,8 @@
 
 .leader-board-row-container .--total-score {
   width: 18%;
+  color: #1cb1d9;
+  font-size: 20px;
   align-items: center;
 }
 

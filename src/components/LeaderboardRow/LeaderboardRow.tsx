@@ -3,21 +3,20 @@ import React from 'react';
 import './styles.css';
 
 export const getClassName = (index: number, indexVal: boolean) => {
-    let general = '--index ' 
-    general +=  indexVal ? '--winning-index ' : '';
-    if (index == 0) {
-      general += '--index-one';
-    } else if (index === 1) {
-      general += '--index-two';
-    } else if (index === 2) {
-      general += '--index-three';
-    }
-    return general;
-  };
+  let general = '--index ';
+  general += indexVal ? '--winning-index ' : '';
+  if (index == 0) {
+    general += '--index-one';
+  } else if (index === 1) {
+    general += '--index-two';
+  } else if (index === 2) {
+    general += '--index-three';
+  }
+  return general;
+};
 
 const GetIndex: React.FC<{ index: number }> = ({ index }) => {
-
-  const className = getClassName(index, true); 
+  const className = getClassName(index, true);
   if (index <= 2) {
     return <div className={className}>{index + 1}</div>;
   }
@@ -34,8 +33,11 @@ const LeaderboardRow: React.FC<{
   const getScore = (track: string, pos: string) => {
     if (score[track] && score[track].score) {
       return (
-        <span>
-          {score[track].score.score} <span>({score[pos]})</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          {score[track].score.score}{' '}
+          <span style={{ color: '#1cb1d9', fontSize: '20px', transform: 'scale(1.04)' }}>
+            ({score[pos]})
+          </span>
         </span>
       );
     } else {
@@ -48,7 +50,8 @@ const LeaderboardRow: React.FC<{
         style={style}
         className={
           entered
-            ? `leader-board-row-container leader-board-enter ` + getClassName(index, false)
+            ? `leader-board-row-container leader-board-enter ` +
+              getClassName(index, false)
             : 'leader-board-row-container ' + getClassName(index, false)
         }
       >

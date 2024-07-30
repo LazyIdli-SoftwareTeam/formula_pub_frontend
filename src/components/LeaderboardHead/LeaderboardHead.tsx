@@ -5,23 +5,23 @@ const LeaderboardHead = () => {
         <div className="leader-board-head-container">
             <div className="--index">
                 <span>
-                    POS
+                    Rank
                 </span>
             </div>
             <div className="--name">
-                <span>Name</span>
+                <span>Player</span>
             </div>
             <div className="--total-score --score">
                 <span>Total Score</span>
             </div>
             <div className="--score --track1">
-                <span>Track 1</span>
+                <span>British GP</span>
             </div>
             <div className="--score --track2">
-                <span>Track 2</span>
+                <span>Hungarian GP</span>
             </div>
             <div className="--score --track3">
-                <span>Track 3</span>
+                <span>Belgium GP</span>
             </div>
         </div>
     );
