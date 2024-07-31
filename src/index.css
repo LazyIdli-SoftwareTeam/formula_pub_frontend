@@ -6,20 +6,28 @@
   box-sizing: border-box;
 }
 
+:root {
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+}
+
 @font-face {
   font-family: formula_pub;
   font-weight: normal;
   src: url(/font/Formula1-Regular_web_0.ttf);
 }
 
-
 @font-face {
   font-family: formula_pub;
   font-weight: bolder;
   src: url(/font/Formula1-Bold_web_0.ttf);
 }
-
-
 
 :root {
   --teho-black-color: #181818;

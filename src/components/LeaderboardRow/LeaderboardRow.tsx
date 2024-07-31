@@ -21,21 +21,29 @@ const GetIndex: React.FC<{ index: number }> = ({ index }) => {
     return <div className={className}>{index + 1}</div>;
   }
 
-  return <div className="--index">{index}</div>;
+  return <div className="--index">{index + 1}</div>;
 };
 
 const LeaderboardRow: React.FC<{
   index: number;
   style: { [key: string]: string };
   score: any;
+  height?: string;
+  highlightAnimation?: any;
   entered?: boolean;
-}> = ({ index, style, score, entered }) => {
+}> = ({ index, height, style, score, entered, highlightAnimation }) => {
   const getScore = (track: string, pos: string) => {
     if (score[track] && score[track].score) {
       return (
         <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
           {score[track].score.score}{' '}
-          <span style={{ color: '#1cb1d9', fontSize: '20px', transform: 'scale(1.04)' }}>
+          <span
+            style={{
+              color: '#1cb1d9',
+              fontSize: '20px',
+              transform: 'scale(1.04)',
+            }}
+          >
             ({score[pos]})
           </span>
         </span>
@@ -45,7 +53,12 @@ const LeaderboardRow: React.FC<{
     }
   };
   return (
-    <div className={`leader-board-row-overlay `}>
+    <div
+      style={{ height: height }}
+      className={` ${
+        highlightAnimation && highlightAnimation.includes(index) ? 'high-light-blink-user' : ''
+      } leader-board-row-overlay`}
+    >
       <div
         style={style}
         className={

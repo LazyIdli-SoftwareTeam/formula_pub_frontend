@@ -19,18 +19,17 @@
 
 .leader-board-list-scores-container {
   display: flex;
-  gap: 1%;
+  gap: 10px;
   position: relative;
   flex-direction: column;
   position: relative;
   background-position: top;
   background-size: cover;
-  height: calc(100% - 70px);
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 1);
 }
-.leader-board-list-scores-container::before { 
+.leader-board-list-scores-container::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   background: url('/image 67 (2).png') no-repeat;
@@ -41,12 +40,20 @@
   top: 0;
 }
 
-
-.leader-board-list-scores-container .--scores {
-  height: calc(100% - 4.76%);
+.leader-board-list-scores-container .--tour-scores {
+  height: 5%;
   display: flex;
+  padding-top: 20px;
   flex-direction: column;
   padding-left: 20px;
-  padding-right: 20px;
   gap: 10px;
+  padding-right: 20px;
+}
+
+.global-loader {
+  display: flex;
+  height: 100dvh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }

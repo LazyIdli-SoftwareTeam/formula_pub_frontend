@@ -1,8 +1,6 @@
 import { CircleLoader } from 'react-spinners';
-const CustomLoader: React.FC<{
-  color?: string;
-}> = ({ color = 'black' }) => {
-  return <CircleLoader color={color} size={150} loading={true} />;
+const CustomLoader = () => {
+  return <CircleLoader color={'white'} size={150} loading={true} />;
 };
 export const FullScreenLoader = () => {
   return (
@@ -20,7 +18,7 @@ export const FullScreenLoader = () => {
         backgroundColor: 'black',
       }}
     >
-      <CustomLoader color="white" />
+      <CustomLoader   />
     </div>
   );
 };

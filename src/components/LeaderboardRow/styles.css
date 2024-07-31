@@ -6,15 +6,12 @@
   background-color: #141414;
   border-top-left-radius: 22px;
   border-bottom-right-radius: 22px;
-
-
-  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
 }
 
 .leader-board-row-overlay {
   display: flex;
   flex-direction: column;
-  height: calc((100% / 20));
+  height: 100%;
 }
 .leader-board-line {
   height: 10%;
@@ -23,7 +20,6 @@
   border-top: 0;
   align-items: center;
   border-bottom-right-radius: 10px;
-
   align-self: center;
 }
 
@@ -134,5 +130,68 @@
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0turn;
+}
+
+.high-light-blink-user .leader-board-row-container,
+.high-light-blink-user .leader-board-individual-card-container {
+  animation: blink2 1s infinite ease-in-out !important;
+  /* text-shadow: 0 1px 0 #000;
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+  border: solid 5px transparent;
+  border-radius: 2em;
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+  background-position: center center;
+  animation: bg-spin 3s linear infinite; */
+}
+
+@keyframes blink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes blink2 {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.95);
   }
 }

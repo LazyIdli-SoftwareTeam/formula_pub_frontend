@@ -1,6 +1,6 @@
 .leader-board-head-container {
   display: flex;
-  height: 4.76%;
+  height: calc((100dvh - 140px - 200px) / 21);
   font-weight: 700;
   font-size: 20px;
   padding-left: 20px;
@@ -8,16 +8,15 @@
   align-items: center;
   border-radius: 4px;
   background: radial-gradient(
-      56.74% 76.71% at 48.59% 19.18%,
-      rgba(0, 0, 0, 0.8) 0%,
-      rgba(0, 0, 0, 0.8) 100%
-    )
+    56.74% 76.71% at 48.59% 19.18%,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
 }
 
 .leader-board-head-container div {
   color: white;
   font-weight: 500;
-
 }
 .leader-board-head-container .--index {
   width: 5%;
@@ -45,7 +44,7 @@
 
 .leader-board-header-individual-container {
   display: flex;
-  height: 4.76%;
+  height: 80px;
   font-weight: 700;
   font-size: 20px;
   align-items: center;

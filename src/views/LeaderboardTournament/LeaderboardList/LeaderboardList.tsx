@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useEffect, useState } from 'react';
 import LeaderboardHead from '../../../components/LeaderboardHead/LeaderboardHead';
 import LeaderboardHeading from '../../../components/LeaderboardHeading/LeaderboardHeading';
@@ -11,19 +10,60 @@ import { getTournamentScores } from '../../../api/tournament';
 import CustomLoader from '../../../components/loader/CustomLoader';
 import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 import { io } from 'socket.io-client';
+import HighLightPlayer from '../../../components/highlightPlayer/HighLightPlayer';
 const color = '#';
 // const BORDER= '1px solid #009db5'
 
 const LeaderboardList = () => {
   const [scores, setScores] = useState<any>([]);
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
+  const [highlightPlayer, setHighLightPlayer] = useState<{
+    state: 'hide' | 'firstScreen' | 'overlay';
+    scores: any;
+  }>({
+    state: 'hide',
+    scores: [],
+  });
 
   useEffect(() => {
-    console.log(scores);
+    console.log('highlightPlayer', highlightPlayer);
+    if (highlightPlayer.state === 'hide') return;
+    const id = setTimeout(() => {
+      setHighLightPlayer({
+        scores: [],
+        state: 'hide',
+      });
+    }, 20000);
+    return () => {
+      clearTimeout(id);
+    };
+  }, [highlightPlayer]);
+
+  useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
     socket.on('connect', () => {
       console.log('connect');
+    });
+    socket.on('highlightUserTournament', (data: any) => {
+      console.log(data);
+      if (!data.data) return;
+      const indexes = [];
+      for (const el of data.data) {
+        const index = scores.findIndex((score: any) => score._id === el._id);
+        indexes.push(index);
+      }
+
+      if (indexes[0] < 0) return;
+      const obj: any = {
+        state: 'firstScreen',
+        scores: [],
+      };
+      for (const index of indexes) {
+        obj.scores.push({ index: index, score: scores[index] });
+      }
+
+      setHighLightPlayer({ ...obj });
     });
     socket.on('addScoreTournament', (data: any) => {
       console.log(data);
@@ -42,6 +82,7 @@ const LeaderboardList = () => {
     });
     return () => {
       socket.off('addScoreTournament');
+      socket.off('highlightUserTournament');
       socket.disconnect();
     };
   }, [scores]);
@@ -64,27 +105,46 @@ const LeaderboardList = () => {
   useEffect(() => {
     getScores();
   }, []);
-  if (pageState === PAGE_STATE.LOADING) return <CustomLoader />;
+  if (pageState === PAGE_STATE.LOADING)
+    return (
+      <div className="global-loader">
+        <CustomLoader />
+      </div>
+    );
   if (pageState === PAGE_STATE.REJECTED)
     return <span>Some error occurred try again later</span>;
   return (
     <div className="leader-board-list-container">
+      {highlightPlayer.state === 'firstScreen' ? (
+        <HighLightPlayer type="tournament" props={highlightPlayer.scores} />
+      ) : null}
       <div className="leader-board-top-heading">
         <LeaderboardHeading heading="Tournament Leaderboard" />
       </div>
       <div className="leader-board-list-scores-container">
         <LeaderboardHead />
-        <div className="--scores">
-          {scores.map((score: any, i: number) => (
+        {scores.map((score: any, i: number) => (
+          <div
+            style={{
+              height: 'calc((100dvh - 140px - 200px) / 21)',
+              paddingLeft: '20px',
+              paddingRight: '20px',
+            }}
+          >
             <LeaderboardRow
               key={i}
               score={score}
               index={i}
+              highlightAnimation={
+                highlightPlayer.state === 'firstScreen'
+                  ? highlightPlayer.scores.map((s: any) => s.index)
+                  : []
+              }
               entered={score.entered}
               style={{ backgroundColor: color }}
             />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
