@@ -7,7 +7,6 @@
 .leader-board-layout-container .leader-board-top-container {
   height: 70px;
   background: var(--Teho-Black, #181818);
-
 }
 
 .leader-board-layout-container .leader-board-content-container {
@@ -17,4 +16,14 @@
 .leader-board-layout-container .leader-board-footer-container {
   height: 70px;
   background: var(--Teho-Black, #181818);
+}
+
+.non-tournament-leader-board {
+  display: flex;
+  gap: 0px;
+}
+
+.non-tournament-leader-board .--non-lb-container {
+  width: 33%;
+  height: 100dvh;
 }
