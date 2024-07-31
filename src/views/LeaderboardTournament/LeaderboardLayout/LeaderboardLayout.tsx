@@ -47,7 +47,7 @@ const LeaderboardLayout = () => {
       id = setTimeout(() => {
         setMainPage(false);
         setIndex(0);
-      }, 30000);
+      }, 40000);
     } else {
       id = setTimeout(() => {
         setIndex(index + 1);
@@ -55,7 +55,7 @@ const LeaderboardLayout = () => {
           setMainPage(true);
           setIndex(0);
         }
-      }, 20000);
+      }, 30000);
     }
     return () => {
       clearTimeout(id);
