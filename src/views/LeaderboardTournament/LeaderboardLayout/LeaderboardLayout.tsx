@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import LeaderboardIndividual from '../LeaderboardIndividual/LeaderboardIndividual';
 // import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import './styles.css';
@@ -41,26 +41,26 @@ const LeaderboardLayout = () => {
   const [mainPage, setMainPage] = useState(false);
 
   const [index, setIndex] = useState(0);
-  // useEffect(() => {
-  //   let id: any;
-  //   if (mainPage) {
-  //     id = setTimeout(() => {
-  //       setMainPage(false);
-  //       setIndex(0);
-  //     }, 20000);
-  //   } else {
-  //     id = setTimeout(() => {
-  //       setIndex(index + 1);
-  //       if (index >= 2) {
-  //         setMainPage(true);
-  //         setIndex(0);
-  //       }
-  //     }, 10000);
-  //   }
-  //   return () => {
-  //     clearTimeout(id);
-  //   };
-  // }, [mainPage, index]);
+  useEffect(() => {
+    let id: any;
+    if (mainPage) {
+      id = setTimeout(() => {
+        setMainPage(false);
+        setIndex(0);
+      }, 30000);
+    } else {
+      id = setTimeout(() => {
+        setIndex(index + 1);
+        if (index >= 2) {
+          setMainPage(true);
+          setIndex(0);
+        }
+      }, 20000);
+    }
+    return () => {
+      clearTimeout(id);
+    };
+  }, [mainPage, index]);
   if (index > 0) {
     return <LeaderboardPosters index={index} />;
   }
