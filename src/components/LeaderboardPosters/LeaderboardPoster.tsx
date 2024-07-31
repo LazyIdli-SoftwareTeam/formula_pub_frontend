@@ -5,7 +5,7 @@ const LeaderboardPosters: React.FC<{index: number }> = ({ index }) => {
     
     return (
         <div className='leader-board-poster-container'>
-            <img src={index == 1 ? 'Frame 12289 (1).svg' : 'TOURNAMENT AD v2 (1).svg'} />
+            <img src={index == 1 ? 'Slide 16_9 - 1.svg' : 'TOURNAMENT AD final 3.svg'} />
         </div>
     )
 }

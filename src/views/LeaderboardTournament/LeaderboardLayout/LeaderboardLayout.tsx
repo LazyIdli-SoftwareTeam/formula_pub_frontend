@@ -40,7 +40,7 @@ const ThreeTrackLb = () => {
 const LeaderboardLayout = () => {
   const [mainPage, setMainPage] = useState(false);
 
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     let id: any;
     if (mainPage) {
