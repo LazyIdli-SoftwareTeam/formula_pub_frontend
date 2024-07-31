@@ -41,7 +41,10 @@ const LeaderboardIndividual: React.FC<{
   return (
     <div className="leader-board-list-container">
       <div className="leader-board-top-heading">
-        <LeaderboardHeading heading={mapType.name} />
+        <LeaderboardHeading
+          heading={mapType.name}
+          width={mapType.value === 'track2' ? '5%' : '10%'}
+        />
       </div>
       <div className="leader-board-list-scores-container">
         <LeaderboardIndividualHeader />

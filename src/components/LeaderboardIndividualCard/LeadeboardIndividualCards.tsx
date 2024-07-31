@@ -7,11 +7,11 @@ const LeaderboardIndividualCards: React.FC<{
   index: number;
   score: string;
 }> = ({ index, name, score }) => {
-    const className = getClassName(index, true);
+    // const className = getClassName(index, true);
   return (
     <div className={`leader-board-row-overlay leader-board-individual-overlay`}>
       <div className={`leader-board-individual-card-container ${getClassName(index, false)}`}>
-        <div className={className}>
+        <div className='--index'>
           <span>{index + 1}</span>
         </div>
         <div className="--name">
