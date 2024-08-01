@@ -14,26 +14,25 @@ const HighLightPlayer: React.FC<{ props: t_props; type: string }> = ({
   const [data, setData] = useState<t_props>([]);
   const GetComponent = () => {
     if (type === 'non-tournament') {
-      console.log(data);
       return data.map((bar, i) => (
         <div key={i} className="red-bar-container">
           <LeaderboardIndividualCards
             name={bar.score.code.userName}
             key={i}
-            height="60px"
+            height="calc(100dvh / 21)"
             score={bar.score.score}
             index={bar.index}
           />
         </div>
       ));
     } else {
-      data.map((bar, i) => (
+      return data.map((bar, i) => (
         <div key={i} className="red-bar-container">
           <LeaderboardRow
             index={bar.index}
             score={bar.score}
             style={{}}
-            height="65px"
+            height="calc(100dvh / 21)"
             key={i}
           />
         </div>

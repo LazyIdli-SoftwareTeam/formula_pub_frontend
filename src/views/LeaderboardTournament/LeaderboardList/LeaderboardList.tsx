@@ -26,7 +26,6 @@ const LeaderboardList = () => {
   });
 
   useEffect(() => {
-    console.log('highlightPlayer', highlightPlayer);
     if (highlightPlayer.state === 'hide') return;
     const id = setTimeout(() => {
       setHighLightPlayer({
@@ -46,7 +45,6 @@ const LeaderboardList = () => {
       console.log('connect');
     });
     socket.on('highlightUserTournament', (data: any) => {
-      console.log(data);
       if (!data.data) return;
       const indexes = [];
       for (const el of data.data) {
@@ -62,6 +60,8 @@ const LeaderboardList = () => {
       for (const index of indexes) {
         obj.scores.push({ index: index, score: scores[index] });
       }
+
+      console.log('obj', obj);
 
       setHighLightPlayer({ ...obj });
     });

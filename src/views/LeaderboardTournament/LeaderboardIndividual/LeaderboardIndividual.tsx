@@ -106,7 +106,7 @@ const LeaderboardIndividual: React.FC<{
         />
       </div>
       <div className="leader-board-list-scores-container">
-        <LeaderboardIndividualHeader />
+        {/* <LeaderboardIndividualHeader /> */}
         {scores.map((score: any, i: number) => (
           <div
             style={{
