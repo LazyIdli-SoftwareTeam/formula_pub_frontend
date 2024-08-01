@@ -66,22 +66,23 @@ const LeaderboardIndividual: React.FC<{
       console.log(scores); 
       console.log(data);
       for (const el of data.data) {
+        console.log('el', el)
         const index = scores.findIndex(
-          (score: any) => score.code._id === el._id
+          (score: any) => score.code._id.toString() === el._id.toString()
         );
         indexes.push(index);
       }
       console.log(indexes);
 
-      if (indexes[0] < 0) return;
       const obj: any = {
         state: 'firstScreen',
         scores: [],
       };
       for (const index of indexes) {
+        if (index < 0) continue;
         obj.scores.push({ index: index, score: scores[index] });
       }
-
+      console.log('obj', obj)
       setHighLightPlayer({ ...obj });
     });
     return () => {
