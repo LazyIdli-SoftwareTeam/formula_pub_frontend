@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import LeaderboardIndividual from '../LeaderboardIndividual/LeaderboardIndividual';
 // import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import './styles.css';
@@ -24,13 +24,13 @@ const tracks = [
 const ThreeTrackLb = () => {
   return (
     <div className="non-tournament-leader-board">
-      <div className='--non-lb-container'>
+      <div className="--non-lb-container">
         <LeaderboardIndividual mapType={tracks[0]} />
       </div>
-      <div className='--non-lb-container'>
+      <div className="--non-lb-container">
         <LeaderboardIndividual mapType={tracks[1]} />
       </div>
-      <div className='--non-lb-container'>
+      <div className="--non-lb-container">
         <LeaderboardIndividual mapType={tracks[2]} />
       </div>
     </div>
@@ -41,6 +41,16 @@ const LeaderboardLayout = () => {
   const [mainPage, setMainPage] = useState(true);
 
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      console.log(e.keyCode);
+      if (e.keyCode === 81) {
+        setMainPage(!mainPage);
+      }
+
+    });
+  }, [ mainPage]);
   useEffect(() => {
     let id: any;
     if (mainPage) {
@@ -70,8 +80,8 @@ const LeaderboardLayout = () => {
       <div className="leader-board-top-container">
         <Nav />
       </div>
-      
-        {!mainPage ? <ThreeTrackLb /> : <LeaderboardList />}
+
+      {!mainPage ? <ThreeTrackLb /> : <LeaderboardList />}
     </div>
   );
 };
