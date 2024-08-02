@@ -1,12 +1,10 @@
 .leader-board-layout-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .leader-board-layout-container .leader-board-top-container {
   height: 70px;
-  background: var(--Teho-Black, #181818);
 }
 
 

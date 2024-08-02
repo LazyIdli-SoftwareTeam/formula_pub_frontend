@@ -62,12 +62,10 @@ const LeaderboardList = () => {
         obj.scores.push({ index: index, score: scores[index] });
       }
 
-      console.log('obj', obj);
 
       setHighLightPlayer({ ...obj });
     });
     socket.on('addScoreTournament', (data: any) => {
-      console.log(data);
       if (!data.data) return;
       const s = [...data.data];
       const nW = [];
@@ -93,7 +91,6 @@ const LeaderboardList = () => {
       if (response.status === HttpStatusCode.Accepted) {
         setPageState(PAGE_STATE.ACCEPTED);
         setScores(response.data.data);
-        console.log(response);
       } else {
         setPageState(PAGE_STATE.REJECTED);
       }

@@ -38,7 +38,7 @@
 }
 
 body {
-  background-color: var(--teho-black-color);
+  background-color: black;
   font-family: 'formula_pub', 'Inter';
   color: var(--teho-white-color);
 }
