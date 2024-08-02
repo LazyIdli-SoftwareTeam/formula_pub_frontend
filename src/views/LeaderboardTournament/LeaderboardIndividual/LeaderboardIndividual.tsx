@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React, { useEffect, useState } from 'react';
-import { LeaderboardIndividualHeader } from '../../../components/LeaderboardHead/LeaderboardHead';
+// import { LeaderboardIndividualHeader } from '../../../components/LeaderboardHead/LeaderboardHead';
 import LeaderboardHeading from '../../../components/LeaderboardHeading/LeaderboardHeading';
 import './styles.css';
 import { PAGE_STATE } from '../../LeaderboardKiosk/components/HeaderKiosk/LeaderboardKioskHeader';
@@ -110,7 +110,7 @@ const LeaderboardIndividual: React.FC<{
         {scores.map((score: any, i: number) => (
           <div
             style={{
-              height: 'calc((100dvh - 140px - 200px) / 21)',
+              height: 'calc((100dvh - 140px - 150px) / 21)',
               paddingLeft: '20px',
               paddingRight: '20px',
             }}

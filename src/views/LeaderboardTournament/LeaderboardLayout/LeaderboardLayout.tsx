@@ -44,11 +44,9 @@ const LeaderboardLayout = () => {
 
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
-      console.log(e.keyCode);
       if (e.keyCode === 81) {
         setMainPage(!mainPage);
       }
-
     });
   }, [ mainPage]);
   // useEffect(() => {
