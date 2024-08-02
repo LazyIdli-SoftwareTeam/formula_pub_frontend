@@ -11,6 +11,7 @@ import CustomLoader from '../../../components/loader/CustomLoader';
 import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 import { io } from 'socket.io-client';
 import HighLightPlayer from '../../../components/highlightPlayer/HighLightPlayer';
+import LeaderboardFooter from '../../../components/LeaderboardFooter/LeaderboardFooter';
 const color = '#';
 // const BORDER= '1px solid #009db5'
 
@@ -114,39 +115,46 @@ const LeaderboardList = () => {
   if (pageState === PAGE_STATE.REJECTED)
     return <span>Some error occurred try again later</span>;
   return (
-    <div className="leader-board-list-container">
-      {highlightPlayer.state === 'firstScreen' ? (
-        <HighLightPlayer type="tournament" props={highlightPlayer.scores} />
+    <>
+      <div className="leader-board-list-container">
+        {highlightPlayer.state === 'firstScreen' ? (
+          <HighLightPlayer type="tournament" props={highlightPlayer.scores} />
+        ) : null}
+        <div className="leader-board-top-heading">
+          <LeaderboardHeading heading="Tournament Leaderboard" />
+        </div>
+        <div className="leader-board-list-scores-container">
+          <LeaderboardHead />
+          {scores.map((score: any, i: number) => (
+            <div
+              style={{
+                height: 'calc((100dvh - 140px - 200px) / 21)',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+              }}
+            >
+              <LeaderboardRow
+                key={i}
+                score={score}
+                index={i}
+                highlightAnimation={
+                  highlightPlayer.state === 'firstScreen'
+                    ? highlightPlayer.scores.map((s: any) => s.index)
+                    : []
+                }
+                entered={score.entered}
+                style={{ backgroundColor: color }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {highlightPlayer.state == 'hide' ? (
+        <div className="leader-board-footer-container">
+          <LeaderboardFooter />
+        </div>
       ) : null}
-      <div className="leader-board-top-heading">
-        <LeaderboardHeading heading="Tournament Leaderboard" />
-      </div>
-      <div className="leader-board-list-scores-container">
-        <LeaderboardHead />
-        {scores.map((score: any, i: number) => (
-          <div
-            style={{
-              height: 'calc((100dvh - 140px - 200px) / 21)',
-              paddingLeft: '20px',
-              paddingRight: '20px',
-            }}
-          >
-            <LeaderboardRow
-              key={i}
-              score={score}
-              index={i}
-              highlightAnimation={
-                highlightPlayer.state === 'firstScreen'
-                  ? highlightPlayer.scores.map((s: any) => s.index)
-                  : []
-              }
-              entered={score.entered}
-              style={{ backgroundColor: color }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 export default LeaderboardList;

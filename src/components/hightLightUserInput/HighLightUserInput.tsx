@@ -18,6 +18,9 @@ const HighlighUserInput: React.FC<{
     const onAccept = (response: AxiosResponse) => {
       if (response.status > 200 && response.status < 300) {
         enqueueSnackbar('Highlighted user', { variant: 'success' });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         enqueueSnackbar('Error occurred while highlighting user', {
           variant: 'error',

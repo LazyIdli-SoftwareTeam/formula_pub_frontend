@@ -13,6 +13,7 @@ import { SOCKET_ENDPOINT } from '../../../constants/url_config';
 // const BORDER= '1px solid #009db5'
 import { io } from 'socket.io-client';
 import HighLightPlayer from '../../../components/highlightPlayer/HighLightPlayer';
+import LeaderboardFooter from '../../../components/LeaderboardFooter/LeaderboardFooter';
 
 const LeaderboardIndividual: React.FC<{
   mapType: { name: string; value: string };
@@ -56,7 +57,7 @@ const LeaderboardIndividual: React.FC<{
   };
   useEffect(() => {
     getScoresMap();
-  }, [])
+  }, []);
   useEffect(() => {
     const socket = io(SOCKET_ENDPOINT);
     socket.connect();
@@ -90,41 +91,51 @@ const LeaderboardIndividual: React.FC<{
   if (pageState === PAGE_STATE.REJECTED)
     return <span>Some error occurred try again later</span>;
   return (
-    <div className="leader-board-list-container">
-      {highlightPlayer.state === 'firstScreen' ? (
-        <HighLightPlayer props={highlightPlayer.scores} type="non-tournament" />
+    <>
+      <div className="leader-board-list-container">
+        {highlightPlayer.state === 'firstScreen' ? (
+          <HighLightPlayer
+            props={highlightPlayer.scores}
+            type="non-tournament"
+          />
+        ) : null}
+        <div className="leader-board-top-heading">
+          <LeaderboardHeading
+            heading={mapType.name}
+            width={mapType.value === 'track2' ? '5%' : '10%'}
+          />
+        </div>
+        <div className="leader-board-list-scores-container">
+          {/* <LeaderboardIndividualHeader /> */}
+          {scores.map((score: any, i: number) => (
+            <div
+              style={{
+                height: 'calc((100dvh - 140px - 150px) / 21)',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+              }}
+            >
+              <LeaderboardIndividualCards
+                name={score.code.userName}
+                key={i}
+                highlightAnimation={
+                  highlightPlayer.state === 'firstScreen'
+                    ? highlightPlayer.scores.map((s: any) => s.index)
+                    : []
+                }
+                score={score.score}
+                index={i}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {highlightPlayer.state == 'hide' ? (
+        <div className="leader-board-footer-container">
+          <LeaderboardFooter />
+        </div>
       ) : null}
-      <div className="leader-board-top-heading">
-        <LeaderboardHeading
-          heading={mapType.name}
-          width={mapType.value === 'track2' ? '5%' : '10%'}
-        />
-      </div>
-      <div className="leader-board-list-scores-container">
-        {/* <LeaderboardIndividualHeader /> */}
-        {scores.map((score: any, i: number) => (
-          <div
-            style={{
-              height: 'calc((100dvh - 140px - 150px) / 21)',
-              paddingLeft: '20px',
-              paddingRight: '20px',
-            }}
-          >
-            <LeaderboardIndividualCards
-              name={score.code.userName}
-              key={i}
-              highlightAnimation={
-                highlightPlayer.state === 'firstScreen'
-                  ? highlightPlayer.scores.map((s: any) => s.index)
-                  : []
-              }
-              score={score.score}
-              index={i}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 export default LeaderboardIndividual;

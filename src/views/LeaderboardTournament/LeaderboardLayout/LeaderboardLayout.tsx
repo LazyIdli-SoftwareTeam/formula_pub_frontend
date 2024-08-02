@@ -53,26 +53,26 @@ const LeaderboardLayout: React.FC<{
       }
     });
   }, [mainPage]);
-  // useEffect(() => {
-  //   let id: any;
-  //   if (mainPage) {
-  //     id = setTimeout(() => {
-  //       setMainPage(false);
-  //       setIndex(0);
-  //     }, 40000);
-  //   } else {
-  //     id = setTimeout(() => {
-  //       setIndex(index + 1);
-  //       if (index >= 2) {
-  //         setMainPage(true);
-  //         setIndex(0);
-  //       }
-  //     }, 30000);
-  //   }
-  //   return () => {
-  //     clearTimeout(id);
-  //   };
-  // }, [mainPage, index]);
+  useEffect(() => {
+    let id: any;
+    if (mainPage) {
+      id = setTimeout(() => {
+        setMainPage(false);
+        setIndex(0);
+      }, 40000);
+    } else {
+      id = setTimeout(() => {
+        setIndex(index + 1);
+        if (index >= 2) {
+          setMainPage(true);
+          setIndex(0);
+        }
+      }, 30000);
+    }
+    return () => {
+      clearTimeout(id);
+    };
+  }, [mainPage, index]);
   if (hightLightUser && hightLightUser.name && hightLightUser.rank) {
     return (
       <HighLightUserScreen
@@ -95,6 +95,7 @@ const LeaderboardLayout: React.FC<{
       </div>
 
       {!mainPage ? <ThreeTrackLb /> : <LeaderboardList />}
+
     </div>
   );
 };
