@@ -74,6 +74,18 @@ const HighlighUserInput: React.FC<{
                   name="racePass"
                 />
               </div>
+              <div className="separator">or</div>
+              <div className="input-group">
+                <label htmlFor="phoneNumber" className="label">
+                  Phone Number
+                </label>
+                <input
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  type="text"
+                  name="phoneNumber"
+                />
+              </div>
             </>
           )}
 
