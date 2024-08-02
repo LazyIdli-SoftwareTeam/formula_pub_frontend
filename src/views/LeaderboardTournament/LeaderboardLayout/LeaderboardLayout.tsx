@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeaderboardIndividual from '../LeaderboardIndividual/LeaderboardIndividual';
 // import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import './styles.css';
 import LeaderboardList from '../LeaderboardList/LeaderboardList';
 import LeaderboardPosters from '../../../components/LeaderboardPosters/LeaderboardPoster';
 import Nav from '../../../components/Nav/Nav';
+import HighLightUserScreen from '../../../components/HighLightUserScreen/HighLightUser';
 
 const tracks = [
   {
@@ -13,7 +14,7 @@ const tracks = [
     value: 'track1',
   },
   {
-    name: 'Hungarian GP',
+    name: 'Dutch GP',
     value: 'track2',
   },
   {
@@ -37,18 +38,21 @@ const ThreeTrackLb = () => {
   );
 };
 
-const LeaderboardLayout = () => {
-  const [mainPage, setMainPage] = useState(false);
+const LeaderboardLayout: React.FC<{
+  hightLightUser: any;
+  setHighLightUser: any;
+}> = ({ hightLightUser, setHighLightUser }) => {
+  const [mainPage, setMainPage] = useState(true);
 
   const [index, setIndex] = useState(0);
-
+  console.log(hightLightUser && hightLightUser.name && hightLightUser.rank);
   useEffect(() => {
     window.addEventListener('keydown', (e) => {
       if (e.keyCode === 81) {
         setMainPage(!mainPage);
       }
     });
-  }, [ mainPage]);
+  }, [mainPage]);
   // useEffect(() => {
   //   let id: any;
   //   if (mainPage) {
@@ -69,6 +73,17 @@ const LeaderboardLayout = () => {
   //     clearTimeout(id);
   //   };
   // }, [mainPage, index]);
+  if (hightLightUser && hightLightUser.name && hightLightUser.rank) {
+    return (
+      <HighLightUserScreen
+        name={hightLightUser.name}
+        rank={hightLightUser.rank}
+        setHighLightUser={setHighLightUser}
+        score={hightLightUser.score}
+      />
+    );
+  }
+
   if (index > 0) {
     return <LeaderboardPosters index={index} />;
   }

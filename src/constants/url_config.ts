@@ -18,3 +18,4 @@ export const GET_SCORES = '/score/fetchScore';
 export const GET_RIDE = '/ride/getRide';
 export const CHANGE_RIDE = '/ride/changeRideInfo';
 export const GET_TOURNAMENT_SCORES = '/tournament/fetchScore';
+export const HIGHT_LIGHT_USER_FULL_SCREEN = '/score/highlightUser'

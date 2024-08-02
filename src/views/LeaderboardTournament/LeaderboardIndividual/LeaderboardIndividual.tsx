@@ -34,7 +34,7 @@ const LeaderboardIndividual: React.FC<{
         scores: [],
         state: 'hide',
       });
-    }, 20000);
+    }, 15000);
     return () => {
       clearTimeout(id);
     };
@@ -63,16 +63,12 @@ const LeaderboardIndividual: React.FC<{
     socket.on('highlightUserRegister', (data: any) => {
       if (!data.data) return;
       const indexes = [];
-      console.log(scores); 
-      console.log(data);
       for (const el of data.data) {
-        console.log('el', el)
         const index = scores.findIndex(
           (score: any) => score.code._id.toString() === el._id.toString()
         );
         indexes.push(index);
       }
-      console.log(indexes);
 
       const obj: any = {
         state: 'firstScreen',
@@ -82,7 +78,6 @@ const LeaderboardIndividual: React.FC<{
         if (index < 0) continue;
         obj.scores.push({ index: index, score: scores[index] });
       }
-      console.log('obj', obj)
       setHighLightPlayer({ ...obj });
     });
     return () => {

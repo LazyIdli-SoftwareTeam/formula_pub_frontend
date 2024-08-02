@@ -56,7 +56,13 @@ const LeaderboardRow: React.FC<{
     <div
       style={{ height: height }}
       className={` ${
-        highlightAnimation && highlightAnimation.includes(index) ? 'high-light-blink-user' : ''
+        highlightAnimation && highlightAnimation.includes(index)
+          ? 'high-light-blink-user'
+          : highlightAnimation &&
+            highlightAnimation.length > 0 &&
+            !highlightAnimation.includes('index')
+          ? 'non-high-light-blur'
+          : ''
       } leader-board-row-overlay`}
     >
       <div

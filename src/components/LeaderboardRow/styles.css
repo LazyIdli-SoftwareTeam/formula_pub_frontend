@@ -147,7 +147,7 @@
 
 .high-light-blink-user .leader-board-row-container,
 .high-light-blink-user .leader-board-individual-card-container {
-  animation: blink2 1s infinite ease-in-out !important;
+  animation: blink2 1s 5 ease-in-out !important;
   /* text-shadow: 0 1px 0 #000;
   --border-angle: 0turn;
   --main-bg: conic-gradient(

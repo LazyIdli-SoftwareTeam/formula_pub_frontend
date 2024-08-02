@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ENDPOINT, GET_SCORES } from '../constants/url_config';
+import { ENDPOINT, GET_SCORES, HIGHT_LIGHT_USER_FULL_SCREEN } from '../constants/url_config';
 import axios, { AxiosResponse } from 'axios';
 import { getQueryParams } from './query';
 
@@ -22,3 +22,27 @@ export const getScores = async (
     onReject(e);
   }
 };
+
+
+export const hightLightFullScreen = async (
+  onAccept: (response: AxiosResponse) => void ,
+  onReject: (e: any) => void, 
+  data: {
+    racePass?: string; 
+    phoneNumber?: string; 
+    tournamentPass?: string;
+    type: string; 
+  }
+) => {
+  const { branchId, eventId } = getQueryParams(onReject);
+  try {
+    const response = await axios.post(ENDPOINT + HIGHT_LIGHT_USER_FULL_SCREEN, {
+      branchId: branchId,
+      eventId: eventId,
+      ...data
+    });
+    onAccept(response);
+  } catch (e) {
+    onReject(e);
+  }
+}

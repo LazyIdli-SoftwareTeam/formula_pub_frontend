@@ -16,7 +16,7 @@ const LeaderboardHead = () => {
         <span>British GP</span>
       </div>
       <div className="--score --track2">
-        <span>Hungarian GP</span>
+        <span>Dutch GP</span>
       </div>
       <div className="--score --track3">
         <span>Belgium GP</span>

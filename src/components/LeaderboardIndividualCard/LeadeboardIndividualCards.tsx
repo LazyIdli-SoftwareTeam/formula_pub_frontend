@@ -5,17 +5,23 @@ import { getClassName } from '../LeaderboardRow/LeaderboardRow';
 const LeaderboardIndividualCards: React.FC<{
   name: string;
   index: number;
-  height?: string; 
+  height?: string;
   score: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   highlightAnimation?: any;
 }> = ({ index, name, score, highlightAnimation, height }) => {
+  console.log(highlightAnimation);
+
   return (
     <div
-    style={{ height: height }}
+      style={{ height: height }}
       className={`leader-board-row-overlay leader-board-individual-overlay ${
         highlightAnimation && highlightAnimation.includes(index)
           ? 'high-light-blink-user'
+          : highlightAnimation &&
+            highlightAnimation.length > 0 &&
+            !highlightAnimation.includes(index)
+          ? 'non-high-light-blur'
           : ''
       } `}
     >

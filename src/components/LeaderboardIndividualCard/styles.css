@@ -46,3 +46,11 @@
   display: flex;
   align-items: center;
 }
+
+
+
+
+
+.non-high-light-blur {
+  filter: blur(20px);
+}

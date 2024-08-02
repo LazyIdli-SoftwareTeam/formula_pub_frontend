@@ -32,7 +32,7 @@ const LeaderboardList = () => {
         scores: [],
         state: 'hide',
       });
-    }, 20000);
+    }, 15000);
     return () => {
       clearTimeout(id);
     };
