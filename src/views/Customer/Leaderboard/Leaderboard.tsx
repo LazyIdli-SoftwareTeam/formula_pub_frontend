@@ -31,7 +31,8 @@ const Leaderboard = () => {
     []
   );
   const [searchName, setSearchName] = useState('');
-  const [sort, setSort] = useState('spa');
+  const DEFAULT_MAP = 'dutch';
+  const [sort, setSort] = useState(DEFAULT_MAP);
 
   const changeName = (value: string) => {
     setSearchName(value);
@@ -114,7 +115,7 @@ const Leaderboard = () => {
     };
     getScores(onAcceptGetScores, onRejectGetScores, {
       scoreFilter: headerTab === 0 ? 'today' : '',
-      sort: sort.toLowerCase(),
+      sort: headerTab === 0 ? DEFAULT_MAP : sort.toLowerCase(),
     });
   };
 

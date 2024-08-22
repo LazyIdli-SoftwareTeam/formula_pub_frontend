@@ -2,6 +2,10 @@ import { MenuItem, Select } from '@mui/material';
 
 const filters = [
   {
+    name: 'Dutch GP',
+    value: 'dutch',
+  },
+  {
     name: 'Spa (Belgian GP)',
     value: 'spa',
   },
