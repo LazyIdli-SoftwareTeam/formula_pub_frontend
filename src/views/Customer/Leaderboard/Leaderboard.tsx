@@ -31,7 +31,7 @@ const Leaderboard = () => {
     []
   );
   const [searchName, setSearchName] = useState('');
-  const DEFAULT_MAP = 'italian';
+  const DEFAULT_MAP = 'singapore';
   const [sort, setSort] = useState(DEFAULT_MAP);
 
   const changeName = (value: string) => {
