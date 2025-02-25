@@ -54,7 +54,7 @@ function App() {
   // if (queue) {
   //   return <LeaderboardKioskHeader />;
   // }
-  return <LeaderboardkioskMainpage heading={heading} />;
+  return <LeaderboardkioskMainpage heading={"BOWLING"} />;
 
   // return (
   //   <>

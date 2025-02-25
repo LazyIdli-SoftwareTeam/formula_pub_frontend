@@ -19,7 +19,85 @@ export const LeaderboardkioskMainpage: React.FC<{ heading?: string }> = ({
   heading = "LEADERBOARD",
 }) => {
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    { 
+      userName: "Sahil", 
+      score: 222
+    },
+    
+  ]);
 
   useEffect(() => {
     const onAcceptGetScores = (response: AxiosResponse) => {

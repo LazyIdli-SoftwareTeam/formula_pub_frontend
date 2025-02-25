@@ -11,3 +11,4 @@ export const GET_QUEUE = "/queue/getQueue";
 export const GET_SCORES = "/data";
 export const GET_RIDE = "/ride/getRide";
 export const CHANGE_RIDE = "/ride/changeRideInfo";
+export const GET_TOP_PLAYERS = '/topPlayers'
