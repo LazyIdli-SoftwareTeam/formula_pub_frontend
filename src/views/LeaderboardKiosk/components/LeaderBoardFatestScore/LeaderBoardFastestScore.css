@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
 
 .leader-board-fastest-header {
-  height: 10%;
+  height: 6%;
   padding: 12px 40px 12px 0px;
   gap: 0px;
   border-radius: 4px;
@@ -16,6 +16,10 @@
     )
     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
 }
+
+/* .--bgColor {
+  background-color: orange !important;
+} */
 
 .race-queue-fast-name {
   font-family: Inter;
@@ -41,10 +45,8 @@
   color: orange;
 }
 
-
-
 .image-backe {
-  background: url('/src/assets/images/image\ 65.png') fixed;
+  /* background: url('/src/assets/images/image\ 65.png') fixed; */
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -53,7 +55,7 @@
   background-position: 0% 150px;
 }
 .leader-board-race-fast-card {
-  height: 100%;
+  height: calc(100dvh - 250px - 70px);
 }
 .leader-board-race-fsat-card-image {
   padding: 12px 40px 5px 40px;
@@ -185,9 +187,7 @@
   padding: 14px 0px 14px 0px;
   background: var(--Teho-Black, #181818);
   overflow: hidden;
-  
 }
-
 
 .footer-text-kiosk {
   font-family: Inter;
@@ -249,7 +249,8 @@ animation: change-img-anim 20s infinite;
 .kiosk-card-main-dis {
   padding: 4px 0px 4px 0px;
   position: relative;
-  height: 10%;
+  height: 6%;
+  margin-top: 6px;
 }
 
 @keyframes example {
@@ -326,33 +327,39 @@ animation: change-img-anim 20s infinite;
 }
 
 .image {
-	position: absolute;
-	width: 100%;
-	opacity: 0;
-	animation: change-img-anim 50s infinite;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  animation: change-img-anim 50s infinite;
 }
 
 /*.image:nth-of-type(1) {
 	animation-delay: 0s;
 */
 .image:nth-of-type(2) {
-	animation-delay: 10s;
+  animation-delay: 10s;
 }
 .image:nth-of-type(3) {
-	animation-delay: 20s;
+  animation-delay: 20s;
 }
 .image:nth-of-type(4) {
-	animation-delay: 30s;
+  animation-delay: 30s;
 }
 .image:nth-of-type(5) {
-	animation-delay: 40s;
+  animation-delay: 40s;
 }
 
 @keyframes change-img-anim {
-	0%{ opacity: 0;}
-	10%{ opacity: 1;}
-	90%{ opacity: 1;}
-	100%{ opacity: 0;}
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-
-
