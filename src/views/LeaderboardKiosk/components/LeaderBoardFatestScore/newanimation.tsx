@@ -113,25 +113,28 @@ export const LeaderboardKioskFastestHeader: React.FC<{
 			if (i >= 0) {
 				d[i] = { ...d[i], score: data.score };
 			}
-			setUsers(d);
+			d.sort((a, b) => b.score - a.score);
+			console.log('sortedd', d);
+			setUsers([...d]);
 		});
 		socket.on('editTag', (data) => {
 			console.log(data);
 			if (!data.gamerTag || !data.userId) return;
 			const d = [...users];
-			const i = d.findIndex((el) => el.userId === data.userId);
-			console.log('gound her e', i);
-			if (i >= 0) {
-				d[i] = { ...d[i], gamerTag: data.gamerTag };
+			let i = 0;
+			for (const user of users) {
+				if (user.userId === data.userId) {
+					d[i] = { ...d[i], gamerTag: data.gamerTag, userName: data.gamerTag };
+				}
+				i++;
 			}
-			console.log(d[i]);
-			setUsers(() => d);
+			setUsers(d);
 		});
 		return () => {
 			socket.off('addScore');
 			socket.disconnect();
 		};
-	}, [users]); 
+	}, [users]);
 
 	useEffect(() => {
 		if (ImageRef.current) {
