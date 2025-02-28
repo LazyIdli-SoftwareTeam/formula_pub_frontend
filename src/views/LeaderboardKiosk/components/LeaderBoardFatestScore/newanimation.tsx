@@ -76,7 +76,7 @@ const kioskStylesRank = (index: number) => {
 export const LeaderboardKioskFastestHeader: React.FC<{
 	users: any;
 	setUsers: any;
-}> = ({ users }) => {
+}> = ({ users, setUsers }) => {
 	const [recentEntry, setRecentEntry] = useState();
 
 	/*const images = [
@@ -104,11 +104,35 @@ export const LeaderboardKioskFastestHeader: React.FC<{
 			//   const users: any[] = [...users];
 			//   setUsers();
 		});
+		socket.on('editScore', (data) => {
+			if (!data.score || !data.scoreId) return;
+			console.log(data);
+			const d = [...users];
+			console.log(d);
+			const i = d.findIndex((el) => el.scoreId === data.scoreId);
+			if (i >= 0) {
+				d[i] = { ...d[i], score: data.score };
+			}
+			setUsers(d);
+		});
+		socket.on('editTag', (data) => {
+			console.log(data);
+			if (!data.gamerTag || !data.userId) return;
+			const d = [...users];
+			const i = d.findIndex((el) => el.userId === data.userId);
+			console.log('gound her e', i);
+			if (i >= 0) {
+				d[i] = { ...d[i], gamerTag: data.gamerTag };
+			}
+			console.log(d[i]);
+			setUsers(() => d);
+		});
 		return () => {
 			socket.off('addScore');
 			socket.disconnect();
 		};
-	}, []);
+	}, [users]); 
+
 	useEffect(() => {
 		if (ImageRef.current) {
 			// const LeaderHeight = `${ImageRef.current.clientHeight}`;

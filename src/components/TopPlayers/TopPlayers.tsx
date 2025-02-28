@@ -35,13 +35,14 @@ const TopPlayers = () => {
 	return (
 		<div className="lb-top-player-container">
 			{players.map((player: any, i: number) => {
+				if (!player) return <></>
 				return (
 					<div
 						key={i}
 						className="--categories-player"
 					>
 						<span className="--cat">Best Of The {getString(i)}</span>
-						<span className="--user-name">{player.name}</span>
+						<span className="--user-name">{player.gamerTag}</span>
 						<span className="--score">{player.score} Points</span>
 					</div>
 				);
