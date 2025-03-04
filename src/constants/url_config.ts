@@ -1,5 +1,5 @@
-export const ENDPOINT = "http://localhost:8000";
-export const SOCKET_ENDPOINT = "http://localhost:8000/";
+export const ENDPOINT = "http://192.168.0.103:8000";
+export const SOCKET_ENDPOINT = "http://192.168.0.103:8000";
 export const GET_COMBOS = "/combo/combos";
 export const REGISTER_HOST = "/player/registerHost";
 export const GET_COUPON = "/coupons";
