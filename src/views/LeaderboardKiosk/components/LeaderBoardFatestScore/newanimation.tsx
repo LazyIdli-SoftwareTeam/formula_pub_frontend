@@ -9,7 +9,6 @@ import { io } from "socket.io-client";
 import TopPlayers from "../../../../components/TopPlayers/TopPlayers";
 import QrCodeScreen from "../../../../components/QrCodeScreen/QrCodeScreen";
 import BottomPanel from "../../../../components/BottonPanel/BottomPanel";
-import { Avatar } from "@mui/material";
 
 // const initialUsers: t_userInfoKiosk[] = new Array(20).fill(0).map((_, i) => ({
 //   name: 'Sahil' + (i + 1),
@@ -18,8 +17,6 @@ import { Avatar } from "@mui/material";
 //   raceCode: '',
 //   animation: false,
 // }));
-
-const avatarImages = ["Avatar-1.png", "Avatar-2.png", "Avatar-3.png", "Avatar-4.png", "Avatar-5.png"];
 
 const kioskStylesRank = (index: number) => {
   if (index === 1) {
@@ -94,7 +91,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
   const ImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const socket = io("http://localhost:8000/", {
+    const socket = io("http://192.168.4.245:8000/", {
       transports: ["websocket", "polling"], // Ensure WebSockets are used
     });
     socket.connect();
@@ -106,8 +103,8 @@ export const LeaderboardKioskFastestHeader: React.FC<{
       setRecentEntry(data);
 
       setTimeout(() => {
-        setRecentEntry(null)
-      }, 300000)
+        setRecentEntry(null);
+      }, 30000);
 
       //   const users: any[] = [...users];
       //   setUsers();
@@ -115,16 +112,18 @@ export const LeaderboardKioskFastestHeader: React.FC<{
     socket.on("editScore", (data) => {
       if (!data.score || !data.scoreId) return;
       console.log(data);
+
       const d = [...users];
-      console.log(d);
       const i = d.findIndex((el) => el.scoreId === data.scoreId);
+
       if (i >= 0) {
-        d[i] = { ...d[i], score: data.score };
+        d[i] = { ...d[i], score: data.score }; 
       }
+
       d.sort((a, b) => b.score - a.score);
-      console.log("sortedd", d);
       setUsers([...d]);
     });
+
     socket.on("editTag", (data) => {
       console.log(data);
       if (!data.gamerTag || !data.userId) return;
@@ -181,7 +180,16 @@ export const LeaderboardKioskFastestHeader: React.FC<{
           </div>
         </div>
         <div className="leaderboard-bottom-section-image">
-			{ recentEntry ?<BottomPanel /> : <QrCodeScreen />}
+          {recentEntry ? (
+            <BottomPanel
+              avtarIndex={recentEntry.avatarIndex}
+              name={recentEntry.userName}
+              position={recentEntry.index}
+              score={recentEntry.newScore.score}
+            />
+          ) : (
+            <QrCodeScreen />
+          )}
         </div>
       </div>
 
@@ -314,10 +322,6 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
     }
   };
 
-  const changeScore = (score: string) => {
-    return score;
-  };
-
   return (
     <>
       <div ref={newEntryRef} className="leaderboard-scroll">
@@ -328,7 +332,7 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
               <LeaderboardKioskCard
                 index={i + 1}
                 key={i}
-                score={changeScore(user.score)}
+                score={user.score} // No modification, use backend's value as-is
                 userName={user ? user.userName : ""}
                 prizeMoney={getPrizes(i).toString()}
                 animation={user.animation}
