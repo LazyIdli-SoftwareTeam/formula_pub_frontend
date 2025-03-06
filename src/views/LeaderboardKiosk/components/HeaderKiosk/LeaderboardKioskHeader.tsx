@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import FinalLogo from '../../../../assets/images/FinalLogo.png';
 import TehoIcon from '../../../../assets/icons/Teho-icon';
-
 import './LeaderboardKioskHeader.css';
 import { LeaderboardKioskRaceQueue } from '../LeaderboardKioskRaceQueue/LeaderboardkioskRaceQueue';
 import { LeaderboardKioskFastestHeader } from '../LeaderBoardFatestScore/newanimation';
@@ -9,6 +8,9 @@ import React, { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
 import { getScores } from '../../../../api/scores';
 import { FullScreenLoader } from '../../../../components/loader/CustomLoader';
+import QrCodeScreen from '../../../../components/QrCodeScreen/QrCodeScreen';
+
+
 export enum PAGE_STATE {
 	REJECTED,
 	ACCEPTED,
@@ -101,10 +103,8 @@ export const LeaderboardKioskHeader = () => {
 	return (
 		<>
 			<div className="leader-board-kiosk-header">
-				<img
-					src={FinalLogo}
-					className="bar-image"
-				/>
+
+				<QrCodeScreen/>
 				<TehoIcon
 					className="gilli"
 					width={95}
