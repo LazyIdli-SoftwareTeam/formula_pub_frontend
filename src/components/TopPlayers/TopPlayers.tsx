@@ -5,29 +5,30 @@ import { PAGE_STATE } from "../../views/LeaderboardKiosk/components/HeaderKiosk/
 import { AxiosResponse, HttpStatusCode } from "axios";
 import { getTopPlayers } from "../../api/scores";
 
-const TopPlayers = () => {
+
+interface  TopPlayersProps { 
+  users: any;
+}
+
+const TopPlayers = (props: TopPlayersProps) => {
   const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
   const [players, setPlayers] = useState<any>([]);
+const fetchData = () => {
+    getTopPlayers(
+      (response: AxiosResponse) => {
+        if (response.status === HttpStatusCode.Ok) {
+          setPlayers(response.data);
+        } else {
+          setPageState(PAGE_STATE.REJECTED);
+        }
+      },
+      () => setPageState(PAGE_STATE.REJECTED)
+    );
+  };
 
   useEffect(() => {
-    const fetchData = () => {
-      getTopPlayers(
-        (response: AxiosResponse) => {
-          if (response.status === HttpStatusCode.Ok) {
-            setPlayers(response.data);
-          } else {
-            setPageState(PAGE_STATE.REJECTED);
-          }
-        },
-        () => setPageState(PAGE_STATE.REJECTED)
-      );
-    };
-
     fetchData();
-    const interval = setInterval(fetchData, 60000); // Refresh every 60 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [props.users]);
 
   if (pageState === PAGE_STATE.REJECTED) return <></>;
 

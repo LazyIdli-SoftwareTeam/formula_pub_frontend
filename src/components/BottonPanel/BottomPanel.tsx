@@ -1,3 +1,4 @@
+import Avatar1 from "../../assets/images/avatar/Avatar1.png";
 import "./styles.css";
 
 interface BottomPanelProps {
@@ -6,25 +7,30 @@ interface BottomPanelProps {
   position: number;
   avtarIndex: number;
 }
+
 // const avatarImages = [
-//   "Avatar-1.png",
-//   "Avatar-2.png",
-//   "Avatar-3.png",
-//   "Avatar-4.png",
-//   "Avatar-5.png",
+//   "Avatar1.png",
+//   "Avatar2.png",
+//   "Avatar3.png",
+//   "Avatar4.png",
+//   "Avatar5.png",
 // ];
 
 const BottomPanel = (props: BottomPanelProps) => {
   const getPos = (pos: number) => {
-    if (pos % 10 === 1) return "st";
-    if (pos % 10 === 2) return "nd";
-    if (pos % 10 === 3) return "rd";
+    if (pos % 10 === 1 && pos !== 11) return "st";
+    if (pos % 10 === 2 && pos !== 12) return "nd";
+    if (pos % 10 === 3 && pos !== 13) return "rd";
     return "th";
   };
+
+  // Ensure avtarIndex is within bounds
+  // const avatarSrc = avatarImages[props.avtarIndex % avatarImages.length];
+
   return (
     <div className="bottom-panel-container">
       <div className="bottom-panel-image-container">
-        <img src={"Sharuk.jpg"} />
+        <img src={Avatar1} alt="Player Avatar" />
       </div>
       <div className="bottom-panel-text-container">
         <div className="--player-info">
@@ -42,4 +48,5 @@ const BottomPanel = (props: BottomPanelProps) => {
     </div>
   );
 };
+
 export default BottomPanel;

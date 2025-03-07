@@ -9,6 +9,8 @@ import { io } from "socket.io-client";
 import TopPlayers from "../../../../components/TopPlayers/TopPlayers";
 import QrCodeScreen from "../../../../components/QrCodeScreen/QrCodeScreen";
 import BottomPanel from "../../../../components/BottonPanel/BottomPanel";
+import {Swiper, SwiperClass, SwiperSlide} from 'swiper/react';
+import 'swiper/css';
 
 // const initialUsers: t_userInfoKiosk[] = new Array(20).fill(0).map((_, i) => ({
 //   name: 'Sahil' + (i + 1),
@@ -79,6 +81,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
   setUsers: any;
 }> = ({ users, setUsers }) => {
   const [recentEntry, setRecentEntry] = useState<any>();
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   /*const images = [
     '/src/assets/images/Frame 1233.png',
@@ -101,26 +104,28 @@ export const LeaderboardKioskFastestHeader: React.FC<{
     socket.on("addScore", (data) => {
       console.log("new score data has come here", data);
       setRecentEntry(data);
+      swiper?.slideNext();
 
       setTimeout(() => {
         setRecentEntry(null);
+        swiper?.slidePrev();
       }, 30000);
 
       //   const users: any[] = [...users];
       //   setUsers();
     });
     socket.on("editScore", (data) => {
-      if (!data.score || !data.scoreId) return;
+      if (!data.time_ms || !data.scoreId) return;
       console.log(data);
 
       const d = [...users];
       const i = d.findIndex((el) => el.scoreId === data.scoreId);
 
       if (i >= 0) {
-        d[i] = { ...d[i], score: data.score }; 
+        d[i] = { ...d[i], time_ms: data.time_ms }; 
       }
 
-      d.sort((a, b) => b.score - a.score);
+      d.sort((a, b) => b.time_ms - a.time_ms);
       setUsers([...d]);
     });
 
@@ -157,7 +162,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
     <>
       <div className="main-leaderboard-card" id="new-card-height">
         <div>
-          <TopPlayers />
+          <TopPlayers users={recentEntry} />
         </div>
         <div className="leader-board-race-fast-card">
           <div className="leader-board-race-fsat-card-image">
@@ -180,16 +185,19 @@ export const LeaderboardKioskFastestHeader: React.FC<{
           </div>
         </div>
         <div className="leaderboard-bottom-section-image">
-          {recentEntry ? (
-            <BottomPanel
-              avtarIndex={recentEntry.avatarIndex}
-              name={recentEntry.userName}
-              position={recentEntry.index}
-              score={recentEntry.newScore.score}
-            />
-          ) : (
-            <QrCodeScreen />
-          )}
+          <Swiper onSwiper={(swiper) => setSwiper(swiper)}>
+            <SwiperSlide>
+              <QrCodeScreen />
+            </SwiperSlide>
+            <SwiperSlide>
+              <BottomPanel
+                avtarIndex={recentEntry?.avatarIndex || 0}
+                name={recentEntry?.userName || ""}
+                position={recentEntry?.index || 0}
+                score={recentEntry?.newScore.time_ms || '0:0:0'}
+              />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
 
@@ -253,10 +261,10 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
     addNewCard(
       recentEntry.index,
       recentEntry.newScore.code,
-      recentEntry.newScore.score
+      recentEntry.newScore.time_ms
     );
   }, [recentEntry]);
-  const addNewCard = (index: number, user: any, score: string) => {
+  const addNewCard = (index: number, user: any, time_ms: string) => {
     console.log("index in add card", index);
     const updatedUsers: any = [...displayedUsers];
 
@@ -265,7 +273,7 @@ const LeaderboardKioskUsers: React.FC<{ users: any[]; recentEntry: any }> = ({
       phoneNumber: "1234567890",
       type: "participant",
       raceCode: "12345",
-      score: score,
+      score: time_ms,
       animation: true,
     });
     const updatedUsersWithAnimation = updatedUsers.map(
