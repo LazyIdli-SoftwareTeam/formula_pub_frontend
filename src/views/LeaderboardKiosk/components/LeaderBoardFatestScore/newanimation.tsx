@@ -185,7 +185,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
           </div>
         </div>
         <div className="leaderboard-bottom-section-image">
-          <Swiper onSwiper={(swiper) => setSwiper(swiper)}>
+          <Swiper speed={5000}  onSwiper={(swiper) => setSwiper(swiper)}>
             <SwiperSlide>
               <QrCodeScreen />
             </SwiperSlide>
@@ -420,7 +420,7 @@ export const LeaderboardKioskFooter = () => {
         }}
         className="footer-text-kiosk scroll-text"
       >
-        Play Arena: Your Ultimate Entertainment Hub In Bengaluru
+        Start your engines! Register & claim your spot!
       </div>
     </div>
   );

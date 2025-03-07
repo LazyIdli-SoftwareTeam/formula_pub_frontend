@@ -3,12 +3,15 @@
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 20px;
+	padding-left: 42px;
+	gap: 42px;
+	padding-right: 42px;
 }
 
 .top-players-container .--player-card {
 	display: flex;
 	flex-direction: column;
-	width: 250px;
+	width: calc(100% / 3);
 	gap: 10px;
 	align-items: center;
 	justify-content: center;
