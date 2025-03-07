@@ -1,43 +1,61 @@
-.lb-top-player-container {
+.top-players-container {
 	display: flex;
-	flex-wrap: wrap;
-	padding: 20px;
-	height: 150px;
-	padding-left: 35px;
-	padding-right: 35px;
-	align-items: center;
+	flex-direction: row;
 	justify-content: space-between;
+	padding: 20px;
 }
 
-.lb-top-player-container .--categories-player {
+.top-players-container .--player-card {
 	display: flex;
 	flex-direction: column;
+	width: 250px;
 	gap: 10px;
-	width: 200px;
-}
-
-.lb-top-player-container .--categories-player .--cat {
-	box-shadow: 0px 4px 4px 0px #00000040;
+	align-items: center;
+	justify-content: center;
 	border: 1px solid white;
-	font-size: 18px;
+	padding-bottom: 10px;
+}
+
+.top-players-container .--player-card .--cat {
+	font-size: 20px;
 	font-weight: 500;
-	padding: 10px;
+	letter-spacing: 1.25px;
+	border: 1.25px solid #ffffff66;
+	padding: 14px;
+	width: 100%;
+	background: conic-gradient(
+		from 180deg at 50% 50%,
+		#f4c53f 0deg,
+		#d58f21 35.85deg,
+		#e0a02d 63.14deg,
+		#d58f21 120.7deg,
+		#e0a02d 142.36deg,
+		#d1871d 161.68deg,
+		#f4c53f 204.6deg,
+		#d58f21 229.15deg,
+		#e0a02d 257.65deg,
+		#e0a02d 274.09deg,
+		#c07e17 302.53deg,
+		#e0a02d 331.61deg,
+		#f4c53f 340.4deg,
+		#f4c53f 349.48deg,
+		#f4c53f 360deg
+	);
 	text-align: center;
 }
-
-.lb-top-player-container .--categories-player .--user-name {
-	font-size: 18px;
+.top-players-container .--player-card .--name,
+.top-players-container .--player-card .--score {
+	font-size: 20px;
 	font-weight: 600;
-	background: linear-gradient(90deg, #1cb1d9 0%, #0f5e73 100%);
-	text-align: center;
-	padding: 8px;
-	width: 80%;
-	margin: auto;
 }
 
-.lb-top-player-container .--categories-player .--score {
-	font-size: 18px;
-	font-weight: 600;
+.top-players-container .--player-card .--score {
 	color: #1cb1d9;
+}
+
+.top-players-container .--player-card .--name {
+	width: 70%;
+	padding: 8px;
+	border-radius: 4px;
 	text-align: center;
 }
