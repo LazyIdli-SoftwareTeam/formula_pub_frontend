@@ -50,33 +50,23 @@ export const LeaderboardkioskMainpage: React.FC<{ heading?: string }> = ({
 	}, [users]);
 	if (pageState === PAGE_STATE.LOADING) return <FullScreenLoader />;
 	return (
-		<div className="leader-board-kiosk-global-container">
-			<div className="leader-board-kiosk-header">
-				<img
-					src={FinalLogo}
-					className="bar-image"
-				/>
-				<TehoIcon
-					className="gilli"
-					width={120}
-					height={200}
-				/>
-			</div>
-			<div className="image-backe">
-				<div className="main-fast-today-kiosk">
-					<RightSide />
-					<span className="leader-board-kiosk-fastest-main-text">
-						{heading}
-					</span>
-					<LeftSide />
-				</div>
-				<LeaderboardKioskFastestHeader
-					users={users}
-					setUsers={setUsers}
-				/>
-			</div>
-		</div>
-	);
+    <div className="leader-board-kiosk-global-container">
+      <div className="leader-board-kiosk-header">
+        <TehoIcon className="gilli" width={200} height={200} />
+        <img src={FinalLogo} className="bar-image" />
+      </div>
+      <div className="image-backe">
+        <div className="main-fast-today-kiosk">
+          <RightSide />
+          <span className="leader-board-kiosk-fastest-main-text">
+            {heading}
+          </span>
+          <LeftSide />
+        </div>
+        <LeaderboardKioskFastestHeader users={users} setUsers={setUsers} />
+      </div>
+    </div>
+  );
 };
 
 export const RightSide = () => {

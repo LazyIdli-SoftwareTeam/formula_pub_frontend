@@ -20,6 +20,7 @@ import 'swiper/css';
 //   animation: false,
 // }));
 
+
 const kioskStylesRank = (index: number) => {
   if (index === 1) {
     return {
