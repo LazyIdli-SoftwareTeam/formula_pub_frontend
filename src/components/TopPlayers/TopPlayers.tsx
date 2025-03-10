@@ -5,7 +5,11 @@ import { PAGE_STATE } from '../../views/LeaderboardKiosk/components/HeaderKiosk/
 import { AxiosResponse, HttpStatusCode } from 'axios';
 import { getTopPlayers } from '../../api/scores';
 
-const TopPlayers = () => {
+interface TopPlayersProps {
+	users: any;
+}
+
+const TopPlayers = (props: TopPlayersProps) => {
 	const [pageState, setPageState] = useState(PAGE_STATE.UNKNOWN);
 	const [players, setPlayers] = useState<any>([]);
 
@@ -22,7 +26,7 @@ const TopPlayers = () => {
 		};
 		setPageState(PAGE_STATE.LOADING);
 		getTopPlayers(onAccept, onReject);
-	}, []);
+	}, [props.users]);
 
 	if (pageState === PAGE_STATE.REJECTED) return <></>;
 

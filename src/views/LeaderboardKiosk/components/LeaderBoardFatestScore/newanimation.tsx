@@ -88,9 +88,9 @@ export const LeaderboardKioskFastestHeader: React.FC<{
    ];
 */
 	const ImageRef = useRef<HTMLDivElement>(null);
-
+	
 	useEffect(() => {
-		const socket = io('http://localhost:8000/', {
+		const socket = io('http://192.168.4.251:8000/', {
 			transports: ['websocket', 'polling'], // Ensure WebSockets are used
 		});
 		socket.connect();
@@ -153,7 +153,7 @@ export const LeaderboardKioskFastestHeader: React.FC<{
 				id="new-card-height"
 			>
 				<div>
-					<TopPlayers />
+					<TopPlayers users={recentEntry} />
 				</div>
 				<div className="leader-board-race-fast-card">
 					<div className="leader-board-race-fsat-card-image">
